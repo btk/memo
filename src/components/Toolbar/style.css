@@ -1,0 +1,58 @@
+.Toolbar {
+  width: 50px;
+  border: 0px;
+  height: 100vh;
+  background: #fff;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) -2px 0px 16px -4px;
+  z-index: 99;
+  border-radius: 20px 0px 0px 20px;
+  transition: 300ms width;
+}
+
+
+.Menu {
+  width: 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.Menu .Top, .Menu .Bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.Menu .Item {
+  width: 24px;
+  height: 24px;
+  padding: 13px;
+}
+
+.Menu .Item img {
+  opacity: 0.8;
+  transition: 200ms;
+}
+
+.Menu .Item:hover img {
+  opacity: 1;
+}
+
+.shadow {
+  background: rgba(0,0,0,0.2);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 90;
+  transition: 300ms opacity;
+}
