@@ -3,6 +3,8 @@
   border: 0px;
   height: 100vh;
   background: #fff;
+  display: flex;
+  flex-direction: row;
   position: fixed;
   right: 0px;
   top: 0px;
@@ -11,7 +13,6 @@
   border-radius: 20px 0px 0px 20px;
   transition: 300ms width;
 }
-
 
 .Menu {
   width: 50px;
@@ -32,18 +33,75 @@
 }
 
 .Menu .Item {
+  cursor: pointer;
   width: 24px;
   height: 24px;
-  padding: 13px;
+  padding: 10px;
+  margin: 3px;
+  position: relative;
+  transition: 200ms all;
+  border-radius: 25px;
+}
+
+.Menu .Item.Search {
+  width: 374px;
+}
+
+.Menu .Item .ToolTip {
+  position: absolute;
+  top: -1px;
+  left: -90px;
+  visibility: hidden;
+  opacity: 0;
+  width: 80px;
+  height: 20px;
+  margin: 15px 0px;
+  background: rgba(0,0,0,0.8);
+  text-align: center;
+  transition: 100ms all;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.60em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  transition-delay: 0ms;
+}
+
+.Menu .Item .ToolTip:before {
+  content:"\A";
+  border-style: solid;
+  border-width: 5px 0 5px 6px;
+  border-color: transparent transparent transparent rgba(0,0,0,0.8);
+  position: absolute;
+  right: -6px;
 }
 
 .Menu .Item img {
   opacity: 0.8;
-  transition: 200ms;
+  transition: 200ms all;
 }
 
 .Menu .Item:hover img {
   opacity: 1;
+}
+
+.Menu .Item:hover .ToolTip {
+  opacity: 1;
+  visibility: visible;
+  left: -85px;
+  transition-delay: 150ms;
+}
+
+
+.tabContent {
+  width: 345px;
+  height: 100vh;
+  overflow-y: scroll;
+  position: relative;
+  transition: 200ms all;
 }
 
 .shadow {

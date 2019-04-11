@@ -1,3 +1,7 @@
 .Line textarea {
 
 }
+
+.Line textarea:focus {
+  background: #fafafa;
+}

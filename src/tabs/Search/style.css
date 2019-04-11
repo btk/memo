@@ -1,0 +1,25 @@
+.SearchTab {
+  padding: 0px 10px;
+  width: 325px;
+}
+
+.SearchTab input {
+  height: 42px;
+  border: 0px;
+  width: 100%;
+  background: transparent;
+  font-size: 1em;
+  color: #333;
+  outline: 0px;
+  margin: 3px 0px;
+}
+
+.SearchTab .sub {
+  font-size: 0.9rem;
+  line-height: 1.4em;
+  color: #111;
+}
+
+.SearchResults {
+  padding: 10px;
+}
