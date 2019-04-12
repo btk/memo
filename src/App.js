@@ -11,6 +11,12 @@ let sheet = require("./sheet.json");
 
 class App extends Component {
 
+  state = {
+    lines: sheet.lines,
+    focusIndex: 0,
+    cursorPosition: 0
+  };
+
   componentDidMount(){
     window.addEventListener("keydown", (e) => {
       if (e.keyCode === 114 || ((e.ctrlKey || e.metaKey) && e.keyCode === 70)) {
@@ -37,48 +43,70 @@ class App extends Component {
     }
   }
 
-  handleConcat(id, text){
+  handleConcat(id, text, i){
     let keyToRemove = id.split("-")[1];
-    console.log("removing", keyToRemove);
+    let lines = this.state.lines;
+    let cursorPosition = 0;
+    if(lines[i-1]){
+      cursorPosition = lines[i-1].text.length;
+      lines[i-1].text = lines[i-1].text + text;
+      lines[i-1].key = makeid(5);
+    }
+    lines.splice(i, 1);
+    this.setState({focusIndex: i-1, cursorPosition, lines});
   }
 
-  renderLines(){
-    let dates = [];
-
-    sheet.lines.forEach(l => {
-      if(!dates.includes(l.date)){
-        dates.push(l.date);
-      }
+  handleSplit(id, text, i){
+    let keyToSplit = id.split("-")[1];
+    let lines = this.state.lines;
+    lines.splice(i+1, 0, {
+      "key": makeid(5),
+      "date": id.split("-")[0].split("!")[1],
+      text
     });
+    this.setState({focusIndex: i+1, cursorPosition: 0, lines});
+  }
 
+  handleBlur(text, i){
+    let lines = this.state.lines;
+    if(lines[i].text != text){
+      lines[i].text = text;
+      this.setState({lines});
+    }
+  }
+
+  renderLines(lines){
     let lineArray = [];
+    let prevDate = "";
 
-    dates.forEach(date => {
-      lineArray.push(
-        <div
-          className="Identifier"
-          key={sheet.id + "-" + date}
-          dangerouslySetInnerHTML={{__html: `${date} ${this.getDateIdentifier(date)}`}}>
-        </div>
-      );
-
-      let linesByDate = sheet.lines.filter(l => {
-        return l.date == date
-      });
-
-      linesByDate.forEach((l, i) => {
+    lines.forEach((l, i) => {
+      if(prevDate !== l.date){
         lineArray.push(
-          <Line
-            key={sheet.id + "!" + date + "-" + l.key}
-            id={sheet.id + "!" + date + "-" + l.key}
-            prevId={linesByDate[i - 1]? sheet.id + "!" + date + "-" + linesByDate[i - 1].key : ""}
-            nextId={linesByDate[i + 1]? sheet.id + "!" + date + "-" + linesByDate[i + 1].key : ""}
-            onConcat={this.handleConcat.bind(this)}>
-            {l.text}
-          </Line>
+          <div
+            className="Identifier"
+            key={sheet.id + "-" + l.date}
+            dangerouslySetInnerHTML={{__html: `${l.date} ${this.getDateIdentifier(l.date)}`}}>
+          </div>
         );
-      });
-    })
+        prevDate = l.date;
+      }
+
+      lineArray.push(
+        <Line
+          key={sheet.id + "!" + l.date + "-" + l.key}
+          id={sheet.id + "!" + l.date + "-" + l.key}
+          index={i}
+          prevId={lines[i - 1]? sheet.id + "!" + l.date + "-" + lines[i - 1].key : ""}
+          nextId={lines[i + 1]? sheet.id + "!" + l.date + "-" + lines[i + 1].key : ""}
+          onConcat={this.handleConcat.bind(this)}
+          onSplit={this.handleSplit.bind(this)}
+          onBlur={this.handleBlur.bind(this)}
+          cursorPosition={i == this.state.focusIndex ? this.state.cursorPosition : false}
+          focusOnRender={i == this.state.focusIndex}>
+          {l.text}
+        </Line>
+      );
+    });
 
     return lineArray;
   }
@@ -87,7 +115,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="Note">
-          {this.renderLines()}
+          {this.renderLines(this.state.lines)}
         </div>
         <Toolbar/>
         <div id="trash">
