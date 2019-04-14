@@ -2,6 +2,26 @@
   overflow: hidden;
 }
 
+.Line textarea.white {
+  background: #fafafa;
+}
+
+.Line textarea.yellow {
+  background: #f5f4be;
+}
+
+.Line textarea.purple {
+  background: #efc8d9;
+}
+
+.Line textarea.green {
+  background: #d0ecc8;
+}
+
+.Line textarea.blue {
+  background: #d3eaf5;
+}
+
 .Line textarea:focus {
   background: #fafafa;
 }

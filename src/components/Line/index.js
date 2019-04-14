@@ -23,12 +23,21 @@ class App extends Component {
     });
 
     if(this.props.focusOnRender){
-      this.refs._lineText.focus();
-      this.refs._lineText.selectionStart = this.props.cursorPosition;
-      this.refs._lineText.selectionEnd = this.props.cursorPosition;
-      setTimeout(() => {
-        this.handleChange();
-      }, 10);
+      let lineText = this.refs._lineText;
+      let cursorPosition = this.props.cursorPosition == "end" ? this.state.text.length : this.props.cursorPosition;
+      lineText.focus();
+      lineText.selectionStart = cursorPosition;
+      lineText.selectionEnd = cursorPosition;
+    }
+  }
+
+  componentWillReceiveProps(newProps){
+    if(newProps.focusOnRender){
+      let lineText = this.refs._lineText;
+      let cursorPosition = newProps.cursorPosition == "end" ? this.state.text.length : newProps.cursorPosition;
+      lineText.focus();
+      lineText.selectionStart = cursorPosition;
+      lineText.selectionEnd = cursorPosition;
     }
   }
 
@@ -40,12 +49,15 @@ class App extends Component {
 
   handleChange(e){
     if(e){
-      this.setState({text: e.target.value.replace(/(\r\n|\n|\r)/gm,"")});
+      this.setState({text: e.target.value});
+      //.replace(/(\r\n|\n|\r)/gm,"")
     }
-    let renderedHeight = this.getHeight(this.refs._lineText.value);
-    //console.log(renderedHeight);
-    if(renderedHeight != this.state.pHeight){
-      this.setState({pHeight: renderedHeight});
+    if(this.refs._lineText){
+      let renderedHeight = this.getHeight(this.refs._lineText.value);
+      //console.log(renderedHeight);
+      if(renderedHeight != this.state.pHeight){
+        this.setState({pHeight: renderedHeight});
+      }
     }
   }
 
@@ -74,6 +86,27 @@ class App extends Component {
       if(selectionStart == 0 && selectionEnd == 0){
 
         this.props.onConcat(this.props.id, this.state.text, this.props.index);
+        e.preventDefault();
+        return false;
+      }
+    }else if(e.keyCode == 39 || e.keyCode == 40){
+      let selectionStart = this.refs._lineText.selectionStart;
+      let selectionEnd = this.refs._lineText.selectionEnd;
+      let textLength = this.state.text.length;
+
+      if(selectionStart == textLength && selectionEnd == textLength){
+        this.props.onCursor(e.keyCode, this.props.id, this.props.index);
+
+        e.preventDefault();
+        return false;
+      }
+    }else if(e.keyCode == 37 || e.keyCode == 38){
+      let selectionStart = this.refs._lineText.selectionStart;
+      let selectionEnd = this.refs._lineText.selectionEnd;
+
+      if(selectionStart == 0 && selectionEnd == 0){
+        this.props.onCursor(e.keyCode, this.props.id, this.props.index);
+
         e.preventDefault();
         return false;
       }

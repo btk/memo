@@ -3,9 +3,11 @@ import './App.css';
 
 import Line from './components/Line';
 import Toolbar from './components/Toolbar';
+import Handy from './components/Handy';
 
 import makeid from './js/makeid';
 import Event from './js/event';
+import API from './js/api';
 
 let sheet = require("./sheet.json");
 
@@ -14,7 +16,8 @@ class App extends Component {
   state = {
     lines: sheet.lines,
     focusIndex: 0,
-    cursorPosition: 0
+    cursorPosition: 0,
+    logged: false
   };
 
   componentDidMount(){
@@ -22,11 +25,29 @@ class App extends Component {
       if (e.keyCode === 114 || ((e.ctrlKey || e.metaKey) && e.keyCode === 70)) {
         Event.emit("toggle", "search");
         e.preventDefault();
+      }else if ((e.ctrlKey || e.metaKey) && e.keyCode === 188) {
+        Event.emit("toggle", "settings");
+        e.preventDefault();
+      }else if ((e.ctrlKey || e.metaKey) && e.keyCode === 83) {
+        Event.emit("toggle", "sheets");
+        e.preventDefault();
+      }else if ((e.ctrlKey || e.metaKey) && e.keyCode === 85) {
+        Event.emit("toggle", "archives");
+        e.preventDefault();
+      }else if ((e.ctrlKey || e.metaKey) && e.keyCode === 69) {
+        Event.emit("toggle", "addons");
+        e.preventDefault();
       }else if(e.keyCode === 27){
         Event.emit("toggle", false);
         e.preventDefault();
       }
     })
+
+    Event.on("login", (status) => {
+      this.setState({logged: status});
+    })
+
+    API.renderLogin();
   }
 
   getDateIdentifier(date){
@@ -40,6 +61,8 @@ class App extends Component {
       return "&middot; Today";
     }else if(date == yesterday){
       return "&middot; Yesterday"
+    }else{
+      return "";
     }
   }
 
@@ -59,12 +82,36 @@ class App extends Component {
   handleSplit(id, text, i){
     let keyToSplit = id.split("-")[1];
     let lines = this.state.lines;
+    let date = id.split("-")[0].split("!")[1];
+
+    if(i+1 == lines.length){
+      let today = new Date();
+      today = String(today.getDate()).padStart(2, '0') + "/" + String(today.getMonth() + 1).padStart(2, '0') + "/" + today.getFullYear();
+      date = today
+    }
+
     lines.splice(i+1, 0, {
       "key": makeid(5),
-      "date": id.split("-")[0].split("!")[1],
+      date,
       text
     });
     this.setState({focusIndex: i+1, cursorPosition: 0, lines});
+  }
+
+  handleCursor(direction, id, i){
+    let newIndex = 0;
+    let cursorPosition = 0;
+    if(direction == 37 || direction == 38){
+      newIndex = i-1;
+    }else if(direction == 39 || direction == 40){
+      newIndex = i+1;
+    }
+
+    if(direction == 37 || ((direction == 40 || direction == 38) && false)){
+      cursorPosition = "end";
+    }
+
+    this.setState({focusIndex: newIndex, cursorPosition});
   }
 
   handleBlur(text, i){
@@ -73,6 +120,10 @@ class App extends Component {
       lines[i].text = text;
       this.setState({lines});
     }
+  }
+
+  focusLast(){
+    this.setState({focusIndex: this.state.lines.length - 1, cursorPosition: "end"});
   }
 
   renderLines(lines){
@@ -101,6 +152,7 @@ class App extends Component {
           onConcat={this.handleConcat.bind(this)}
           onSplit={this.handleSplit.bind(this)}
           onBlur={this.handleBlur.bind(this)}
+          onCursor={this.handleCursor.bind(this)}
           cursorPosition={i == this.state.focusIndex ? this.state.cursorPosition : false}
           focusOnRender={i == this.state.focusIndex}>
           {l.text}
@@ -114,13 +166,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="Note">
+        <div className="Note" key={this.state.logged}>
+          <div id="my-signin2"></div>
           {this.renderLines(this.state.lines)}
+          <Handy/>
+          <div className="spacer" onClick={() => this.focusLast()}></div>
+          <div id="trash">
+            <textarea id="trashTextarea"></textarea>
+          </div>
         </div>
         <Toolbar/>
-        <div id="trash">
-          <textarea id="trashTextarea"></textarea>
-        </div>
       </div>
     );
   }

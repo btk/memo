@@ -4,12 +4,18 @@
 
 .Note {
   height: auto;
+  margin-left: 200px;
+  width: calc(100% - 200px);
 }
 
 .Identifier {
-  padding: 15px;
+  padding: 15px 20px;
   opacity: 0.5;
   font-size: 0.9em;
+}
+
+.spacer {
+  height: 60vh;
 }
 
 #trash {

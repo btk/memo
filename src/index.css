@@ -14,18 +14,18 @@ code {
 }
 
 textarea {
-    width: calc(100% - 30px);
+    width: calc(100% - 40px);
     border: 0px;
     outline: 0px !important;
     resize: none !important;
-    padding: 2px 15px;
+    padding: 2px 20px;
     padding-top: 5px;
     margin: 0px !important;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
       "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
       sans-serif;
     font-size: 1em;
-    line-height: 1.35em;
+    line-height: 1.4em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

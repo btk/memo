@@ -1,0 +1,98 @@
+.Handy {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: #fafafa;
+  width: 200px;
+  height: 100vh;
+}
+
+.HandyInner {
+  padding: 0px 15px;
+  font-size: 1em;
+}
+
+.InfoItem {
+  color: #444;
+  position: relative;
+}
+
+.InfoItem h5 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.InfoItem p {
+  font-size: 0.85em;
+}
+
+.InfoItem .InfoConfigure {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
+  opacity: 0;
+  transform: rotate(0deg);
+  transition: 300ms all;
+  transition-delay: 200ms;
+}
+
+.InfoItem:hover .InfoConfigure {
+  opacity: 0.8;
+  transform: rotate(180deg);
+}
+
+.colorCode {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.colorNode {
+  position: relative;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0,0,0,0.1);
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.colorNode:hover .colorInner, .active .colorInner {
+  position: absolute;
+  border-radius: 100%;
+  left: 2px;
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.3), inset 0 0 2px rgba(0,0,0,0.3);
+  top: 2px;
+  background: transparent;
+  border: 2px solid #fff;
+  width: 12px;
+  height: 12px;
+}
+
+.colorNode.white {
+  background: #ffffff;
+}
+
+.colorNode.white .colorInner{
+  border-color: #fafafa;
+}
+
+.colorNode.yellow {
+  background: #f3f04b;
+}
+
+.colorNode.purple {
+  background: #ef4e96;
+}
+
+.colorNode.green {
+  background: #4acc24;
+}
+
+.colorNode.blue {
+  background: #51b2e1;
+}
