@@ -64,6 +64,14 @@ class App extends Component {
             </div>
             <div className="InfoItem">
               <img className="InfoConfigure" src={cog} width={16} height={16}/>
+              <h5>Maps</h5>
+            </div>
+            <div className="InfoItem">
+              <img className="InfoConfigure" src={cog} width={16} height={16}/>
+              <h5>Phone</h5>
+            </div>
+            <div className="InfoItem">
+              <img className="InfoConfigure" src={cog} width={16} height={16}/>
               <h5>JS Output</h5>
               <pre>
                 ["Apples", "Oranges"]<br/>

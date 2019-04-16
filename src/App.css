@@ -8,6 +8,11 @@
   width: calc(100% - 200px);
 }
 
+.title {
+  padding: 0px 20px;
+  margin-bottom: 0px;
+}
+
 .Identifier {
   padding: 15px 20px;
   opacity: 0.5;

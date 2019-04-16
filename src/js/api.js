@@ -1,6 +1,8 @@
 import makeid from './makeid';
 import Event from './event';
 
+const URL = "https://www.buraktokak.com/note/";
+
 class Api {
   constructor(){
 		this.event = Event;
@@ -36,9 +38,56 @@ class Api {
     if(user.id){
       this.logged = true;
       this.user = user;
+
+      var url = URL + "login.php";
+      var formData = new FormData();
+      formData.append('id', user.id);
+      formData.append('email', user.email);
+      formData.append('name', user.name);
+      formData.append('avatar', user.avatar);
+
+      fetch(url, { method: 'POST', body: formData })
+      .then(res => res.json())
+      .then((res) => {
+        this.user.id = res.id;
+        //console.log(res);
+      });
+
       this.event.emit("login", true);
       console.log("API: Logged in");
     }
+  }
+
+  getSheet(sheetId){
+    var url = URL + "sheet.php";
+    var formData = new FormData();
+    formData.append('id', sheetId);
+
+    return fetch(url, { method: 'POST', body: formData })
+    .then(res => res.json());
+  }
+
+  getSheets(active){
+    var url = URL + "sheets.php";
+    var formData = new FormData();
+    formData.append('id', this.user.id);
+    formData.append('active', active);
+
+    return fetch(url, { method: 'POST', body: formData })
+    .then(res => res.json());
+  }
+
+  updateLine(id, pos, text, action, hint){
+    var url = URL + "line.php";
+    var formData = new FormData();
+    formData.append('id', id);
+    formData.append('pos', pos);
+    formData.append('text', text);
+    formData.append('action', action ? action : "");
+    formData.append('hint', hint ? hint : "");
+
+    return fetch(url, { method: 'POST', body: formData })
+    .then(res => res.json()).then(res => console.log(res));
   }
 
 	// These are like kinda private;

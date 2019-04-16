@@ -1,6 +1,6 @@
 .ArchivesTab {
   padding: 0px 20px;
-  width: 325px;
+  width: 305px;
 }
 
 .ArchivesTab h4 {
@@ -10,6 +10,7 @@
   position: relative;
   top: -3px;
   text-transform: uppercase;
+  margin-bottom: 0px;
 }
 
 .ArchivesTab .sub {

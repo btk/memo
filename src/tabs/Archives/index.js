@@ -6,7 +6,7 @@ class App extends Component {
     return (
       <div className="ArchivesTab">
         <h4>Archives</h4>
-        <p className="sub">See and manage your old and not-so-popular sheets on this tab.</p>
+        <p className="sub">See and manage your old and not-so-popular sheets.</p>
       </div>
     );
   }

@@ -66,20 +66,37 @@ class App extends Component {
       let selectionStart = this.refs._lineText.selectionStart;
       let selectionEnd = this.refs._lineText.selectionEnd;
 
-      let nextLineText = e.target.value.substr(selectionEnd);
+      let ordinarySplit = e.target.value.substr(selectionStart-1, 1) == "\n";
+      let extraOrdinarySplit = e.target.value.substr(selectionStart, 1) == "\n";
+      if(ordinarySplit || extraOrdinarySplit){
+        let nextLineText = e.target.value.substr(selectionEnd);
 
-      this.setState({
-        text: e.target.value.substr(0, selectionStart)
-      });
+        if(ordinarySplit){
+          this.setState({
+            text: e.target.value.substr(0, selectionStart - 1)
+          });
+          this.props.onSplit(this.props.id, nextLineText, this.props.index);
+        }else if(extraOrdinarySplit){
+          this.setState({
+            text: e.target.value.substr(0, selectionStart)
+          });
+          this.props.onSplit(this.props.id, nextLineText.substr(1), this.props.index);
+        }
 
-      this.props.onSplit(this.props.id, nextLineText, this.props.index);
+        setTimeout(() => {
+          this.handleChange();
+        }, 10);
 
-      setTimeout(() => {
-        this.handleChange();
-      }, 10);
+        e.preventDefault();
+        return false;
+      }
 
-      e.preventDefault();
-      return false;
+      if(e.target.value == ""){
+        this.props.onSplit(this.props.id, "", this.props.index);
+
+        e.preventDefault();
+        return false;
+      }
     }else if(e.keyCode == 8 && this.props.index !== 0){
       let selectionStart = this.refs._lineText.selectionStart;
       let selectionEnd = this.refs._lineText.selectionEnd;
@@ -122,7 +139,7 @@ class App extends Component {
             style={{height: this.state.pHeight}}
             value={this.state.text}
             wrap="soft"
-            onBlur={() => this.props.onBlur(this.state.text, this.props.index)}
+            onBlur={() => this.props.onBlur(this.state.text, this.props.id, this.props.index)}
             onKeyDown={(event) => this.handleKeyDown(event)}
             onChange={(event) => this.handleChange(event)}>
           </textarea>
