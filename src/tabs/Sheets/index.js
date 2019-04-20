@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 
 import API from '../../js/api';
+import Loading from '../../components/Loading';
 
 class App extends Component {
   state = {
@@ -10,25 +11,30 @@ class App extends Component {
 
   componentDidMount(){
     API.getSheets(1).then(sheets => {
-      console.log(sheets);
-      this.setState({sheets});
+      setTimeout(() => {
+        this.setState({sheets});
+      }, 1000);
     });
   }
 
   renderSheets(sheets){
-    return sheets.map(sheet => {
-      return (
-        <div
-          className="sheetItem"
-          key={sheet.id}
-          onClick={() => API.event.emit("sheet", sheet.id)}>
-          <div className="sheetRight">
-            <h5>{sheet.title}</h5>
-            <span>{sheet.first_line}</span>
+    if(sheets.length){
+      return sheets.map(sheet => {
+        return (
+          <div
+            className="sheetItem"
+            key={sheet.id}
+            onClick={() => API.event.emit("sheet", sheet.id)}>
+            <div className="sheetRight">
+              <h5>{sheet.title}</h5>
+              <span>{sheet.first_line}</span>
+            </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
+    }else{
+      return (<Loading height={200}/>);
+    }
   }
 
   render() {

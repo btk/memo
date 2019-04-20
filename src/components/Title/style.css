@@ -1,0 +1,17 @@
+.Title input {
+  overflow: hidden;
+  border: 0px;
+  background: #fff;
+  display: block;
+  font-size: 1.17em;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  outline: none;
+  width: 100%;
+}
+
+.Title input:focus {
+  background: #fafafa;
+}

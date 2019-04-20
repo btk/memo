@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Line from './components/Line';
+import Title from './components/Title';
 import Toolbar from './components/Toolbar';
 import Handy from './components/Handy';
+import Loading from './components/Loading'
 
 import makeid from './js/makeid';
 import API from './js/api';
@@ -61,7 +63,7 @@ class App extends Component {
       API.event.emit("toggle", false);
     })
 
-    API.event.emit("sheet", 1);
+    API.event.emit("sheet", "LAST_ACCESSED");
   }
 
   getDateIdentifier(date){
@@ -187,20 +189,36 @@ class App extends Component {
     return lineArray;
   }
 
+  renderApp(){
+    if(this.state.logged){
+      return(
+        <>
+          <div className="Note" key={this.state.logged}>
+            {this.state.sheet && <Title key={this.state.sheet.id} sheet={this.state.sheet}>{this.state.sheet.title}</Title>}
+            {this.state.lines.length && this.renderLines(this.state.lines)}
+            <Handy/>
+            <div className="spacer" onClick={() => this.focusLast()}></div>
+            <div id="trash">
+              <textarea id="trashTextarea"></textarea>
+            </div>
+          </div>
+          <Toolbar/>
+        </>
+      );
+    }else{
+      return (
+        <div>
+          <Loading quote={true}/>
+          <div id="my-signin2"></div>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="Note" key={this.state.logged}>
-        {this.state.sheet && <h3 className="title">{this.state.sheet.title}</h3>}
-          {this.state.lines.length && this.renderLines(this.state.lines)}
-          <Handy/>
-          <div className="spacer" onClick={() => this.focusLast()}></div>
-          <div id="my-signin2"></div>
-          <div id="trash">
-            <textarea id="trashTextarea"></textarea>
-          </div>
-        </div>
-        <Toolbar/>
+        {this.renderApp()}
       </div>
     );
   }

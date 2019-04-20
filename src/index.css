@@ -1,3 +1,7 @@
+body {
+  overflow: hidden !important;
+}
+
 body, input {
   margin: 0;
   padding: 0;

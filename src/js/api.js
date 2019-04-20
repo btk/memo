@@ -7,30 +7,38 @@ class Api {
   constructor(){
 		this.event = Event;
     this.logged = false;
-
+    this.loginInterval = false;
     console.log("API: init");
 
   }
 
   renderLogin(){
-    window.gapi.signin2.render('my-signin2', {
-      'scope': 'profile email',
-      'width': 0,
-      'height': 0,
-      'longtitle': true,
-      'theme': 'dark',
-      'onsuccess': (googleUser) => {
-        var profile = googleUser.getBasicProfile();
-        if(!this.logged){
-          this.login({
-            id: profile.getId(),
-            email: profile.getEmail(),
-            name: profile.getName(),
-            avatar: profile.getImageUrl()
+    this.loginInterval = setInterval(() => {
+      if(window.gapi){
+        if(window.gapi.signin2){
+          window.gapi.signin2.render('my-signin2', {
+            'scope': 'profile email',
+            'width': 0,
+            'height': 0,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': (googleUser) => {
+              var profile = googleUser.getBasicProfile();
+              if(!this.logged){
+                this.login({
+                  id: profile.getId(),
+                  token: googleUser.getAuthResponse().id_token,
+                  email: profile.getEmail(),
+                  name: profile.getName(),
+                  avatar: profile.getImageUrl()
+                });
+              }
+            }
           });
+          clearInterval(this.loginInterval);
         }
       }
-    });
+    }, 200);
   }
 
   login(user){
@@ -42,9 +50,11 @@ class Api {
       var url = URL + "login.php";
       var formData = new FormData();
       formData.append('id', user.id);
+      formData.append('token', user.token);
       formData.append('email', user.email);
       formData.append('name', user.name);
       formData.append('avatar', user.avatar);
+      formData.append('time', Math.round((new Date()).getTime() / 1000));
 
       fetch(url, { method: 'POST', body: formData })
       .then(res => res.json())
@@ -62,6 +72,7 @@ class Api {
     var url = URL + "sheet.php";
     var formData = new FormData();
     formData.append('id', sheetId);
+    formData.append('time', Math.round((new Date()).getTime() / 1000));
 
     return fetch(url, { method: 'POST', body: formData })
     .then(res => res.json());
@@ -87,7 +98,17 @@ class Api {
     formData.append('hint', hint ? hint : "");
 
     return fetch(url, { method: 'POST', body: formData })
-    .then(res => res.json()).then(res => console.log(res));
+    .then(res => res.json());
+  }
+
+  updateTitle(text, sheetId){
+    var url = URL + "sheet.php";
+    var formData = new FormData();
+    formData.append('id', sheetId);
+    formData.append('title', text);
+
+    return fetch(url, { method: 'POST', body: formData })
+    .then(res => res.json());
   }
 
 	// These are like kinda private;

@@ -1,0 +1,87 @@
+.Loading {
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.spinner {
+  background-image: linear-gradient(to right, #f1f1f1 , #dddddd);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
+  animation: rotating 1s linear infinite;
+  margin: 20px;
+}
+
+.spinnerHole {
+  background-color: #fff;
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background-color: #fff;
+}
+
+.quote {
+  width: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: quoteFadeIn 1000ms;
+
+}
+
+.quote p {
+  color: #444;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+
+.quote .hr {
+  width: 20px;
+  border-top: 2px solid #eee;
+  margin-bottom: 15px;
+}
+
+.quote span {
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #444;
+}
+
+.copyright {
+  position: fixed;
+  bottom: 20px;
+  font-size: 0.8em;
+  opacity: 0.5;
+}
+
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes quoteFadeIn {
+  from {
+    top: 15px;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 1;
+  }
+}

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './style.css';
 
 import makeid from '../../js/makeid';
-import Line from './index';
 
 class App extends Component {
 
