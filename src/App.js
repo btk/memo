@@ -5,7 +5,7 @@ import Line from './components/Line';
 import Title from './components/Title';
 import Toolbar from './components/Toolbar';
 import Handy from './components/Handy';
-import Loading from './components/Loading'
+import Loading from './components/Loading';
 
 import makeid from './js/makeid';
 import API from './js/api';
@@ -52,18 +52,21 @@ class App extends Component {
 
     API.event.on("sheet", (id) => {
       API.getSheet(id).then((sheet) => {
-        this.setState({
-          lines: sheet.lines,
-          sheet: {
-            id: sheet.id,
-            title: sheet.title
-          }
-        });
+        if(sheet == "NO_AUTH"){
+          console.log("NO_AUTH, retrying initiation");
+          API.login("refresh", id);
+        }else{
+          this.setState({
+            lines: sheet.lines,
+            sheet: {
+              id: sheet.id,
+              title: sheet.title
+            }
+          });
+        }
       });
       API.event.emit("toggle", false);
     })
-
-    API.event.emit("sheet", "LAST_ACCESSED");
   }
 
   getDateIdentifier(date){
@@ -130,6 +133,10 @@ class App extends Component {
       cursorPosition = "end";
     }
 
+    if(i == 0 && (direction == 37 || direction == 38)){
+      newIndex = "title";
+    }
+
     this.setState({focusIndex: newIndex, cursorPosition});
   }
 
@@ -143,9 +150,12 @@ class App extends Component {
         API.updateLine(lineId, i, text);
       }
       lines[i].text = text;
-      this.setState({lines});
+      this.setState({lines, focusIndex: null});
     }
+  }
 
+  handleTitleDown(){
+    this.setState({focusIndex: 0, cursorPosition: 0});
   }
 
   focusLast(){
@@ -194,8 +204,16 @@ class App extends Component {
       return(
         <>
           <div className="Note" key={this.state.logged}>
-            {this.state.sheet && <Title key={this.state.sheet.id} sheet={this.state.sheet}>{this.state.sheet.title}</Title>}
-            {this.state.lines.length && this.renderLines(this.state.lines)}
+            {this.state.sheet &&
+              <Title
+                shouldFocused={this.state.focusIndex == "title"}
+                key={this.state.sheet.id}
+                onTitleDown={this.handleTitleDown.bind(this)}
+                sheet={this.state.sheet}>
+                {this.state.sheet.title}
+              </Title>
+            }
+            {this.state.sheet && this.renderLines(this.state.lines)}
             <Handy/>
             <div className="spacer" onClick={() => this.focusLast()}></div>
             <div id="trash">
@@ -208,8 +226,8 @@ class App extends Component {
     }else{
       return (
         <div>
-          <Loading quote={true}/>
           <div id="my-signin2"></div>
+          <Loading quote={true}/>
         </div>
       );
     }

@@ -1,4 +1,5 @@
 .Title input {
+  position: relative;
   overflow: hidden;
   border: 0px;
   background: #fff;
@@ -14,4 +15,11 @@
 
 .Title input:focus {
   background: #fafafa;
+}
+
+.Title img {
+  position: absolute;
+  top: 24px;
+  right: 90px;
+  cursor: pointer;
 }

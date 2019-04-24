@@ -41,30 +41,52 @@ class Api {
     }, 200);
   }
 
-  login(user){
-    console.log(user);
-    if(user.id){
+  login(user, sheetId){
+    if(user == "refresh"){
       this.logged = true;
-      this.user = user;
 
       var url = URL + "login.php";
       var formData = new FormData();
-      formData.append('id', user.id);
-      formData.append('token', user.token);
-      formData.append('email', user.email);
-      formData.append('name', user.name);
-      formData.append('avatar', user.avatar);
+      formData.append('id', "refresh");
+      formData.append('token', this.user.token);
+      formData.append('email', this.user.email);
+      formData.append('name', this.user.name);
+      formData.append('avatar', this.user.avatar);
       formData.append('time', Math.round((new Date()).getTime() / 1000));
 
       fetch(url, { method: 'POST', body: formData })
       .then(res => res.json())
       .then((res) => {
         this.user.id = res.id;
-        //console.log(res);
+        this.user.session_id = res.session_id;
+        console.log("new auth initiated, asked sheet is mounting");
+        this.event.emit("sheet", sheetId);
       });
+    }else{
+      if(user.id){
+        this.logged = true;
+        this.user = user;
 
-      this.event.emit("login", true);
-      console.log("API: Logged in");
+        var url = URL + "login.php";
+        var formData = new FormData();
+        formData.append('id', user.id);
+        formData.append('token', user.token);
+        formData.append('email', user.email);
+        formData.append('name', user.name);
+        formData.append('avatar', user.avatar);
+        formData.append('time', Math.round((new Date()).getTime() / 1000));
+
+        fetch(url, { method: 'POST', body: formData })
+        .then(res => res.json())
+        .then((res) => {
+          this.user.id = res.id;
+          this.user.session_id = res.session_id;
+          this.event.emit("sheet", "LAST_ACCESSED");
+        });
+
+        this.event.emit("login", true);
+        console.log("API: Logged in");
+      }
     }
   }
 
@@ -72,7 +94,15 @@ class Api {
     var url = URL + "sheet.php";
     var formData = new FormData();
     formData.append('id', sheetId);
-    formData.append('time', Math.round((new Date()).getTime() / 1000));
+
+    let time = Math.round((new Date()).getTime() / 1000);
+    formData.append('time', time);
+
+    let today = new Date();
+    let formattedTime = String(today.getDate()).padStart(2, '0') + "/" + String(today.getMonth() + 1).padStart(2, '0') + "/" + today.getFullYear();
+    formData.append('formatted_time', formattedTime);
+
+    formData.append('session_id', this.user.session_id);
 
     return fetch(url, { method: 'POST', body: formData })
     .then(res => res.json());
@@ -83,6 +113,7 @@ class Api {
     var formData = new FormData();
     formData.append('id', this.user.id);
     formData.append('active', active);
+    formData.append('session_id', this.user.session_id);
 
     return fetch(url, { method: 'POST', body: formData })
     .then(res => res.json());
@@ -106,6 +137,18 @@ class Api {
     var formData = new FormData();
     formData.append('id', sheetId);
     formData.append('title', text);
+    formData.append('session_id', this.user.session_id);
+
+    return fetch(url, { method: 'POST', body: formData })
+    .then(res => res.json());
+  }
+
+  removeSheet(sheetId){
+    var url = URL + "sheet.php";
+    var formData = new FormData();
+    formData.append('id', sheetId);
+    formData.append('session_id', this.user.session_id);
+    formData.append('action', "rm");
 
     return fetch(url, { method: 'POST', body: formData })
     .then(res => res.json());

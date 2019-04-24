@@ -11,9 +11,7 @@ class App extends Component {
 
   componentDidMount(){
     API.getSheets(1).then(sheets => {
-      setTimeout(() => {
-        this.setState({sheets});
-      }, 1000);
+      this.setState({sheets});
     });
   }
 
@@ -25,9 +23,11 @@ class App extends Component {
             className="sheetItem"
             key={sheet.id}
             onClick={() => API.event.emit("sheet", sheet.id)}>
+            <div className="sheetIcon">
+              <img src={require("../../icon/icon-file.svg")}/>
+            </div>
             <div className="sheetRight">
-              <h5>{sheet.title}</h5>
-              <span>{sheet.first_line}</span>
+              <span>{sheet.title}</span>
             </div>
           </div>
         );
@@ -42,7 +42,20 @@ class App extends Component {
       <div className="SheetsTab">
         <h4>Sheets</h4>
         <p className="sub">See and manage your most recent sheets.</p>
-        {this.renderSheets(this.state.sheets)}
+        <div className="tabScroller">
+          <div
+            className="sheetItem"
+            key={"new_sheet"}
+            onClick={() => API.event.emit("sheet", "NEW_SHEET")}>
+            <div className="sheetIcon">
+              <img src={require("../../icon/icon-file-plus.svg")}/>
+            </div>
+            <div className="sheetRight">
+              <span>Add New Sheet</span>
+            </div>
+          </div>
+          {this.renderSheets(this.state.sheets)}
+        </div>
       </div>
     );
   }

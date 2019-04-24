@@ -26,19 +26,22 @@ class App extends Component {
               <h5>Notes</h5>
               <p>This paragraph might be asked in the midterm exam.</p>
               <div className="colorCode">
-                <div className="colorNode white active">
-                  <div className="colorInner"></div>
-                </div>
                 <div className="colorNode yellow">
-                  <div className="colorInner"></div>
-                </div>
-                <div className="colorNode purple">
                   <div className="colorInner"></div>
                 </div>
                 <div className="colorNode green">
                   <div className="colorInner"></div>
                 </div>
                 <div className="colorNode blue">
+                  <div className="colorInner"></div>
+                </div>
+                <div className="colorNode pink">
+                  <div className="colorInner"></div>
+                </div>
+                <div className="colorNode purple">
+                  <div className="colorInner"></div>
+                </div>
+                <div className="colorNode white active">
                   <div className="colorInner"></div>
                 </div>
               </div>

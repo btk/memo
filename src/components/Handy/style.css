@@ -54,8 +54,8 @@
 .colorNode {
   position: relative;
   border-radius: 100%;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border: 1px solid rgba(0,0,0,0.1);
   cursor: pointer;
   margin-right: 5px;
@@ -69,8 +69,8 @@
   top: 2px;
   background: transparent;
   border: 2px solid #fff;
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
 }
 
 .colorNode.white {
@@ -82,17 +82,21 @@
 }
 
 .colorNode.yellow {
-  background: #f3f04b;
+  background: #f6ce5a;
 }
 
 .colorNode.purple {
-  background: #ef4e96;
+  background: #c885da;
+}
+
+.colorNode.pink {
+  background: #f05c8a;
 }
 
 .colorNode.green {
-  background: #4acc24;
+  background: #7cc868;
 }
 
 .colorNode.blue {
-  background: #51b2e1;
+  background: #68aff1;
 }
