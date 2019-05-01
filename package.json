@@ -5,7 +5,9 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-ga": "^2.5.7",
+    "react-scripts": "2.1.8",
+    "write-good": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

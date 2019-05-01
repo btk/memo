@@ -40,7 +40,7 @@ class App extends Component {
   render() {
     return (
       <div className="Loading" style={{height: this.props.height}}>
-        {this.props.quote && <img src={require("./memo_logo_3.svg")} style={{marginBottom: 10}}/>}
+        {this.props.quote && <img src={require("./memo_logo.svg")} style={{marginBottom: 10}}/>}
         <div className="spinner">
           <div className="spinnerHole"></div>
         </div>

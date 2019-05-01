@@ -1,3 +1,7 @@
+.Line {
+  line-height: 0px;
+}
+
 .Line textarea {
   overflow: hidden;
 }

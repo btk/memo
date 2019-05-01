@@ -38,6 +38,7 @@ class App extends Component {
       if(!text){
         text = "Untitled Sheet";
       }
+      document.title = text + " | Memo";
       API.updateTitle(text, this.props.sheet.id);
     }
   }

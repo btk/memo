@@ -8,6 +8,8 @@ import Handy from './components/Handy';
 import Loading from './components/Loading';
 
 import makeid from './js/makeid';
+//import writeGood from 'write-good';
+
 import API from './js/api';
 
 //let sheet = require("./sheet.json");
@@ -56,6 +58,7 @@ class App extends Component {
           console.log("NO_AUTH, retrying initiation");
           API.login("refresh", id);
         }else{
+          document.title = sheet.title + " | Memo";
           this.setState({
             lines: sheet.lines,
             sheet: {
@@ -150,6 +153,7 @@ class App extends Component {
         API.updateLine(lineId, i, text);
       }
       lines[i].text = text;
+      //console.log(writeGood(text));
       this.setState({lines, focusIndex: null});
     }
   }

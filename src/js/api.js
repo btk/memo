@@ -1,15 +1,17 @@
 import makeid from './makeid';
 import Event from './event';
+import Analytics from 'react-ga';
 
 const URL = "https://www.buraktokak.com/note/";
 
 class Api {
   constructor(){
+    Analytics.initialize('UA-138987685-1');
 		this.event = Event;
+    this.analytics = Analytics;
     this.logged = false;
     this.loginInterval = false;
     console.log("API: init");
-
   }
 
   renderLogin(){
@@ -42,6 +44,7 @@ class Api {
   }
 
   login(user, sheetId){
+    this.analytics.pageview("/login");
     if(user == "refresh"){
       this.logged = true;
 
@@ -94,6 +97,7 @@ class Api {
     var url = URL + "sheet.php";
     var formData = new FormData();
     formData.append('id', sheetId);
+    this.analytics.pageview("/sheet/"+sheetId);
 
     let time = Math.round((new Date()).getTime() / 1000);
     formData.append('time', time);
@@ -127,6 +131,7 @@ class Api {
     formData.append('text', text);
     formData.append('action', action ? action : "");
     formData.append('hint', hint ? hint : "");
+    formData.append('session_id', this.user.session_id);
 
     return fetch(url, { method: 'POST', body: formData })
     .then(res => res.json());
