@@ -13,7 +13,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "push": "react-scripts build; aws s3 sync build s3://usememo.com --cache-control max-age=31536000,build"
   },
   "eslintConfig": {
     "extends": "react-app"
