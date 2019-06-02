@@ -225,6 +225,7 @@ class App extends Component {
                 <textarea id="trashTextarea"></textarea>
               </div>
             </div>
+            <Toolbar/>
           </div>
         </div>
       );
