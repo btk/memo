@@ -18,7 +18,7 @@
 }
 
 .Content {
-  width: calc(100% - 200px);
+  width: calc(100% - 250px);
   height: 100%;
   padding-top: 10px;
   position: relative;
@@ -60,7 +60,7 @@
   top: 0px;
   left: 0px;
   background: linear-gradient(rgba(200,200,200, 0), rgba(200,200,200, 0));
-  z-index: 999;
+  z-index: 98;
   transition: 100ms all;
 }
 
