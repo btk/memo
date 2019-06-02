@@ -4,13 +4,14 @@
 }
 
 .SheetsTab h4 {
-  font-size: 0.9rem;
+  font-size: 1.4em;
   font-weight: 600;
   color: #333;
   position: relative;
   top: -3px;
   text-transform: uppercase;
   margin-bottom: 0px;
+  margin-top: 50px;
 }
 
 .SheetsTab .sub {
@@ -22,21 +23,21 @@
 .sheetItem {
   cursor: pointer;
   position: relative;
-  width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-bottom: 8px;
-  background: #fff;
-  box-shadow: rgba(0, 0, 0, 0) 0px 0px 16px -4px;
-  border-radius: 10px;
-  opacity: 0.8;
-  transition: 200ms all;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px -4px;
+  background: #f2f3f5;
+  border-radius: 5px;
+  transition: 150ms all;
+  margin-bottom: 10px;
+  padding: 10px 15px;
 }
 
 .sheetItem:hover {
-  opacity: 1;
+  box-shadow: rgba(30, 30, 30, 0.15) 0px 4px 10px -4px;
+  background: #fff;
 }
 
 .sheetItem .sheetRight {
@@ -46,30 +47,21 @@
   flex-direction: column;
 }
 
-.sheetIcon {
-  width: 24px; height: 20px;
-  position: relative;
-  top: -3px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100%;
-  margin-right: 10px;
-}
 
 .sheetItem .sheetRight {
   font-size: 1em;
-
-  border-bottom: 1px solid #eee;
-  padding-bottom: 5px;
-  width: 100%;
   display: block;
 }
 
 .sheetItem .sheetRight span {
   line-height: 1.5em;
-  color: #222;
   font-weight: 600;
+}
+
+.sheetItem .sheetRight .sub {
+  font-weight: normal;
+  font-size: 0.9em;
+  opacity: 0.7;
 }
 
 .sheetItem img {

@@ -1,8 +1,10 @@
 {
-  "name": "note",
+  "name": "memo-app",
   "version": "0.1.0",
   "private": true,
+  "main": "src/electron.js",
   "dependencies": {
+    "electron": "^5.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-ga": "^2.5.7",
@@ -14,7 +16,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "push": "react-scripts build; aws s3 sync build s3://usememo.com --cache-control max-age=31536000,build"
+    "push": "react-scripts build; aws s3 sync build s3://usememo.com --cache-control max-age=31536000,build",
+    "app": "electron .",
+    "app-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds",
+    "app-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Shopping List\"",
+    "app-lin" : "electron-packager . --overwrite --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
   },
   "eslintConfig": {
     "extends": "react-app"

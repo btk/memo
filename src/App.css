@@ -1,23 +1,43 @@
-.App {
-  width: calc(100% - 50px);
+.AppHolder {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
 }
 
 .Note {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background: #fff;
+  box-shadow: rgba(100, 100, 100, 0.18) 0px 3px 10px -2px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.Content {
+  width: calc(100% - 200px);
+  height: 100%;
+  padding-top: 10px;
+  position: relative;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 100vh;
-  margin-left: 200px;
-  width: calc(100% - 200px);
 }
 
 .Identifier {
-  padding: 15px 20px;
-  opacity: 0.5;
-  font-size: 0.9em;
+  padding: 10px 30px;
+  color: #787878;
+  font-size: 0.85em;
 }
 
 .spacer {
   height: 60vh;
+}
+.rightSpacer {
+  width: 15px;
+  height: 100vh;
 }
 
 #trash {
@@ -30,4 +50,20 @@
 
 #trash textarea {
   height: 0px !important;
+}
+
+.AppTitle {
+  -webkit-app-region: drag;
+  width: 100%;
+  height: 32px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: linear-gradient(rgba(200,200,200, 0), rgba(200,200,200, 0));
+  z-index: 999;
+  transition: 100ms all;
+}
+
+.AppTitle:active {
+  background: linear-gradient(rgba(200,200,200, 0.3), rgba(200,200,200, 0));
 }

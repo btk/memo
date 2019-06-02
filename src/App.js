@@ -206,26 +206,27 @@ class App extends Component {
   renderApp(){
     if(this.state.logged){
       return(
-        <>
+        <div className="AppHolder">
           <div className="Note" key={this.state.logged}>
-            {this.state.sheet &&
-              <Title
-                shouldFocused={this.state.focusIndex == "title"}
-                key={this.state.sheet.id}
-                onTitleDown={this.handleTitleDown.bind(this)}
-                sheet={this.state.sheet}>
-                {this.state.sheet.title}
-              </Title>
-            }
-            {this.state.sheet && this.renderLines(this.state.lines)}
             <Handy/>
-            <div className="spacer" onClick={() => this.focusLast()}></div>
-            <div id="trash">
-              <textarea id="trashTextarea"></textarea>
+            <div className="Content">
+              {this.state.sheet &&
+                <Title
+                  shouldFocused={this.state.focusIndex == "title"}
+                  key={this.state.sheet.id}
+                  onTitleDown={this.handleTitleDown.bind(this)}
+                  sheet={this.state.sheet}>
+                  {this.state.sheet.title}
+                </Title>
+              }
+              {this.state.sheet && this.renderLines(this.state.lines)}
+              <div className="spacer" onClick={() => this.focusLast()}></div>
+              <div id="trash">
+                <textarea id="trashTextarea"></textarea>
+              </div>
             </div>
           </div>
-          <Toolbar/>
-        </>
+        </div>
       );
     }else{
       return (
@@ -240,6 +241,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="AppTitle"></div>
         {this.renderApp()}
       </div>
     );

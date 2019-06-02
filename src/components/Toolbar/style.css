@@ -1,22 +1,23 @@
-.Toolbar {
-  width: 50px;
-  border: 0px;
+.ToolbarPlaceholder {
   height: 100vh;
-  background: #fff;
+}
+
+.Toolbar {
+  width: 68px;
+  border: 0px;
   display: flex;
+  height: 100vh;
   flex-direction: row;
-  position: fixed;
-  right: 0px;
-  top: 0px;
-  box-shadow: rgba(0, 0, 0, 0.1) -2px 0px 16px -4px;
   z-index: 99;
-  border-radius: 20px 0px 0px 20px;
+  border-radius: 0px 20px 20px 0px;
   transition: 300ms width;
 }
 
 .Menu {
+  height: 90vh;
+  margin-top: 5vh;
   width: 50px;
-  height: 100%;
+  padding-left: 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -50,7 +51,7 @@
 .Menu .Item .ToolTip {
   position: absolute;
   top: -1px;
-  left: -90px;
+  left: 50px;
   visibility: hidden;
   opacity: 0;
   width: 80px;
@@ -73,10 +74,10 @@
 .Menu .Item .ToolTip:before {
   content:"\A";
   border-style: solid;
-  border-width: 5px 0 5px 6px;
-  border-color: transparent transparent transparent rgba(0,0,0,0.8);
+  border-width: 5px 6px 5px 0px;
+  border-color: transparent rgba(0,0,0,0.8) transparent transparent ;
   position: absolute;
-  right: -6px;
+  left: -6px;
 }
 
 .Menu .Item img {
@@ -91,7 +92,7 @@
 .Menu .Item:hover .ToolTip {
   opacity: 1;
   visibility: visible;
-  left: -85px;
+  left: 55px;
   transition-delay: 150ms;
 }
 

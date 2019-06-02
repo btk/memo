@@ -1,26 +1,42 @@
 .Handy {
-  position: fixed;
-  top: 0px;
-  left: 0px;
   background: #fafafa;
   width: 200px;
   height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .HandyInner {
   padding: 0px 15px;
+  margin-top: 0px;
   font-size: 1em;
 }
 
+.HandyFixed {
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  width: calc(100% - 10px);
+  height: 35px;
+  background: linear-gradient(rgba(250,250,250, 1), rgba(250,250,250, 1), rgba(250,250,250, 0));
+  z-index: 99;
+}
+
 .InfoItem {
-  color: #444;
+  color: #555;
   position: relative;
+}
+
+div.HandyInner > div:nth-child(1) > h5 {
+  padding-top: 0px;
+  margin-top: 0px;
+
 }
 
 .InfoItem h5 {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #333;
+  color: #444;
   text-transform: uppercase;
   margin-bottom: 3px;
 }

@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+--icon=assets/icons/mac/icon.icns 
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -66,3 +68,16 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Todo
+
+- native font is really good for the new 2 color design
+- logic for offline usage of the app, with also pwa's.
+- using without login
+- dektop app with the "mac circles" on the left, bend the design relative to the circles
+  - Try adding memo logo on the browser and other platforms
+  - Kill some time in sketch to try to find out how the usability of the app would be on different devices
+    - desktop browser
+    - mobile browser
+    - desktop App
+    - mobile App

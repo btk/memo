@@ -4,6 +4,7 @@
 
 .Line textarea {
   overflow: hidden;
+  color: #444;
 }
 
 .Line textarea.white {

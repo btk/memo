@@ -10,6 +10,7 @@ class App extends Component {
     return (
       <>
         <div className="Handy">
+          <div className="HandyFixed"></div>
           <div className="HandyInner">
             <div className="InfoItem">
               <img className="InfoConfigure" src={cog} width={16} height={16}/>

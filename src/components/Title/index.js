@@ -10,7 +10,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    if(this.state.text == "Untitled Sheet"){
+    if(this.state.text === "Untitled Sheet"){
       setTimeout(() => {
         this.refs._title.focus();
       },10);
@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   componentWillReceiveProps(newProps){
-    if(this.props.shouldFocused != newProps.shouldFocused && newProps.shouldFocused){
+    if(this.props.shouldFocused !== newProps.shouldFocused && newProps.shouldFocused){
       setTimeout(() => {
         this.refs._title.focus();
       },10);
@@ -34,7 +34,7 @@ class App extends Component {
 
   handleBlur(){
     let text = this.state.text;
-    if(text != this.props.sheet.title){
+    if(text !== this.props.sheet.title){
       if(!text){
         text = "Untitled Sheet";
       }
@@ -47,7 +47,7 @@ class App extends Component {
     let selectionStart = this.refs._title.selectionStart;
     let selectionEnd = this.refs._title.selectionEnd;
 
-    if(e.keyCode == 13 || (selectionStart == selectionStart && e.keyCode == 39 && selectionStart == this.state.text.length) || e.keyCode == 40){
+    if(e.keyCode === 13 || (selectionStart === selectionStart && e.keyCode === 39 && selectionStart === this.state.text.length) || e.keyCode === 40){
       this.props.onTitleDown();
       e.preventDefault();
       return false;
