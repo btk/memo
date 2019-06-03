@@ -4,20 +4,17 @@
 }
 
 .SheetsTab h4 {
-  font-size: 1.4em;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: #333;
-  position: relative;
-  top: -3px;
+  color: #444;
   text-transform: uppercase;
   margin-bottom: 0px;
-  margin-top: 50px;
 }
 
 .SheetsTab .sub {
   font-size: 0.9rem;
   line-height: 1.4em;
-  color: #111;
+  color: #444;
 }
 
 .sheetItem {

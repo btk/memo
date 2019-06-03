@@ -6,9 +6,7 @@
 .ArchivesTab h4 {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #333;
-  position: relative;
-  top: -3px;
+  color: #444;
   text-transform: uppercase;
   margin-bottom: 0px;
 }
@@ -16,5 +14,5 @@
 .ArchivesTab .sub {
   font-size: 0.9rem;
   line-height: 1.4em;
-  color: #111;
+  color: #444;
 }

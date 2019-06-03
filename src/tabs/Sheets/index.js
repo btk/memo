@@ -39,7 +39,7 @@ class App extends Component {
     return (
       <div className="SheetsTab">
         <h4>Sheets</h4>
-        <p className="sub">See and manage your most recent sheets.</p>
+        <p className="sub">See and manage your most recently accessed sheets.</p>
         <div className="tabScroller">
           <div
             className="sheetItem"
