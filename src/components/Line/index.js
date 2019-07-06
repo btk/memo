@@ -61,7 +61,7 @@ class App extends Component {
   }
 
   handleKeyDown(e){
-    if(e.keyCode == 13){
+    if(e.keyCode == 13){ // 13 = "\n"
       let selectionStart = this.refs._lineText.selectionStart;
       let selectionEnd = this.refs._lineText.selectionEnd;
 
@@ -98,6 +98,7 @@ class App extends Component {
       }
 
       let newItemTest = e.target.value.substr(0, selectionStart).split("\n").pop();
+      let rightOfCursor = e.target.value.substr(selectionStart).split("\n").slice(0, 1)[0];
       if(newItemTest.substr(0, 3) == "\t- " && newItemTest != "\t- "){
         let textString = e.target.value;
         let tailText = textString.substr(selectionEnd);
@@ -115,7 +116,8 @@ class App extends Component {
 
         e.preventDefault();
         return false;
-      }else if(newItemTest == "\t- "){
+      }else if(newItemTest == "\t- " && rightOfCursor == ""){
+
         let textString = e.target.value;
         this.setState({text: textString.substr(0, selectionStart - 4) + textString.substr(selectionEnd)});
         setTimeout(() => {
@@ -123,6 +125,18 @@ class App extends Component {
           this.refs._lineText.selectionEnd = selectionStart - 3;
           this.handleChange();
         }, 10);
+      }else if(newItemTest == "\t- " && rightOfCursor){
+
+        let textString = e.target.value;
+        this.setState({text: textString.substr(0, selectionStart - 3) + textString.substr(selectionEnd)});
+        setTimeout(() => {
+          this.refs._lineText.selectionStart = selectionStart - 3;
+          this.refs._lineText.selectionEnd = selectionStart - 3;
+          this.handleChange();
+        }, 10);
+
+        e.preventDefault();
+        return false;
       }
 
     }else if(e.keyCode == 8){

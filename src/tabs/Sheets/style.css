@@ -42,12 +42,7 @@
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-}
-
-
-.sheetItem .sheetRight {
   font-size: 1em;
-  display: block;
 }
 
 .sheetItem .sheetRight span {
@@ -55,13 +50,49 @@
   font-weight: 500;
 }
 
-.sheetItem .sheetRight .sub {
+.sheetItem .sheetRight .subHolder {
+  height: 25px;
+}
+
+.sheetItem .sheetRight sub {
   font-weight: normal;
-  font-size: 0.9em;
-  opacity: 0.7;
+  font-size: 0.7em;
+  opacity: 0.6;
+  margin-right: 5px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  position: relative;
+  left: -5px;
+  background: #fff;
 }
 
 .sheetItem img {
-  width: 20px;
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+}
+
+.addNew {
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #76c3e8;
+  color: #444;
+  box-shadow: rgba(30, 30, 30, 0.1) 0px 4px 5px -4px;
+  position: sticky;
+  top: 10px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
   height: 20px;
+}
+
+.addNew span {
+  line-height: 1.5em;
+  font-weight: 500;
+}
+
+.addNew:hover {
+  box-shadow: rgba(30, 30, 30, 0.15) 0px 4px 10px -4px;
 }

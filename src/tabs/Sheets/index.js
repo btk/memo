@@ -18,6 +18,7 @@ class App extends Component {
   renderSheets(sheets){
     if(sheets.length){
       return sheets.map(sheet => {
+        let date = new Date(sheet.created_at * 1000);
         return (
           <div
             className="sheetItem"
@@ -26,6 +27,11 @@ class App extends Component {
             <div className="sheetRight">
               <span>{sheet.title}</span>
               <div className="sub">{sheet.first_line.substr(0, 50).replace(/-/g, "")}...</div>
+
+              <div className="subHolder">
+                <sub>{date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()}</sub>
+                <sub>23 Lines</sub>
+              </div>
             </div>
           </div>
         );
@@ -42,15 +48,11 @@ class App extends Component {
         <p className="sub">See and manage your most recently accessed sheets.</p>
         <div className="tabScroller">
           <div
-            className="sheetItem"
+            className="sheetItem addNew"
             key={"new_sheet"}
             onClick={() => API.event.emit("sheet", "NEW_SHEET")}>
-            <div className="sheetIcon">
-              <img src={require("../../icon/icon-file-plus.svg")}/>
-            </div>
-            <div className="sheetRight">
-              <span>Add New Sheet</span>
-            </div>
+              <img style={{width: 18, height: 18}} src={require("../../icon/icon-plus-circle.svg")}/>
+              <span>Create New Sheet</span>
           </div>
           {this.renderSheets(this.state.sheets)}
         </div>
