@@ -1,6 +1,4 @@
 <?php
-session_id($_POST["session_id"]);
-session_start();
 include("config.php");
 
 $id = $_POST["id"];
