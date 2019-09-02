@@ -2,7 +2,7 @@ import makeid from './makeid';
 import Event from './event';
 import Analytics from 'react-ga';
 
-const URL = "https://www.buraktokak.com/note/";
+const URL = "https://api.usememo.com/";
 
 class Api {
   constructor(){

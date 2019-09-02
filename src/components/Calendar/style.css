@@ -1,0 +1,24 @@
+
+.calendar__date {
+  font-size: 14px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+  grid-gap: 3px;
+  box-sizing: border-box;
+}
+
+.calendar__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+}
+
+.calendar__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  color: #262626;
+}

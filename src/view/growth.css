@@ -1,0 +1,14 @@
+.Growth {
+  width: calc(100% - 50px);
+  height: 100%;
+  padding-top: 10px;
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.Left {
+  width: 300px;
+  height: 100vh;
+  background: #f6f9fc;
+}
