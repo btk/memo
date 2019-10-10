@@ -1,0 +1,44 @@
+.AddonItem {
+  color: #555;
+  position: relative;
+}
+
+.AddonItem h5 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #444;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.AddonItem p {
+  font-size: 0.85em;
+}
+
+.AddonItem .AddonConfigure {
+  position: absolute;
+  right: 0px;
+  top: -1px;
+  cursor: pointer;
+  opacity: 0;
+  transform: rotate(0deg);
+  transition: 300ms all;
+  transition-delay: 200ms;
+}
+
+.AddonItem:hover .AddonConfigure {
+  opacity: 0.8;
+  transform: rotate(180deg);
+}
+
+.conversionNode {
+  background: #dbf9d3;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #cfe8c9;
+  margin-bottom: 5px;
+  color: #2b8414;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  letter-spacing: -0.8px;
+}

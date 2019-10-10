@@ -1,0 +1,41 @@
+.AddonItem {
+  color: #555;
+  position: relative;
+}
+
+.AddonItem h5 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #444;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.AddonItem p {
+  font-size: 0.85em;
+}
+
+.AddonItem .AddonConfigure {
+  position: absolute;
+  right: 0px;
+  top: -1px;
+  cursor: pointer;
+  opacity: 0;
+  transform: rotate(0deg);
+  transition: 300ms all;
+  transition-delay: 200ms;
+}
+
+.AddonItem:hover .AddonConfigure {
+  opacity: 0.8;
+  transform: rotate(180deg);
+}
+
+.writeGoodAdvice {
+  background: #fff3d1;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ffe395;
+  margin-bottom: 5px;
+  color: #8a712a;
+}

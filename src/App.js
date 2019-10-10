@@ -6,6 +6,7 @@ import Title from './components/Title';
 import Toolbar from './components/Toolbar';
 import Handy from './components/Handy';
 import Loading from './components/Loading';
+import Cover from './components/Cover';
 
 import makeid from './js/makeid';
 //import writeGood from 'write-good';

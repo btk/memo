@@ -2,7 +2,7 @@ import makeid from './makeid';
 import Event from './event';
 import Analytics from 'react-ga';
 
-const URL = "https://www.buraktokak.com/note/";
+const URL = "https://api.usememo.com/";
 
 class Api {
   constructor(){
@@ -109,6 +109,11 @@ class Api {
     formData.append('session_id', this.user.session_id);
 
     return fetch(url, { method: 'POST', body: formData })
+    .then(res => res.json());
+  }
+
+  getConversions(){
+    return fetch("https://api.exchangeratesapi.io/latest?base=USD")
     .then(res => res.json());
   }
 

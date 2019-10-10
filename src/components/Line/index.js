@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.css';
 
+import API from '../../js/api';
 import makeid from '../../js/makeid';
 
 class App extends Component {
@@ -49,6 +50,7 @@ class App extends Component {
   handleChange(e){
     if(e){
       this.setState({text: e.target.value});
+      API.event.emit("lineChanged", e.target.value);
       //.replace(/(\r\n|\n|\r)/gm,"")
     }
     if(this.refs._lineText){
@@ -232,6 +234,10 @@ class App extends Component {
     }
   }
 
+  forceHandyBar(){
+    API.event.emit("lineFocused", {text: this.state.text, lineId: this.props.id, index: this.props.index});
+  }
+
   render() {
     return (
       <>
@@ -241,6 +247,7 @@ class App extends Component {
             style={{height: this.state.pHeight}}
             value={this.state.text}
             wrap="soft"
+            onFocus={() => this.forceHandyBar()}
             onBlur={() => this.props.onBlur(this.state.text, this.props.id, this.props.index)}
             onKeyDown={(event) => this.handleKeyDown(event)}
             onChange={(event) => this.handleChange(event)}>
