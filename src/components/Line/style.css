@@ -7,6 +7,12 @@
   color: #444;
 }
 
+.darkmode .Line textarea {
+  overflow: hidden;
+  color: #ddd;
+  background: #222;
+}
+
 .Line textarea.white {
   background: #fafafa;
 }
@@ -29,4 +35,8 @@
 
 .Line textarea:focus {
   background: #fafafa;
+}
+
+.darkmode .Line textarea:focus {
+  background: #303030;
 }

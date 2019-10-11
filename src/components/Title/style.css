@@ -10,7 +10,7 @@
   margin-top: 10px;
   margin-bottom: 0px;
   outline: none;
-  width: 100%;
+  width: calc(100% - 62px);
 }
 
 .Title input:focus {
@@ -22,4 +22,13 @@
   top: 24px;
   right: 90px;
   cursor: pointer;
+}
+
+.darkmode .Title input {
+  background: #222;
+  color: #fff;
+}
+
+.darkmode .Title input:focus {
+  background: #333;
 }

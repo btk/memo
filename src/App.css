@@ -11,10 +11,13 @@
   height: 100vh;
   width: 100vw;
   background: #fff;
-  box-shadow: rgba(100, 100, 100, 0.18) 0px 3px 10px -2px;
   display: flex;
   flex-direction: row;
   position: relative;
+}
+
+.darkmode .Note {
+  background: #222;
 }
 
 .Content {
@@ -24,12 +27,21 @@
   position: relative;
   overflow-y: scroll;
   overflow-x: hidden;
+  background: #fff;
+}
+
+.darkmode .Content {
+  background: #222;
 }
 
 .Identifier {
   padding: 10px 30px;
   color: #787878;
   font-size: 0.85em;
+}
+
+.darkmode .Identifier {
+  color: #aaa;
 }
 
 .spacer {

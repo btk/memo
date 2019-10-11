@@ -11,6 +11,14 @@
   margin-bottom: 3px;
 }
 
+.darkmode .AddonItem h5 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
 .AddonItem p {
   font-size: 0.85em;
 }
@@ -37,5 +45,11 @@
   border-radius: 5px;
   border: 1px solid #ffe395;
   margin-bottom: 5px;
+  color: #8a712a;
+}
+
+.writeGoodAdvice {
+  background: #fff3d1;
+  border: 1px solid #ffe395;
   color: #8a712a;
 }

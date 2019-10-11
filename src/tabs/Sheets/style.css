@@ -11,10 +11,18 @@
   margin-bottom: 0px;
 }
 
+.darkmode .SheetsTab h4 {
+  color: #fff;
+}
+
 .SheetsTab .sub {
   font-size: 0.9rem;
   line-height: 1.4em;
   color: #444;
+}
+
+.darkmode .SheetsTab .sub {
+  color: #ddd;
 }
 
 .sheetItem {
@@ -32,9 +40,19 @@
   padding: 10px 15px;
 }
 
+.darkmode .sheetItem {
+  background: #272727;
+}
+
+
 .sheetItem:hover {
   box-shadow: rgba(30, 30, 30, 0.15) 0px 4px 10px -4px;
   background: #fff;
+}
+
+.darkmode .sheetItem:hover {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 10px -4px;
+  background: #232323;
 }
 
 .sheetItem .sheetRight {
@@ -49,6 +67,12 @@
   line-height: 1.5em;
   font-weight: 500;
 }
+
+
+.darkmode .sheetItem .sheetRight span {
+  color: #fff;
+}
+
 
 .sheetItem .sheetRight .subHolder {
   height: 25px;
@@ -86,6 +110,10 @@
   flex-direction: row;
   align-items: center;
   height: 20px;
+}
+
+.darkmode .addNew {
+  color: #fff;
 }
 
 .addNew span {

@@ -6,6 +6,10 @@
   overflow-x: hidden;
 }
 
+.darkmode .Handy {
+  background: #252525;
+}
+
 .HandyInner {
   padding: 0px 15px;
   margin-top: 0px;
@@ -22,9 +26,17 @@
   z-index: 96;
 }
 
+.darkmode .HandyFixed {
+  background: transparent;
+}
+
 .InfoItem {
   color: #555;
   position: relative;
+}
+
+.darkmode .InfoItem {
+  color: #ddd;
 }
 
 div.HandyInner > div:nth-child(1) > h5 {
@@ -39,6 +51,10 @@ div.HandyInner > div:nth-child(1) > h5 {
   color: #444;
   text-transform: uppercase;
   margin-bottom: 3px;
+}
+
+.darkmode .InfoItem h5 {
+  color: #aaa;
 }
 
 .InfoItem p {

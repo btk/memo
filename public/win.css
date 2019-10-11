@@ -13,3 +13,10 @@
 @media screen and (max-width: 480px) {
     ::-webkit-scrollbar {width: 5px;}
 }
+
+.darkmode ::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    box-shadow: rgba(0,0,0,0.3) 0 0 0 1px;
+    cursor: pointer;
+}

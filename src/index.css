@@ -25,7 +25,7 @@ code {
 }
 
 textarea {
-    width: calc(100% - 60px);
+    width: calc(100% - 62px);
     border: 0px;
     outline: 0px !important;
     resize: none !important;

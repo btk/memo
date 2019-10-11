@@ -31,14 +31,23 @@
   transform: rotate(180deg);
 }
 
+.darkmode .AddonItem h5 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
 .conversionNode {
   background: #dbf9d3;
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #cfe8c9;
   margin-bottom: 5px;
+  font-size: 0.9em;
   color: #2b8414;
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.5px;
 }

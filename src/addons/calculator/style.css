@@ -31,6 +31,14 @@
   transform: rotate(180deg);
 }
 
+.darkmode .AddonItem h5 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
 .writeGoodAdvice {
   background: #fff3d1;
   padding: 5px;

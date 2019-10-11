@@ -4,12 +4,25 @@ import Event from '../../js/event';
 
 let spinner = require("../../icon/icon-cog.svg");
 
+const quoteRand = Math.floor(Math.random() * (3 - 0 + 1) ) + 0;
+
 class App extends Component {
+
+  state = {
+    spinning: true
+  }
+
+  componentDidMount(){
+    setTimeout(() => {
+      this.setState({spinning: false});
+    }, 3000);
+
+  }
 
   renderQuote(){
     let quoteArray = [
       {
-        person: "Burak Tokak",
+        person: "Muhammed Ali",
         quote: "Wake up everyday, expecting resistance, and push through it!"
       },
       {
@@ -26,7 +39,7 @@ class App extends Component {
       }
     ];
 
-    let quote = quoteArray[Math.floor(Math.random() * (3 - 0 + 1) ) + 0];
+    let quote = quoteArray[quoteRand];
 
     return (
       <div className="quote">
@@ -41,9 +54,12 @@ class App extends Component {
     return (
       <div className="Loading" style={{height: this.props.height}}>
         {this.props.quote && <img src={require("./memo_logo.svg")} style={{marginBottom: 10}}/>}
-        <div className="spinner">
-          <div className="spinnerHole"></div>
-        </div>
+        {this.state.spinning &&
+          <div className="spinner">
+            <div className="spinnerHole"></div>
+          </div>
+        }
+        <div style={{height: this.state.spinning ? 0 : "auto", overflow: "hidden", margin: this.state.spinning ? 0 : 16}}>{this.props.children}</div>
         {this.props.quote && this.renderQuote()}
       </div>
     );

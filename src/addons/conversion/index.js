@@ -221,7 +221,7 @@ class App extends Component {
 
     return parseableArray.map((conversion, i) => {
       return (
-        <div className="conversionNode" key={i}>{String(conversion.amount).replace(".", ",")} {conversion.from.toUpperCase()} = {(conversion.amount / currencies.filter(c => c.ticker == conversion.from)[0].usdFactor * currencies.filter(c => c.ticker == conversion.to)[0].usdFactor).toFixed(2).replace(".", ",")} {conversion.to.toUpperCase()}</div>
+        <div className="conversionNode" key={i}>{String(conversion.amount).replace(".", ",")} {conversion.from.toUpperCase()} = {(conversion.amount / currencies.filter(c => c.ticker == conversion.from)[0].usdFactor * currencies.filter(c => c.ticker == conversion.to)[0].usdFactor).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} {conversion.to.toUpperCase()}</div>
       );
     });
   }

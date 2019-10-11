@@ -21,7 +21,8 @@ class App extends Component {
     lines: "",
     focusIndex: 0,
     cursorPosition: 0,
-    logged: false
+    logged: false,
+    theme: "light"
   };
 
   componentDidMount(){
@@ -51,6 +52,11 @@ class App extends Component {
 
     API.event.on("login", (status) => {
       this.setState({logged: status});
+    })
+
+    API.event.on("theme", (type) => {
+      this.setState({theme: type});
+      console.log("type", type)
     })
 
     API.event.on("sheet", (id) => {
@@ -233,8 +239,9 @@ class App extends Component {
     }else{
       return (
         <div>
-          <div id="my-signin2"></div>
-          <Loading quote={true}/>
+          <Loading quote={true}>
+            <div id="my-signin2"></div>
+          </Loading>
         </div>
       );
     }
@@ -242,7 +249,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={`App${this.state.theme == "dark" ? " darkmode": ""}`}>
         <div className="AppTitle"></div>
         {this.renderApp()}
       </div>

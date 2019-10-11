@@ -93,6 +93,10 @@ class Api {
     }
   }
 
+  getTheme(){
+    return "light";
+  }
+
   getSheet(sheetId){
     var url = URL + "sheet.php";
     var formData = new FormData();
