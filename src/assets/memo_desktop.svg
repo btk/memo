@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="180px" viewBox="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>memo_desktop</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="180" height="180" rx="90"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="memo_desktop">
+            <g id="Group-3">
+                <g id="Rectangle-2">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#E4E6EA" stroke-width="2" x="1" y="1" width="178" height="178" rx="89"></rect>
+                </g>
+            </g>
+            <g id="icon" transform="translate(92.927798, 88.284428) rotate(32.000000) translate(-92.927798, -88.284428) translate(49.927798, 47.784428)">
+                <path d="M2.34479103e-13,24.1248567 L49.7398539,24.550078 L49.7398539,24.550078 C54.8659404,24.5939004 59.6146798,27.2524742 62.3315995,31.5995458 L84.3750862,66.8691245 L84.3750862,66.8691245 C87.0094792,71.0841532 85.7281207,76.6367067 81.5130919,79.2710997 C80.0605233,80.1789551 78.3790397,80.6534293 76.6661642,80.6387861 L35.0991104,80.2834333 L2.34479103e-13,24.1248567 Z" id="Rectangle" fill="#3A3A3A"></path>
+                <path d="M2.34479103e-13,24.1248567 L46.1775528,24.1248567 L34.1711072,4.91385367 L34.1711072,4.91385367 C31.5367823,0.698782358 25.9842495,-0.582665763 21.7691782,2.05165918 C21.1522004,2.43725644 20.584256,2.89624505 20.07778,3.41857536 L2.34479103e-13,24.1248567 Z" id="Rectangle" fill="#D2D5D9"></path>
+            </g>
+        </g>
+    </g>
+</svg>

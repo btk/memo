@@ -94,7 +94,7 @@ class Api {
   }
 
   getTheme(){
-    return "light";
+    return this.getData("theme") || "light";
   }
 
   getSheet(sheetId){
@@ -172,12 +172,12 @@ class Api {
   // But xxx it, use them in the general app, who cares.
   setData(key, data){
 		// returns promise, might be useful, no need to listen tho.
-		//return storage.save({key, data});
+		return localStorage.setItem(key, data);
   }
 
   getData(key){
     // returns promise
-		//return storage.load({key});
+    return localStorage.getItem(key);
   }
 }
 

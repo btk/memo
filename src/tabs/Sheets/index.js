@@ -51,7 +51,7 @@ class App extends Component {
             className="sheetItem addNew"
             key={"new_sheet"}
             onClick={() => API.event.emit("sheet", "NEW_SHEET")}>
-              <img style={{width: 18, height: 18}} src={require("../../icon/icon-plus-circle.svg")}/>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="#444" viewBox="0 0 24 24" width="18" height="18"><path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-9h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H9a1 1 0 0 1 0-2h2V9a1 1 0 0 1 2 0v2z"/></svg>
               <span>Create New Sheet</span>
           </div>
           {this.renderSheets(this.state.sheets)}

@@ -1,11 +1,15 @@
 .Loading {
   width: 100%;
   height: 100vh;
-  background: transparent;
+  background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.darkmode .Loading {
+  background: #222222;
 }
 
 .spinner {
@@ -20,12 +24,19 @@
   margin: 20px;
 }
 
+.darkmode .spinner {
+  background-image: linear-gradient(to right, #888888 , #222222);
+}
+
 .spinnerHole {
   background-color: #fff;
   width: 18px;
   height: 18px;
   border-radius: 9px;
-  background-color: #fff;
+}
+
+.darkmode .spinnerHole {
+  background-color: #222;
 }
 
 .quote {
@@ -36,13 +47,16 @@
   align-items: center;
   flex-direction: column;
   animation: quoteFadeIn 1000ms;
-
 }
 
 .quote p {
   color: #444;
   line-height: 1.5em;
   text-align: center;
+}
+
+.darkmode .quote p {
+  color: #ccc;
 }
 
 
@@ -52,10 +66,18 @@
   margin-bottom: 15px;
 }
 
+.darkmode .quote .hr {
+  border-top: 2px solid #777;
+}
+
 .quote span {
   font-weight: bold;
   font-size: 0.9em;
   color: #444;
+}
+
+.darkmode .quote span {
+  color: #ccc;
 }
 
 .copyright {

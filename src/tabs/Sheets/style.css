@@ -120,6 +120,15 @@
   line-height: 1.5em;
   font-weight: 500;
 }
+.addNew svg {
+  margin-right: 5px;
+  fill: #444;
+  position: relative;
+  bottom: 0.5px;
+}
+.darkmode .addNew svg {
+  fill: #eee;
+}
 
 .addNew:hover {
   box-shadow: rgba(30, 30, 30, 0.15) 0px 4px 10px -4px;

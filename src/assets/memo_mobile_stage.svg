@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>memo_mobile_stage</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="180" height="180" rx="42"></rect>
+        <filter x="-8.6%" y="-9.2%" width="117.2%" height="117.2%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="-1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="memo_mobile_stage" transform="translate(10.000000, 11.000000)">
+            <g id="Rectangle-2">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+            <g id="icon" transform="translate(99.005799, 88.869625) rotate(32.000000) translate(-99.005799, -88.869625) translate(49.005799, 42.441053)">
+                <path d="M2.34479103e-13,29.2657138 L56.1809266,29.7459992 L56.1809266,29.7459992 C61.3070131,29.7898216 66.0557525,32.4483954 68.7726723,36.795467 L94.7160601,78.3048875 L94.7160601,78.3048875 C97.3504531,82.5199163 96.0690946,88.0724697 91.8540658,90.7068627 C90.4014972,91.6147181 88.7200136,92.0891923 87.007138,92.0745491 L38.9990115,91.6641322 L2.34479103e-13,29.2657138 Z" id="Rectangle" fill="#3A3A3A"></path>
+                <path d="M2.34479103e-13,29.2657138 L51.308392,29.2657138 L37.2910281,6.83712594 L37.2910281,6.83712594 C34.6567032,2.62205463 29.1041705,1.34060651 24.8890992,3.97493145 C24.2721214,4.36052871 23.7041769,4.81951731 23.197701,5.34184763 L2.34479103e-13,29.2657138 Z" id="Rectangle" fill="#D2D5D9"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './style.css';
 import Event from '../../js/event';
 
+import API from '../../js/api';
+
 let spinner = require("../../icon/icon-cog.svg");
 
 const quoteRand = Math.floor(Math.random() * (3 - 0 + 1) ) + 0;
@@ -53,7 +55,7 @@ class App extends Component {
   render() {
     return (
       <div className="Loading" style={{height: this.props.height}}>
-        {this.props.quote && <img src={require("./memo_logo.svg")} style={{marginBottom: 10}}/>}
+        {this.props.quote && <img src={API.getTheme() == "dark" ? require("../../assets/memo_logo_left_white.svg"):require("../../assets/memo_logo_left.svg")} style={{marginBottom: 10}}/>}
         {this.state.spinning &&
           <div className="spinner">
             <div className="spinnerHole"></div>

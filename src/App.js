@@ -22,7 +22,7 @@ class App extends Component {
     focusIndex: 0,
     cursorPosition: 0,
     logged: false,
-    theme: "light"
+    theme: API.getData("theme") || "light"
   };
 
   componentDidMount(){
@@ -55,6 +55,7 @@ class App extends Component {
     })
 
     API.event.on("theme", (type) => {
+      API.setData("theme", type);
       this.setState({theme: type});
       console.log("type", type)
     })

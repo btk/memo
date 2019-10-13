@@ -39,6 +39,7 @@
 
 .Menu .Item {
   cursor: pointer;
+  background: #fff;
   width: 24px;
   height: 24px;
   padding: 10px;
@@ -48,8 +49,25 @@
   border-radius: 25px;
 }
 
+.Menu .ItemActive {
+  background: #f1f1f1;
+}
+
+.darkmode .Menu .Item {
+  background: #222;
+}
+
+.darkmode .Menu .ItemActive {
+  background: #444;
+}
+
 .Menu .Item.Search {
   width: 374px;
+  background: transparent;
+}
+
+.darkmode .Item svg {
+  fill: #ccc;
 }
 
 .Menu .Item .ToolTip {
