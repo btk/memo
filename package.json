@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "push": "react-scripts build; aws s3 sync build s3://usememo.com --cache-control max-age=31536000,build",
+    "push": "react-scripts build && aws s3 rm s3://usememo.com --recursive && aws s3 cp build s3://usememo.com --recursive",
     "app": "electron .",
     "app-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds",
     "app-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Shopping List\"",

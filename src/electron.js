@@ -16,14 +16,16 @@ function createWindow () {
     }
   })
 
-const dev = true;
- if(dev){
+  mainWindow.setMenu(null)
+  
+  const dev = true;
+
+  if(dev){
    mainWindow.loadURL('http://localhost:3000/')
- }else{
+  }else{
     // and load the index.html of the app.
     mainWindow.loadFile('index.html')
- }
-
+  }
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
