@@ -18,12 +18,19 @@
 .AddonItem .AddonConfigure {
   position: absolute;
   right: 0px;
-  top: -1px;
+  top: -3px;
   cursor: pointer;
   opacity: 0;
   transform: rotate(0deg);
   transition: 300ms all;
   transition-delay: 200ms;
+}
+
+.AddonItem .AddonConfigure path {
+  fill: #222;
+}
+.darkmode .AddonItem .AddonConfigure path {
+  fill: #fff;
 }
 
 .AddonItem:hover .AddonConfigure {

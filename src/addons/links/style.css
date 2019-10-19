@@ -46,11 +46,31 @@
   margin-bottom: 3px;
 }
 
-.writeGoodAdvice {
-  background: #fff3d1;
-  padding: 5px;
+
+.imageCarrier {
+  width: 160px;
+  max-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
-  border: 1px solid #ffe395;
-  margin-bottom: 5px;
-  color: #8a712a;
+  overflow: hidden;
+  margin-bottom: 10px;
+  opacity: 0.8;
+  transition: 200ms all;
+  line-height: 0px;
+}
+
+.imageCarrier:hover {
+  opacity: 1;
+}
+
+.linkCarrier {
+  padding: 10px;
+  border-radius: 5px;
+  color: rgba(0,0,0,0.6);
+  border: 1px solid #68aff1;
+  display: block;
+  background: #bbdeff;
+  margin-bottom: 10px;
 }

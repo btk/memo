@@ -7,6 +7,7 @@ import writeGood from "write-good";
 import WriteGood from '../../addons/write-good/';
 import Calculator from '../../addons/calculator/';
 import Conversion from '../../addons/conversion/';
+import Links from '../../addons/links/';
 
 let cog = require("../../icon/icon-cog.svg");
 
@@ -50,37 +51,8 @@ class App extends Component {
             <WriteGood />
             <Conversion />
             <Calculator />
+            <Links />
 
-            <div className="InfoItem">
-              <img className="InfoConfigure" src={cog} width={16} height={16}/>
-              <h5>Sources</h5>
-              <p>[1]: https://mylink.com</p>
-              <p>[2]: https://mylink.com</p>
-            </div>
-            <div className="InfoItem">
-              <img className="InfoConfigure" src={cog} width={16} height={16}/>
-              <h5>Link Preview</h5>
-            </div>
-            <div className="InfoItem">
-              <img className="InfoConfigure" src={cog} width={16} height={16}/>
-              <h5>Background</h5>
-            </div>
-            <div className="InfoItem">
-              <img className="InfoConfigure" src={cog} width={16} height={16}/>
-              <h5>Maps</h5>
-            </div>
-            <div className="InfoItem">
-              <img className="InfoConfigure" src={cog} width={16} height={16}/>
-              <h5>Phone</h5>
-            </div>
-            <div className="InfoItem">
-              <img className="InfoConfigure" src={cog} width={16} height={16}/>
-              <h5>JS Output</h5>
-              <pre>
-                ["Apples", "Oranges"]<br/>
-                10
-              </pre>
-            </div>
           </div>
         </div>
       </>
