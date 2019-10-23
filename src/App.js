@@ -184,6 +184,7 @@ class App extends Component {
           <div
             className="Identifier"
             key={this.state.sheet.id + "-" + l.date}
+            onClick={() => this.setState({focusIndex: i})}
             dangerouslySetInnerHTML={{__html: `${l.date} ${this.getDateIdentifier(l.date)}`}}>
           </div>
         );
