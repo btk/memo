@@ -55,8 +55,8 @@
   color: #8a712a;
 }
 
-.writeGoodAdvice {
-  background: #fff3d1;
-  border: 1px solid #ffe395;
-  color: #8a712a;
+.darkmode .writeGoodAdvice {
+  background: #3c3200;
+  border: 1px solid #6b5a2c;
+  color: #b7a267;
 }

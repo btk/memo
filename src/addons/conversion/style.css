@@ -58,3 +58,9 @@
     monospace;
   letter-spacing: -0.5px;
 }
+
+.darkmode .conversionNode{
+  background: #183525;
+  border: 1px solid #105400;
+  color: #479832;
+}

@@ -90,6 +90,11 @@
   background: #fff;
 }
 
+.darkmode .sheetItem .sheetRight sub {
+  background: #222;
+  color: #fff;
+}
+
 .sheetItem img {
   width: 24px;
   height: 24px;

@@ -26,11 +26,16 @@ class App extends Component {
             onClick={() => API.event.emit("sheet", sheet.id)}>
             <div className="sheetRight">
               <span>{sheet.title}</span>
-              <div className="sub">{sheet.first_line.substr(0, 50).replace(/-/g, "")}...</div>
+              <div className="sub">{sheet.first_line ? sheet.first_line.substr(0, 50).replace(/-/g, "") + "..." : "This sheet is as empty as it can be..."}</div>
 
               <div className="subHolder">
                 <sub>{date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()}</sub>
-                <sub>23 Lines</sub>
+                {sheet.first_line &&
+                  <sub>{sheet.line_count} Line{sheet.line_count != 1 ? "s": ""}</sub>
+                }
+                {!sheet.first_line &&
+                  <sub>Blank</sub>
+                }
               </div>
             </div>
           </div>
