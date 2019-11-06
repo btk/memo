@@ -185,7 +185,6 @@ class App extends Component {
     while(i < currencies.length){
       if(text.includes(currencies[i].symbol) && currencies[i].symbol != DEFAULT_CURRENCY_SYMBOL){
         let splittedParser = text.split(currencies[i].symbol);
-        console.log(splittedParser);
         let j = 1;
         while (j < splittedParser.length) {
           let splittedSpace = splittedParser[j].trim().split(/\s+/);
@@ -228,7 +227,7 @@ class App extends Component {
   render() {
     if(this.state.text != ""){
       let parsed = this.parseConversion(this.state.text);
-      if(typeof parsed == "array"){
+      if(typeof parsed == "object"){
         if(parsed.length != 0){
           return (
             <>

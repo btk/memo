@@ -29,7 +29,11 @@ class App extends Component {
       if(link.endsWith(".png") || link.endsWith(".jpg") || link.endsWith(".gif") || link.endsWith(".svg") || link.endsWith(".JPG") || link.endsWith(".jpeg") || link.endsWith(".JPEG")){
         return <div className="imageCarrier" key={i}><a href={link} target="_blank"><img src={link} style={{maxWidth: "100%", maxHeight: "100%"}}/></a></div>
       }else{
-        return <a key={i} href={link} class="linkCarrier" target="_blank">Link from <b>{link.split("//")[1].split("/")[0]}</b></a>
+        if(link.includes("//")){
+          return <a key={i} href={link} class="linkCarrier" target="_blank">Link from <b>{link.split("//")[1].split("/")[0]}</b></a>
+        }else{
+          return null;
+        }
       }
     });
   }

@@ -5,6 +5,7 @@
   "main": "src/electron.js",
   "dependencies": {
     "electron": "^5.0.2",
+    "jsstore": "^3.4.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-ga": "^2.5.7",
@@ -21,7 +22,7 @@
     "app": "electron .",
     "app-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/assets/icons/mac/icon.icns --prune=true --out=release-builds",
     "app-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=src/assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Shopping List\"",
-    "app-lin" : "electron-packager . --overwrite --platform=linux --arch=x64 --icon=src/assets/icons/png/1024x1024.png --prune=true --out=release-builds"
+    "app-lin": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=src/assets/icons/png/1024x1024.png --prune=true --out=release-builds"
   },
   "eslintConfig": {
     "extends": "react-app"
