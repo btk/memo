@@ -4,11 +4,13 @@
   "private": true,
   "main": "src/electron.js",
   "dependencies": {
+    "@octokit/rest": "^16.35.0",
     "electron": "^5.0.2",
     "jsstore": "^3.4.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-ga": "^2.5.7",
+    "react-github-login": "^1.0.3",
     "react-scripts": "2.1.8",
     "write-good": "^1.0.1"
   },

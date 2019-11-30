@@ -26,7 +26,10 @@ class App extends Component {
   };
 
   componentDidMount(){
-    API.renderLogin();
+
+    setTimeout(() => {
+      API.githubLogin();
+    }, 1000);
 
     window.addEventListener("keydown", (e) => {
       if (e.keyCode === 114 || ((e.ctrlKey || e.metaKey) && e.keyCode === 70)) {
@@ -242,7 +245,9 @@ class App extends Component {
       return (
         <div>
           <Loading quote={true}>
-            <div id="my-signin2"></div>
+            <a href="https://github.com/login/oauth/authorize?client_id=d63ed284bfb2c8e7a5d4&scope=gist&redirect_uri=https://api.usememo.com/github.php">
+              Login with github
+            </a>
           </Loading>
         </div>
       );

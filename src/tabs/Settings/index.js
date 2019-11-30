@@ -15,7 +15,7 @@ class App extends Component {
         <h5>My Account</h5>
         <div onClick={() => API.event.emit("theme", "dark")}>Dark Theme</div>
         <div onClick={() => API.event.emit("theme", "light")}>Light Theme</div>
-        <div>Login with google</div>
+        <div onClick={() => API.logout()}>LOGOUT</div>
       </div>
     );
   }
