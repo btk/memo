@@ -60,6 +60,15 @@ class API {
     });
   }
 
+  fetch(){
+    Github.fetch().then(res => {
+      if(res){
+        this.addToStaging("flush");
+        this.event.emit("sheet", "LAST_ACCESSED");
+      }
+    });
+  }
+
   getTheme(){
     return this.getData("theme") || "light";
   }
@@ -288,6 +297,10 @@ class API {
     }).then(sheet => {
       return LocalDB.delete("line", {sheet_id: sheetId});
     });
+  }
+
+  truncateDb(){
+    return LocalDB.truncate();
   }
 
   addToStaging(sheetId){

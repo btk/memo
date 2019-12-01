@@ -12,7 +12,7 @@ body, input, textarea {
   margin: 0;
   padding: 0;
   font-size: 16px;
-  color: #333;
+  color: #242938;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,9 +29,9 @@ textarea {
     border: 0px;
     outline: 0px !important;
     resize: none !important;
-    padding: 3px 30px;
-    padding-top: 6px;
+    padding: 0px 30px;
+    padding-top: 9px;
     margin: 0px !important;
     line-height: 1.5em;
-    color: #303030;
+    color: #242938;
 }

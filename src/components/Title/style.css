@@ -1,3 +1,6 @@
+.Title {
+  padding-top: 10px;
+}
 .Title input {
   position: relative;
   overflow: hidden;

@@ -25,7 +25,7 @@ class Github {
     // create an empty memo gist
     let files = {};
     files["01_usememo.md"] = {
-      filename: "01usememo.md",
+      filename: "01_usememo.md",
       content: `# Created by Memo App
 
 This gist was created by note taking app; memo ([usememo.com](https://www.usememo.com)) and is not intended to be editted.
@@ -53,16 +53,10 @@ Please don't edit this file, as this is vital for cache validation and version c
   }
 
   fetch(){
-    return this.client.gists.get({gist_id: "ea10aab87a09447fa58919894e47fc00"}).then(gist => {
+    return this.client.gists.get({gist_id: API.user.gist_id}).then(gist => {
       let files = gist.data.files;
-      files["test.md"] = {
-        filename: "test.md",
-        content: "this is a test to try to change test 1"
-      };
-      console.log(files);
-      this.client.gists.update({
-        gist_id: "ea10aab87a09447fa58919894e47fc00",
-        files: files
+      return API.truncateDb().then(res => {
+        return Markdown.saveMarkdownSheet(files);
       })
     })
   }

@@ -54,6 +54,9 @@ class App extends Component {
             <Calculator />
             <Links />
 
+            <div className="sync" style={{position: "absolute", bottom: 50, left: 10}} onClick={() => API.fetch()}>
+              Force Fetch
+            </div>
             <div className="sync" style={{position: "absolute", bottom: 10, left: 10}} onClick={() => this.startSync()}>
               {this.state.syncText} {this.renderStagedAmount(this.state.stagedAmount)}
             </div>

@@ -23,7 +23,6 @@
 .Content {
   width: calc(100% - 250px);
   height: 100%;
-  padding-top: 10px;
   position: relative;
   overflow-y: scroll;
   overflow-x: hidden;

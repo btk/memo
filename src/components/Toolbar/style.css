@@ -66,6 +66,10 @@
   background: transparent;
 }
 
+.Item svg {
+  fill: #242938;
+}
+
 .darkmode .Item svg {
   fill: #ccc;
 }

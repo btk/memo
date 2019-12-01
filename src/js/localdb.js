@@ -77,6 +77,18 @@ class LocalDB {
     return rowsUpdated;
   }
 
+  async truncate(){
+    let sheetsDeleted = await connection.remove({
+      from: "sheet"
+    });
+
+    let linesDeleted = await connection.remove({
+      from: "line"
+    });
+
+    return { sheetsDeleted, linesDeleted };
+  }
+
   getDataBaseSchema() {
     const sheet = {
       name: 'sheet',
