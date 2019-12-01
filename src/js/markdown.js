@@ -38,7 +38,7 @@ accessed_at: ${sheet.accessed_at}
       if(file.filename != "01_usememo.md" && file.filename != "02_metadata.md"){
 
         let fileMetadataYaml = file.content.split("---")[1];
-        let fileContent = file.content.split("---").slice(2).join("");
+        let fileContent = file.content.split("---").slice(2).join("---");
 
         let fileMetadata = {
           id: Number(fileMetadataYaml.split("id: ")[1].split(/\n/)[0]),

@@ -33,10 +33,11 @@ class API {
           console.log("Logged In User: ", res);
           this.logged = true;
           this.user = res;
-          this.event.emit("sheet", "LAST_ACCESSED");
-          this.event.emit("login", true);
-
           Github.init(this.user.token);
+          Github.checkUpdate().then(res => {
+            this.event.emit("sheet", "LAST_ACCESSED");
+            this.event.emit("login", true);
+          });
         }
       }
     });
