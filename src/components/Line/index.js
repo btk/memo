@@ -62,6 +62,28 @@ class App extends Component {
     }
   }
 
+  handlePaste(e){
+    let pasted = (e.clipboardData || window.clipboardData).getData('text');
+    console.log(pasted);
+    if(pasted.includes("\n\r") || pasted.includes("\r\n")){
+      let add = pasted.split("\n\r")[0];
+      if(add[add.length - 1] == "\r" || add[add.length - 1] == "\n"){
+        add = add.substr(0, add.length-1)
+      }
+      this.setState({text: e.target.value + add});
+      setTimeout(() => {
+        this.handleChange();
+      }, 10);
+
+      let restArray = pasted.split("\n\r").slice(1);
+
+      this.props.onPaste(this.props.id, restArray, this.props.index);
+
+      e.preventDefault();
+      return false;
+    }
+  }
+
   handleKeyDown(e){
     if(e.keyCode == 13){ // 13 = "\n"
       let selectionStart = this.refs._lineText.selectionStart;
@@ -250,7 +272,8 @@ class App extends Component {
             onFocus={() => this.forceHandyBar()}
             onBlur={() => this.props.onBlur(this.state.text, this.props.id, this.props.index)}
             onKeyDown={(event) => this.handleKeyDown(event)}
-            onChange={(event) => this.handleChange(event)}>
+            onChange={(event) => this.handleChange(event)}
+            onPaste={(event) => this.handlePaste(event)}>
           </textarea>
         </div>
       </>

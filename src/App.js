@@ -134,6 +134,27 @@ class App extends Component {
     API.updateLine(id.split("!")[0]+"!"+date+"-"+newLineKey, i+1, text);
   }
 
+  async handlePaste(id, textArray, index){
+    let keyToSplit = id.split("-")[1];
+    let lines = this.state.lines;
+    let date = id.split("-")[0].split("!")[1];
+
+    for (var i = 0; i < textArray.length; i++) {
+      let text = textArray[i].replace(/^\s+|\s+$/g, "");
+
+      let newLineKey = makeid(5);
+      index = index + 1;
+      lines.splice(index+1, 0, {
+        "line_key": newLineKey,
+        date,
+        text
+      });
+
+      await API.updateLine(id.split("!")[0]+"!"+date+"-"+newLineKey, index, text);
+    }
+    this.setState({focusIndex: index, cursorPosition: "end", lines});
+  }
+
   handleCursor(direction, id, i){
     let newIndex = 0;
     let cursorPosition = 0;
@@ -203,6 +224,7 @@ class App extends Component {
           nextId={lines[i + 1]? this.state.sheet.id + "!" + l.date + "-" + lines[i + 1].line_key : ""}
           onConcat={this.handleConcat.bind(this)}
           onSplit={this.handleSplit.bind(this)}
+          onPaste={this.handlePaste.bind(this)}
           onBlur={this.handleBlur.bind(this)}
           onCursor={this.handleCursor.bind(this)}
           cursorPosition={i == this.state.focusIndex ? this.state.cursorPosition : false}

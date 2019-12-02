@@ -283,6 +283,7 @@ class API {
   }
 
   updateTitle(text, sheetId){
+    this.addToStaging(sheetId);
     return LocalDB.update("sheet", {
       id: sheetId
     }, {

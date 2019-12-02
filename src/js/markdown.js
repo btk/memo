@@ -85,6 +85,12 @@ accessed_at: ${sheet.accessed_at}
           }
         }
       }
+
+      if(file.filename == "02_metadata.md"){
+        // set the local update validator to the cloud one.
+        let accessed_at = Number(file.content.split("accessed_at: ")[1].split(/\n/)[0]);
+        API.setData("updated_at", accessed_at);
+      }
     }
     return true;
   }
