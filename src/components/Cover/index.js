@@ -1,73 +1,20 @@
 import React, { Component } from 'react';
 import './style.css';
-import makeid from '../../js/makeid';
-import progen from '../../js/progen';
 
 class App extends Component {
 
-  getSquare(x, y){
-    return (
-      <g transform={`translate(${x*this.squareSize},${y*this.squareSize})`}>
-          <rect fill={`hsl(${progen(this.key, x * 7 + y)}, 54%, 60%)`} id="bg" x="0" y="0" width={this.squareSize} height={this.squareSize}></rect>
-      </g>
-    )
-  }
-
-  renderSquares(numOfColumns, numOfRows){
-    let squareArray = [];
-    let i = 0;
-    while(i < numOfRows){
-      let j = 0;
-      while(j < numOfColumns){
-        squareArray.push(this.getSquare(i, j));
-        j++;
-      }
-      i++;
-    }
-    return squareArray;
-  }
-
   render() {
-    this.squareOffset = 30;
-    this.squareSize = 60;
-    this.key = "thisismykey";
-
-    const types = [
-      "sqType1",
-      "sqType2",
-      "sqType3",
-      "sqType4",
-      "sqType5",
-      "sqType6",
-      "sqType7"
-    ];
-
-    const colors = [
-      "#fe4947",
-      "#fec958",
-      "#18333b",
-      "#fdebc3",
-      "#89d8d0"
-    ];
-
     return (
       <>
-        <svg width={180} height={300} viewBox="0 0 180 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-          <title>Memo Cover</title>
-          <desc>Created by Memo smart note taking app.</desc>
-          <defs>
-              <rect id="path-1" x="30" y="0" width="180" height="300"></rect>
-          </defs>
-          <g id="Notebook" transform={`translate(${-this.squareOffset}, 0.000000)`}>
-              <mask id="mask-2" fill="white">
-                  <use xlinkHref="#path-1"></use>
-              </mask>
-              <use id="Mask" fill="#D8D8D8" xlinkHref="#path-1"></use>
-              <g id="Carrier" mask="url(#mask-2)">
-                {this.renderSquares(300 / this.squareSize, 180 / this.squareSize + 1)}
-              </g>
-          </g>
-        </svg>
+        <div id="cover" className="cover">
+          <div className="coverInner">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><path d="M13 5.41V17a1 1 0 0 1-2 0V5.41l-3.3 3.3a1 1 0 0 1-1.4-1.42l5-5a1 1 0 0 1 1.4 0l5 5a1 1 0 1 1-1.4 1.42L13 5.4zM3 17a1 1 0 0 1 2 0v3h14v-3a1 1 0 0 1 2 0v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3z"/></svg>
+            </div>
+            <h3>Drop to Import your notes</h3>
+            <small>Only plaintext is supported!</small>
+          </div>
+        </div>
       </>
     );
   }

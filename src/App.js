@@ -99,18 +99,26 @@ class App extends Component {
     }
   }
 
-  handleConcat(id, text, i){
+  handleConcat(id, text, i, from){
     let lines = this.state.lines;
     let cursorPosition = 0;
-    if(lines[i-1]){
+
+    let lineIndex = from == "up" ? i-1 : i+1;
+    let focusIndex = from == "up" ? i-1 : i;
+    if(lines[lineIndex]){
       API.updateLine(id, i, "", "rm");
-      cursorPosition = lines[i-1].text.length;
-      lines[i-1].text = lines[i-1].text + text;
-      lines[i-1].old_key = lines[i-1].line_key;
-      lines[i-1].line_key = makeid(5);
+      cursorPosition = lines[focusIndex].text.length;
+
+      if(from == "up"){
+        lines[lineIndex].text = lines[lineIndex].text + text;
+      }else if(from == "down"){
+        lines[lineIndex].text = text + lines[lineIndex].text;
+      }
+      lines[lineIndex].old_key = lines[lineIndex].line_key;
+      lines[lineIndex].line_key = makeid(5);
     }
     lines.splice(i, 1);
-    this.setState({focusIndex: i-1, cursorPosition, lines});
+    this.setState({focusIndex, cursorPosition, lines});
   }
 
   handleSplit(id, text, i){
@@ -134,14 +142,20 @@ class App extends Component {
     API.updateLine(id.split("!")[0]+"!"+date+"-"+newLineKey, i+1, text);
   }
 
-  async handlePaste(id, textArray, index){
+  async handlePaste(id, textArray, index, downText){
     let keyToSplit = id.split("-")[1];
     let lines = this.state.lines;
     let date = id.split("-")[0].split("!")[1];
+    let cursorPosition = "end";
 
     for (var i = 0; i < textArray.length; i++) {
       let text = textArray[i].replace(/^\s+|\s+$/g, "");
-
+      if(downText){
+        if(i == textArray.length - 1){
+          cursorPosition = text.length;
+          text = text + downText;
+        }
+      }
       let newLineKey = makeid(5);
       index = index + 1;
       lines.splice(index+1, 0, {
@@ -152,7 +166,7 @@ class App extends Component {
 
       await API.updateLine(id.split("!")[0]+"!"+date+"-"+newLineKey, index, text);
     }
-    this.setState({focusIndex: index, cursorPosition: "end", lines});
+    this.setState({focusIndex: index, cursorPosition, lines});
   }
 
   handleCursor(direction, id, i){
@@ -281,6 +295,7 @@ class App extends Component {
       <div className={`App${this.state.theme == "dark" ? " darkmode": ""}`}>
         <div className="AppTitle"></div>
         {this.renderApp()}
+        <Cover/>
       </div>
     );
   }

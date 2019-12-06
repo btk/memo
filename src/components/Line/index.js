@@ -64,20 +64,25 @@ class App extends Component {
 
   handlePaste(e){
     let pasted = (e.clipboardData || window.clipboardData).getData('text');
-    console.log(pasted);
-    if(pasted.includes("\n\r") || pasted.includes("\r\n")){
+    if(pasted.includes("\n\r")){
       let add = pasted.split("\n\r")[0];
       if(add[add.length - 1] == "\r" || add[add.length - 1] == "\n"){
         add = add.substr(0, add.length-1)
       }
-      this.setState({text: e.target.value + add});
+
+      let selectionStart = this.refs._lineText.selectionStart;
+      let selectionEnd = this.refs._lineText.selectionEnd;
+
+      let topText = e.target.value.substr(0, selectionStart);
+      let downText = e.target.value.substr(selectionEnd);
+      this.setState({text: topText + add});
       setTimeout(() => {
         this.handleChange();
       }, 10);
 
       let restArray = pasted.split("\n\r").slice(1);
 
-      this.props.onPaste(this.props.id, restArray, this.props.index);
+      this.props.onPaste(this.props.id, restArray, this.props.index, downText);
 
       e.preventDefault();
       return false;
@@ -168,7 +173,7 @@ class App extends Component {
       let selectionEnd = this.refs._lineText.selectionEnd;
       if(selectionStart == 0 && selectionEnd == 0 && this.props.index !== 0){
 
-        this.props.onConcat(this.props.id, this.state.text, this.props.index);
+        this.props.onConcat(this.props.id, this.state.text, this.props.index, "up");
         e.preventDefault();
         return false;
       }else{
@@ -186,6 +191,16 @@ class App extends Component {
           e.preventDefault();
           return false;
         }
+      }
+    }else if(e.keyCode == 46){
+      let selectionStart = this.refs._lineText.selectionStart;
+      let selectionEnd = this.refs._lineText.selectionEnd;
+      let currentTextLength = this.state.text.length;
+      if(selectionStart == currentTextLength && selectionEnd == currentTextLength){
+
+        this.props.onConcat(this.props.id, this.state.text, this.props.index, "down");
+        e.preventDefault();
+        return false;
       }
     }else if(e.keyCode == 39 || e.keyCode == 40){ // 37 38 = "down" "right"
       let selectionStart = this.refs._lineText.selectionStart;

@@ -1,0 +1,48 @@
+.cover {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255,255,255,0.8);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: 200ms;
+  transition-delay: 100ms;
+}
+
+.darkmode .cover {
+  background: rgba(0,0,0,0.8);
+}
+
+.coverActive {
+  visibility: visible;
+  opacity: 1;
+}
+
+.coverInner {
+  margin: 10px;
+  border: 5px dashed #ccc;
+  border-radius: 20px;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(255,255,255,0.6);
+}
+
+.darkmode .coverInner {
+  background: rgba(0,0,0,0.6);
+  color: #ddd;
+}
+
+.coverInner svg {
+  fill: #242938;
+}
+
+.darkmode .coverInner svg {
+  fill: #ffffff;
+}

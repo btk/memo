@@ -4,6 +4,7 @@ import LocalDB from './localdb';
 import Analytics from 'react-ga';
 import Github from './octokit';
 import Markdown from './markdown';
+import Files from './files';
 
 const URL = "https://api.usememo.com/";
 
@@ -38,6 +39,7 @@ class API {
             this.event.emit("sheet", "LAST_ACCESSED");
             this.event.emit("login", true);
           });
+          Files.listenFileDrop();
         }
       }
     });
