@@ -7,6 +7,7 @@ import Markdown from './markdown';
 import Files from './files';
 
 const URL = "https://api.usememo.com/";
+const DEVELOPMENT = true;
 
 class API {
   constructor(){
@@ -24,7 +25,7 @@ class API {
   }
 
   githubLogin(){
-    var url = URL + "login.php";
+    var url = URL + "login/" + (DEVELOPMENT ? "development": "");
 
     fetch(url, { method: 'GET', credentials: 'include'})
     .then(res => res.json())
@@ -50,12 +51,12 @@ class API {
   }
 
   githubLogout(){
-    var url = URL + "logout.php";
+    var url = URL + "logout/" + (DEVELOPMENT ? "development": "");
 
     fetch(url, { method: 'GET'})
     .then(res => res.json())
     .then((res) => {
-      console.log("Logout", res)
+      this.event.emit("login", false);
     });
   }
 

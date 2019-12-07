@@ -1,9 +1,10 @@
 <?php
-  error_reporting(0);
+  error_reporting(1);
+  ini_set('session.cookie_domain', '.usememo.com' );
   $servername = "127.0.0.1";
   $username = "root";
-  $password = "1";
-  $dbname = "note";
+  $password = "147896325Asd";
+  $dbname = "memo";
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);

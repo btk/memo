@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import './style.css';
 import API from "../../js/api"
 
-import GoogleSignIn from './google';
-
 class App extends Component {
 
   render() {
@@ -15,7 +13,7 @@ class App extends Component {
         <h5>My Account</h5>
         <div onClick={() => API.event.emit("theme", "dark")}>Dark Theme</div>
         <div onClick={() => API.event.emit("theme", "light")}>Light Theme</div>
-        <div onClick={() => API.logout()}>LOGOUT</div>
+        <div onClick={() => API.githubLogout()}>LOGOUT</div>
       </div>
     );
   }

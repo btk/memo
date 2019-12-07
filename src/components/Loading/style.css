@@ -21,7 +21,7 @@
   align-items: center;
   border-radius: 14px;
   animation: rotating 1s linear infinite;
-  margin: 22px;
+  margin: 25px;
 }
 
 .darkmode .spinner {

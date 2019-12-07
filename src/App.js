@@ -54,6 +54,9 @@ class App extends Component {
 
     API.event.on("login", (status) => {
       this.setState({logged: status});
+      if(status == false){
+        API.event.emit("loginButton");
+      }
     })
 
     API.event.on("theme", (type) => {
@@ -280,7 +283,7 @@ class App extends Component {
       return (
         <div>
           <Loading quote={true}>
-            <a href="https://github.com/login/oauth/authorize?client_id=d63ed284bfb2c8e7a5d4&scope=gist&redirect_uri=https://api.usememo.com/github.php">
+            <a href="https://github.com/login/oauth/authorize?client_id=d63ed284bfb2c8e7a5d4&scope=gist&redirect_uri=https://api.usememo.com/github/">
               <div className="loginWithGithub" onClick={() => this.setState({loginButtonText: "Just a second..."})}>
                 <img src={require("./icon/github.svg")} />
                 <span>{this.state.loginButtonText}</span>
