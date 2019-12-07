@@ -12,6 +12,8 @@
   z-index: 99;
   border-radius: 0px 0px 0px 0px;
   transition: 300ms width;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .darkmode .Toolbar {

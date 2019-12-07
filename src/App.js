@@ -22,14 +22,13 @@ class App extends Component {
     focusIndex: 0,
     cursorPosition: 0,
     logged: false,
-    theme: API.getData("theme") || "light"
+    theme: API.getData("theme") || "light",
+    loginButtonText: "Login with GitHub"
   };
 
   componentDidMount(){
 
-    setTimeout(() => {
-      API.githubLogin();
-    }, 1000);
+    API.githubLogin();
 
     window.addEventListener("keydown", (e) => {
       if (e.keyCode === 114 || ((e.ctrlKey || e.metaKey) && e.keyCode === 70)) {
@@ -282,7 +281,10 @@ class App extends Component {
         <div>
           <Loading quote={true}>
             <a href="https://github.com/login/oauth/authorize?client_id=d63ed284bfb2c8e7a5d4&scope=gist&redirect_uri=https://api.usememo.com/github.php">
-              Login with github
+              <div className="loginWithGithub" onClick={() => this.setState({loginButtonText: "Just a second..."})}>
+                <img src={require("./icon/github.svg")} />
+                <span>{this.state.loginButtonText}</span>
+              </div>
             </a>
           </Loading>
         </div>

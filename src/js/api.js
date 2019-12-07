@@ -29,6 +29,9 @@ class API {
     fetch(url, { method: 'GET', credentials: 'include'})
     .then(res => res.json())
     .then((res) => {
+      if(res == null){
+        this.event.emit("loginButton");
+      }
       if(res){
         if(res.session_id){
           console.log("Logged In User: ", res);
@@ -37,6 +40,7 @@ class API {
           Github.init(this.user.token);
           Github.checkUpdate().then(res => {
             this.event.emit("sheet", "LAST_ACCESSED");
+            this.event.emit("loginButton");
             this.event.emit("login", true);
           });
           Files.listenFileDrop();
@@ -192,12 +196,16 @@ class API {
         // id is a Number
         return LocalDB.select("sheet", {id}).then((sheet) => {
           let idSheet = sheet[0];
-          return LocalDB.select("line", {sheet_id: idSheet.id}, {by: "pos", type: "asc"}).then(lines => {
-            console.log(lines);
-            idSheet.lines = lines;
-            LocalDB.update("sheet", {id}, {accessed_at: time});
-            return idSheet;
-          });
+          if(idSheet){
+            return LocalDB.select("line", {sheet_id: idSheet.id}, {by: "pos", type: "asc"}).then(lines => {
+              console.log(lines);
+              idSheet.lines = lines;
+              LocalDB.update("sheet", {id}, {accessed_at: time});
+              return idSheet;
+            });
+          }else{
+            return "removed";
+          }
         });
       }
     }

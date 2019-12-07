@@ -4,8 +4,6 @@ import Event from '../../js/event';
 
 import API from '../../js/api';
 
-let spinner = require("../../icon/icon-cog.svg");
-
 const quoteRand = Math.floor(Math.random() * (3 - 0 + 1) ) + 0;
 
 class App extends Component {
@@ -15,10 +13,9 @@ class App extends Component {
   }
 
   componentDidMount(){
-    setTimeout(() => {
+    API.event.on("loginButton", () => {
       this.setState({spinning: false});
-    }, 3000);
-
+    });
   }
 
   renderQuote(){
@@ -44,7 +41,7 @@ class App extends Component {
     let quote = quoteArray[quoteRand];
 
     return (
-      <div className="quote">
+      <div className="quote" style={{height: 114}}>
         <p>{quote.quote}</p>
         <div className="hr"></div>
         <span>{quote.person}</span>
@@ -55,7 +52,7 @@ class App extends Component {
   render() {
     return (
       <div className="Loading" style={{height: this.props.height}}>
-        {this.props.quote && <img src={API.getTheme() == "dark" ? require("../../assets/memo_logo_left_white.svg"):require("../../assets/memo_logo_left.svg")} style={{marginBottom: 10}}/>}
+        {this.props.quote && <img src={API.getTheme() == "dark" ? require("../../assets/memo_logo_left_white.svg"):require("../../assets/memo_logo_left.svg")} style={{marginBottom: 10, width: 159, height: 42}}/>}
         {this.state.spinning &&
           <div className="spinner">
             <div className="spinnerHole"></div>

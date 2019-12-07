@@ -1,3 +1,9 @@
+* {
+  -webkit-user-drag: none;
+  user-drag: none;
+	-webkit-app-region: no-drag;
+}
+
 body, html, textarea, input {
   font-family: "Rubik", -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
@@ -34,4 +40,8 @@ textarea {
     margin: 0px !important;
     line-height: 1.5em;
     color: #242938;
+}
+
+a {
+  text-decoration: none;
 }

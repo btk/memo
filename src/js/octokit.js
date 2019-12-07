@@ -112,13 +112,22 @@ Please don't edit this file, as this is vital for cache validation and version c
         for (var i = 0; i < stagedArray.length; i++) {
           let stagedSheetId = stagedArray[i];
           let markdownContent = await Markdown.getSheetMarkdown(stagedSheetId);
-
-          files[`sheet-${stagedSheetId}.md`] = {
-            filename: `sheet-${stagedSheetId}.md`,
-            content: markdownContent
-          };
+          if(markdownContent == ""){
+            if(files[`sheet-${stagedSheetId}.md`]){
+              files[`sheet-${stagedSheetId}.md`] = {
+                filename: `sheet-${stagedSheetId}.md`,
+                content: ""
+              };
+            }
+          }else{
+            files[`sheet-${stagedSheetId}.md`] = {
+              filename: `sheet-${stagedSheetId}.md`,
+              content: markdownContent
+            };
+          }
         }
 
+        console.log(files);
 
         return this.client.gists.update({
           gist_id: memoGistId,

@@ -5,6 +5,9 @@ import makeid from './makeid';
 class Markdown {
   async getSheetMarkdown(sheetId){
     let sheet = await API.getSheet(sheetId);
+    if(sheet == "removed"){
+      return "";
+    }
 
     let sheetMarkdown = `---
 id: ${sheet.id}
@@ -50,6 +53,7 @@ accessed_at: ${sheet.accessed_at}
 
         let fileParagraphs = fileContent.split(/\n\n/);
         await LocalDB.insert("sheet", {
+          id: fileMetadata.id,
           title: fileMetadata.title,
           active: fileMetadata.active,
           created_at: fileMetadata.created_at,
