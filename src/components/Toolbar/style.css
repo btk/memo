@@ -8,7 +8,7 @@
   position: fixed;
   right: 0px;
   top: 0px;
-  box-shadow: rgba(0, 0, 0, 0.1) -2px 0px 16px -4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
   z-index: 99;
   border-radius: 0px 0px 0px 0px;
   transition: 300ms width;
@@ -151,5 +151,6 @@
   top: 0px;
   left: 0px;
   z-index: 97;
-  transition: 300ms opacity;
+  visibility: visible;
+  transition: 300ms all;
 }

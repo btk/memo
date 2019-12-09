@@ -1,9 +1,10 @@
 .Handy {
-  background: #fafafa;
+  background: #fff;
   width: 200px;
   height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
+  box-shadow: inset -1px 0 2px rgba(0,0,0,.05);
 }
 
 .darkmode .Handy {
@@ -22,7 +23,7 @@
   left: 0px;
   width: calc(100% - 10px);
   height: 35px;
-  background: linear-gradient(rgba(250,250,250, 1), rgba(250,250,250, 1), rgba(250,250,250, 0));
+  /* background: linear-gradient(rgba(250,250,250, 1), rgba(250,250,250, 1), rgba(250,250,250, 0)); */
   z-index: 96;
 }
 

@@ -113,13 +113,11 @@ class App extends Component {
             {this.renderTabContent(this.state.currentTab)}
           </div>
         </div>
-        {this.state.currentTab &&
-          <div
-            className="shadow"
-            style={{opacity: this.state.transition}}
-            onClick={() => Event.emit("toggle", false)}>
-          </div>
-        }
+        <div
+          className="shadow"
+          style={{opacity: this.state.transition, visibility: this.state.transition == 0 ? "hidden" : "visible"}}
+          onClick={() => Event.emit("toggle", false)}>
+        </div>
       </>
     );
   }

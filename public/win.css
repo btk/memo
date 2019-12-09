@@ -1,4 +1,4 @@
-::-webkit-scrollbar {width: 8px; height: 0;}
+::-webkit-scrollbar {width: 8px; height: 0; position: absolute; right: 0px; }
 ::-webkit-scrollbar-track {margin: 5px}
 ::-webkit-scrollbar-thumb {
     background: rgba(0,0,0,0.0);

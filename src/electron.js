@@ -11,13 +11,14 @@ function createWindow () {
     width: 1000,
     height: 600,
     titleBarStyle: "hiddenInset",
+    frame: false,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
   mainWindow.setMenu(null)
-  
+
   const dev = true;
 
   if(dev){

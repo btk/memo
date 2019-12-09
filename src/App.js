@@ -258,7 +258,7 @@ class App extends Component {
       return(
         <div className="AppHolder">
           <div className="Note" key={this.state.logged}>
-            <Handy/>
+            {/*<Handy/>*/}
             <div className="Content">
               {this.state.sheet &&
                 <Title
@@ -298,7 +298,9 @@ class App extends Component {
   render() {
     return (
       <div className={`App${this.state.theme == "dark" ? " darkmode": ""}`}>
-        <div className="AppTitle"></div>
+        <div className="AppTitle">
+          <img src={this.state.theme == "dark"?  require("./assets/memo_logo_left_white.svg") : require("./assets/memo_logo_left.svg")}/>
+        </div>
         {this.renderApp()}
         <Cover/>
       </div>

@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "push": "react-scripts build && aws s3 rm s3://usememo.com --recursive && aws s3 cp build s3://usememo.com --recursive",
+    "push": "react-scripts build && aws s3 rm s3://app.usememo.com --recursive && aws s3 cp build s3://app.usememo.com --recursive",
     "icon": "./node_modules/.bin/electron-icon-maker --input=./src/assets/memo_desktop_png.png --output=./src/assets",
     "app": "electron .",
     "app-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/assets/icons/mac/icon.icns --prune=true --out=release-builds",
