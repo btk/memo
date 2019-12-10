@@ -256,6 +256,7 @@ class App extends Component {
       return(
         <div className="AppHolder">
           <div className="Note" key={this.state.logged}>
+            <AppBar spacer={true}/>
             {/*<Handy/>*/}
             <div className="Content">
               {this.state.sheet &&

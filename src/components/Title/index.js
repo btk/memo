@@ -65,7 +65,6 @@ class App extends Component {
   render() {
     return (
       <>
-        <AppBar spacer={true}/>
         <div className="Title">
           <input
             ref="_title"
