@@ -5,6 +5,9 @@
   -webkit-app-region: drag;
   background: linear-gradient(rgba(200,200,200, 0.2), rgba(200,200,200, 0));
   border-bottom: 1px solid #fafafa;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 .darkmode .AppTitle {
@@ -13,6 +16,12 @@
 }
 
 .AppTitle img {
+-webkit-app-region: drag;
   height: 20px;
   padding: 6px 20px;
+}
+
+.AppTitleSpacer {
+  width: 100%;
+  height: 32px;
 }

@@ -296,11 +296,9 @@ class App extends Component {
   render() {
     return (
       <div className={`App${this.state.theme == "dark" ? " darkmode": ""}`}>
-        {(window && window.process && window.process.type) &&
-          <AppBar theme={this.state.theme}/>
-        }
         {this.renderApp()}
         <Cover/>
+        <AppBar theme={this.state.theme}/>
       </div>
     );
   }

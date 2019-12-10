@@ -4,13 +4,19 @@ import './style.css';
 class App extends Component {
 
   render() {
-    return (
-      <>
-        <div className="AppTitle">
-          <img src={this.props.theme == "dark"?  require("../../assets/memo_logo_left_white.svg") : require("../../assets/memo_logo_left.svg")}/>
-        </div>
-      </>
-    );
+    if(window && window.process && window.process.type) {
+      if(this.props.spacer){
+        return (<div className="AppTitleSpacer"></div>);
+      }else {
+        return (
+          <div className="AppTitle">
+            <img src={this.props.theme == "dark"?  require("../../assets/memo_logo_left_white.svg") : require("../../assets/memo_logo_left.svg")}/>
+          </div>
+        );
+      }
+    }else{
+      return null;
+    }
   }
 }
 
