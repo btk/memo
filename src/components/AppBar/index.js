@@ -9,7 +9,7 @@ class App extends Component {
         return (<div className="AppTitleSpacer"></div>);
       }else {
         return (
-          <div className="AppTitle">
+          <div className={(window.process.platform === 'darwin') ? "AppTitle AppTitleOSX" : "AppTitle AppTitleOther"}>
             <img src={this.props.theme == "dark"?  require("../../assets/memo_logo_left_white.svg") : require("../../assets/memo_logo_left.svg")}/>
           </div>
         );
