@@ -3,7 +3,7 @@
   width: 100%;
   height: 36px;
   -webkit-app-region: drag;
-  background: linear-gradient(rgba(250,250,250, 1), rgba(255,255,255, 1));
+  background: linear-gradient(rgba(245,245,245, 1), rgba(255,255,255, 1));
   border-bottom: 1px solid #fafafa;
   position: absolute;
   top: 0px;
@@ -11,7 +11,7 @@
 }
 
 .AppTitle:active {
-  background: linear-gradient(rgba(250,250,250, 1), rgba(250,250,250, 1));
+  background: linear-gradient(rgba(245,245,245, 1), rgba(245,245,245, 1));
 }
 
 .darkmode .AppTitle {
