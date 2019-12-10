@@ -7,13 +7,11 @@ import Toolbar from './components/Toolbar';
 import Handy from './components/Handy';
 import Loading from './components/Loading';
 import Cover from './components/Cover';
+import AppBar from './components/AppBar';
 
 import makeid from './js/makeid';
-//import writeGood from 'write-good';
 
 import API from './js/api';
-
-//let sheet = require("./sheet.json");
 
 class App extends Component {
 
@@ -298,9 +296,9 @@ class App extends Component {
   render() {
     return (
       <div className={`App${this.state.theme == "dark" ? " darkmode": ""}`}>
-        <div className="AppTitle">
-          <img src={this.state.theme == "dark"?  require("./assets/memo_logo_left_white.svg") : require("./assets/memo_logo_left.svg")}/>
-        </div>
+        {(window && window.process && window.process.type) &&
+          <AppBar theme={this.state.theme}/>
+        }
         {this.renderApp()}
         <Cover/>
       </div>
