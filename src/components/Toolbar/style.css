@@ -16,6 +16,11 @@
   -webkit-user-select: none;
 }
 
+.ToolbarWin {
+  height: calc(100vh - 36px);
+  top: 36px;
+}
+
 .darkmode .Toolbar {
   background: #222;
   box-shadow: rgba(0, 0, 0, 0.3) -2px 0px 16px -4px;

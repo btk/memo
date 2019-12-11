@@ -78,7 +78,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <div className="Toolbar" style={{width: this.state.transition == 1 ? 400 : 50}}>
+        <div className={(window && window.process && window.process.platform === 'win32') ? "Toolbar ToolbarWin" : "Toolbar ToolbarOther"} style={{width: this.state.transition == 1 ? 400 : 50}}>
           <div className="Menu">
             <div className="Top">
               <div className={this.state.currentTab == "search" ? "Item ItemActive Search": "Item Search"}  onClick={() => Event.emit("toggle", "search")}>

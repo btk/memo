@@ -8,6 +8,7 @@
   position: absolute;
   top: 0px;
   left: 0px;
+  z-index: 99;
 }
 
 .AppTitle:active {
@@ -37,4 +38,65 @@
 .AppTitleSpacer {
   width: 100%;
   height: 36px;
+}
+
+#window-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 46px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  font-family: "Segoe MDL2 Assets";
+  font-size: 10px;
+  -webkit-app-region: no-drag;
+}
+
+#window-controls .wbutton {
+  grid-row: 1 / span 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  cursor: default;
+  -webkit-app-region: no-drag;
+}
+
+.darkmode #window-controls .wbutton {
+  color: #fff;
+}
+
+#window-controls #min-button {
+  grid-column: 1;
+}
+#window-controls #max-button, #window-controls #restore-button {
+  grid-column: 2;
+}
+#window-controls #close-button {
+  grid-column: 3;
+}
+#window-controls .wbutton:hover {
+  background: linear-gradient(rgba(245,245,245, 1), rgba(245,245,245, 1));
+}
+.darkmode #window-controls .wbutton:hover {
+  background: linear-gradient(rgba(30,30,30, 1), rgba(30,30,30, 1));
+}
+#window-controls .wbutton:active {
+  background: rgba(255,255,255,0.2);
+}
+
+#close-button:hover {
+  background: #E81123 !important;
+  color: #fff;
+}
+#close-button:active {
+  background: #f1707a !important;
+  color: #000;
+}
+
+.darkmode #close-button:active {
+  background: #800000 !important;
+  color: #fff;
 }
