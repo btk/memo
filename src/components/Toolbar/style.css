@@ -158,7 +158,11 @@
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: 97;
+  z-index: 101;
   visibility: visible;
   transition: 300ms all;
+}
+
+.shadowWin {
+  z-index: 97;
 }

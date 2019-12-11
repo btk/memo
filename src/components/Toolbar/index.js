@@ -114,7 +114,7 @@ class App extends Component {
           </div>
         </div>
         <div
-          className="shadow"
+          className={(window && window.process && window.process.platform === 'win32') ? "shadow shadowWin": "shadow"}
           style={{opacity: this.state.transition, visibility: this.state.transition == 0 ? "hidden" : "visible"}}
           onClick={() => Event.emit("toggle", false)}>
         </div>
