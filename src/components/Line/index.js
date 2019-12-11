@@ -7,6 +7,7 @@ import makeid from '../../js/makeid';
 class App extends Component {
 
   state = {
+    focused: false,
     pHeight: 0,
     text: this.props.children,
   }
@@ -20,6 +21,16 @@ class App extends Component {
 
     window.addEventListener('resize', (event) => {
       this.handleChange();
+    });
+
+    window.addEventListener('beforeunload', (event) => {
+      if(this.state.focused && this.props.children != this.state.text){
+        // Cancel the close/exit event and save the changes on this line if there is any
+        this.props.onBlur(this.state.text, this.props.id, this.props.index);
+        event.preventDefault();
+        // Chrome requires returnValue to be set
+        event.returnValue = '';
+      }
     });
 
     if(this.props.focusOnRender){
@@ -271,8 +282,14 @@ class App extends Component {
     }
   }
 
-  forceHandyBar(){
+  handleFocus(){
+    this.setState({focused: true});
     API.event.emit("lineFocused", {text: this.state.text, lineId: this.props.id, index: this.props.index});
+  }
+
+  handleBlur(){
+    this.setState({focused: false});
+    this.props.onBlur(this.state.text, this.props.id, this.props.index);
   }
 
   render() {
@@ -284,8 +301,8 @@ class App extends Component {
             style={{height: this.state.pHeight}}
             value={this.state.text}
             wrap="soft"
-            onFocus={() => this.forceHandyBar()}
-            onBlur={() => this.props.onBlur(this.state.text, this.props.id, this.props.index)}
+            onFocus={() => this.handleFocus()}
+            onBlur={() => this.handleBlur()}
             onKeyDown={(event) => this.handleKeyDown(event)}
             onChange={(event) => this.handleChange(event)}
             onPaste={(event) => this.handlePaste(event)}>

@@ -9,7 +9,7 @@
   visibility: hidden;
   opacity: 0;
   transition: 200ms;
-  transition-delay: 100ms;
+  transition-delay: 100ms opacity;
 }
 
 .darkmode .cover {

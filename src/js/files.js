@@ -4,36 +4,49 @@ import makeid from './makeid';
 
 class Files {
   listenFileDrop(){
-
+    let dropTimer = 0;
     let root = document.getElementById('root');
     let cover = document.getElementById('cover');
 
     root.ondragover = function() {
+      clearTimeout(dropTimer);
+      dropTimer = setTimeout(function() {
+          cover.className = "cover";
+          return false;
+      }, 1000);
+
+      if(cover.className != "cover coverActive"){
+        console.log("heyy");
         cover.className = "cover coverActive";
-        return false;
+      }
+      return false;
     };
 
     cover.ondragleave = function() {
-        cover.className = "cover";
-        return false;
+      clearTimeout(dropTimer);
+      cover.className = "cover";
+      return false;
     };
 
     root.ondragend = function() {
-        cover.className = "cover";
-        return false;
+      clearTimeout(dropTimer);
+      cover.className = "cover";
+      return false;
     };
 
     root.ondrop = (e) => {
+        clearTimeout(dropTimer);
         e.preventDefault();
         if(e.dataTransfer.files.length){
           var file = e.dataTransfer.files[0],
               reader = new FileReader();
 
           reader.onload = (event) => {
-            console.log(file);
+            API.event.emit("importStarted", file.name);
             if(file.name.endsWith(".txt") || file.name.endsWith(".md") || file.name.endsWith(".markdown")){
               this.importFile(file.name, file.lastModified, event.target.result).then(added => {
                 API.event.emit("sheet", added);
+                API.event.emit("importEnded");
                 cover.className = "cover";
               });
             }else{
