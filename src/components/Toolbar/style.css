@@ -9,16 +9,19 @@
   right: 0px;
   top: 0px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px;
-  z-index: 99;
+  z-index: 102;
   border-radius: 0px 0px 0px 0px;
   transition: 300ms width;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-app-region: no-drag !important;
+
 }
 
 .ToolbarWin {
   height: calc(100vh - 36px);
   top: 36px;
+  z-index: 99;
 }
 
 .darkmode .Toolbar {
