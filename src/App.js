@@ -77,6 +77,7 @@ class App extends Component {
               title: sheet.title
             }
           });
+          this.refs._textScroller.scrollTop = 0;
         }
       });
       API.event.emit("toggle", false);
@@ -262,7 +263,7 @@ class App extends Component {
           <div className="Note" key={this.state.logged}>
             <AppBar spacer={true}/>
             {/*<Handy/>*/}
-            <div className="Content">
+            <div className="Content" ref="_textScroller">
               {this.state.sheet &&
                 <Title
                   shouldFocused={this.state.focusIndex == "title"}

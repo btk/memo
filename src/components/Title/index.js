@@ -34,8 +34,8 @@ class App extends Component {
     }
   }
 
-  handleBlur(){
-    let text = this.state.text;
+  handleBlur(e){
+    let text = e.target.value;
     if(text !== this.props.sheet.title){
       if(!text){
         text = "Untitled Sheet";
@@ -71,7 +71,7 @@ class App extends Component {
             placeholder={"Untitled Sheet"}
             value={this.state.text == "Untitled Sheet" ? "" : this.state.text}
             onKeyDown={(event) => this.handleKeyDown(event)}
-            onBlur={() => this.handleBlur()}
+            onBlur={(event) => this.handleBlur(event)}
             onChange={(event) => this.handleChange(event)}/>
             <img src={require("../../icon/icon-minus-circle.svg")} onClick={() => this.remove()}/>
         </div>
