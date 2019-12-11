@@ -10,7 +10,6 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-ga": "^2.5.7",
-    "react-github-login": "^1.0.3",
     "react-scripts": "2.1.8",
     "write-good": "^1.0.1"
   },

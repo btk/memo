@@ -103,6 +103,10 @@ class App extends Component {
     let lines = this.state.lines;
     let cursorPosition = 0;
 
+    if((lines.length == i + 1) && from == "down"){
+      return null;
+    }
+
     let lineIndex = from == "up" ? i-1 : i+1;
     let focusIndex = from == "up" ? i-1 : i;
     if(lines[lineIndex]){
