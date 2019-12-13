@@ -51,7 +51,7 @@
   height: 100vh;
 }
 
-#trash {
+#dummy {
   background: red;
   margin: 0px;
   padding: 0px;
@@ -59,7 +59,7 @@
   overflow: hidden;
 }
 
-#trash textarea {
+#dummy textarea {
   height: 0px !important;
 }
 

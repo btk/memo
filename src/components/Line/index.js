@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   getHeight(text){
-    let tArea = document.getElementById("trashTextarea");
+    let tArea = document.getElementById("dummyTextarea");
     tArea.value = text;
     return tArea.scrollHeight;
   }

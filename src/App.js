@@ -275,8 +275,8 @@ class App extends Component {
               }
               {this.state.sheet && this.renderLines(this.state.lines)}
               <div className="spacer" onClick={() => this.focusLast()}></div>
-              <div id="trash">
-                <textarea id="trashTextarea"></textarea>
+              <div id="dummy">
+                <textarea id="dummyTextarea"></textarea>
               </div>
             </div>
             <Toolbar/>
