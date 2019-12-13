@@ -300,10 +300,19 @@ class API {
     }, {
       title: text
     });
-    this.addToStaging(sheetId);
   }
 
-  removeSheet(sheetId){
+  // toStatus is true or false
+  archiveUpdate(sheetId, toStatus){
+    this.addToStaging(sheetId);
+    return LocalDB.update("sheet", {
+      id: sheetId
+    }, {
+      active: toStatus ? 1 : 0
+    });
+  }
+
+  deleteSheet(sheetId){
     this.addToStaging(sheetId);
     return LocalDB.delete("sheet", {
       id: sheetId

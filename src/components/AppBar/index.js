@@ -11,22 +11,23 @@ class App extends Component {
   renderWindowsButtons(){
     const remote = window.require('electron').remote;
     let win = remote.getCurrentWindow();
+
     return (
       <div id="window-controls">
-        <div class="wbutton" id="min-button" onClick={() => win.minimize()}>
+        <div className="wbutton" id="min-button" onClick={() => win.minimize()}>
           <span>&#xE921;</span>
         </div>
         {!this.state.maximized &&
-          <div class="wbutton" id="max-button" onClick={() => { this.setState({maximized: true}); win.maximize() }}>
+          <div className="wbutton" id="max-button" onClick={() => { this.setState({maximized: true}); win.maximize() }}>
             <span>&#xE922;</span>
           </div>
         }
         {this.state.maximized &&
-          <div class="wbutton" id="restore-button" onClick={() => { this.setState({maximized: false}); win.unmaximize() }}>
+          <div className="wbutton" id="restore-button" onClick={() => { this.setState({maximized: false}); win.unmaximize() }}>
             <span>&#xE923;</span>
           </div>
         }
-        <div class="wbutton" id="close-button" onClick={() => win.close()}>
+        <div className="wbutton" id="close-button" onClick={() => win.close()}>
           <span>&#xE8BB;</span>
         </div>
       </div>

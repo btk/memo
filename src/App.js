@@ -74,7 +74,8 @@ class App extends Component {
             lines: sheet.lines,
             sheet: {
               id: sheet.id,
-              title: sheet.title
+              title: sheet.title,
+              active: sheet.active
             }
           });
           this.refs._textScroller.scrollTop = 0;

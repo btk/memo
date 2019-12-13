@@ -3,13 +3,20 @@ import LocalDB from './localdb';
 import makeid from './makeid';
 
 class Markdown {
-  async getSheetMarkdown(sheetId){
+  async getSheetMarkdown(sheetId, beautified){
     let sheet = await API.getSheet(sheetId);
     if(sheet == "removed"){
       return "";
     }
 
-    let sheetMarkdown = `---
+    let sheetMarkdown = "";
+
+    if(beautified){
+      sheetMarkdown = `# ${sheet.title}
+
+`;
+    }else{
+      sheetMarkdown = `---
 id: ${sheet.id}
 title: ${sheet.title}
 active: ${sheet.active}
@@ -17,19 +24,35 @@ created_at: ${sheet.created_at}
 accessed_at: ${sheet.accessed_at}
 ---
 `;
+    }
+
     let currentDate = "";
     sheet.lines.forEach(line => {
       if(currentDate != line.date){
         currentDate = line.date;
-        sheetMarkdown += `{{date: ${line.date}}}
+
+        if(beautified){
+          sheetMarkdown += `${line.date}
 
 `;
+        }else{
+          sheetMarkdown += `{{date: ${line.date}}}
+
+`;
+        }
       }
       sheetMarkdown += `${line.text}
 
 `;
     });
-    return sheetMarkdown;
+    if(beautified){
+      return {
+        title: sheet.title,
+        text: sheetMarkdown
+      };
+    }else{
+      return sheetMarkdown;
+    }
   }
 
   async saveMarkdownSheet(files){

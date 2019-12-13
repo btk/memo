@@ -6,6 +6,7 @@
   "dependencies": {
     "@octokit/rest": "^16.35.0",
     "electron": "^5.0.2",
+    "file-saver": "^2.0.2",
     "jsstore": "^3.4.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

@@ -1,6 +1,8 @@
 import API from './api';
 import LocalDB from './localdb';
+import Markdown from './markdown';
 import makeid from './makeid';
+import { saveAs } from 'file-saver';
 
 class Files {
   listenFileDrop(){
@@ -16,7 +18,6 @@ class Files {
       }, 1000);
 
       if(cover.className != "cover coverActive"){
-        console.log("heyy");
         cover.className = "cover coverActive";
       }
       return false;
@@ -117,6 +118,25 @@ class Files {
     API.addToStaging(sheetId);
     return sheetId;
   }
+
+  exportFile(sheetId) {
+    try {
+        var isFileSaverSupported = !!new Blob;
+    } catch (e) {
+      alert("Your device doesn't support file saver!");
+    }
+
+    return Markdown.getSheetMarkdown(sheetId, true).then((sheet) => {
+      let markdownText = sheet.text;
+
+      var blob = new Blob([markdownText], {
+        type: "text/plain;charset=utf-8"
+      });
+
+      saveAs(blob, sheet.title + '.md');
+    });
+  }
+
 }
 
 const _files = new Files();

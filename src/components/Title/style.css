@@ -1,4 +1,7 @@
 .Title {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .Title input {
   position: relative;
@@ -12,18 +15,19 @@
   padding-top: 20px;
   margin-bottom: 0px;
   outline: none;
-  width: calc(100% - 42px);
+  width: calc(100% - 262px);
+  padding-right: 240px;
+  text-overflow: ellipsis;
+  transition: 200ms width;
+}
+
+.TitleArchived input{
+  width: calc(100% - 362px);
+  padding-right: 340px;
 }
 
 .Title input:focus {
   background: #fafafa;
-}
-
-.Title img {
-  position: absolute;
-  top: 24px;
-  right: 90px;
-  cursor: pointer;
 }
 
 .darkmode .Title input {
@@ -33,4 +37,188 @@
 
 .darkmode .Title input:focus {
   background: #1e1e1e;
+}
+
+.inSheetAction {
+  height: 30px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 18px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #f1f1f1;
+}
+
+.darkmode .inSheetAction {
+  border-color: #111;
+  background: #151515;
+}
+
+.inSheetButton {
+  padding: 0px 10px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  background: green;
+  cursor: pointer;
+  border-left: 1px solid #eee;
+  box-sizing: border-box;
+  background: #fafafa;
+  color: #666;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.darkmode .inSheetButton {
+  background: #1e1e1e;
+  border-color: #151515;
+}
+
+.inSheetButton span {
+  margin-left: 5px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #444;
+  position: relative;
+  top: 1.5px;
+}
+
+.darkmode .inSheetButton span {
+  color: #ccc;
+}
+
+.inSheetButton svg {
+  width: 19px !important;
+  height: 19px !important;
+  fill: #444;
+  line-height: 0px;
+}
+
+.darkmode .inSheetButton svg {
+  fill: #ccc;
+}
+
+.inSheetButton:first-child {
+  border-left: 0px;
+  padding-left: 15px;
+}
+
+.inSheetButton:last-child {
+  padding-right: 15px;
+}
+
+.inSheetButton:hover {
+  background: #fff;
+}
+
+.darkmode .inSheetButton:hover {
+  background: #000;
+}
+
+.inSheetButton:hover span {
+  color: #000;
+}
+
+.darkmode .inSheetButton:hover span {
+  color: #fff;
+}
+
+.inSheetButton:hover svg {
+  fill: #000;
+}
+
+.darkmode .inSheetButton:hover svg {
+  fill: #fff;
+}
+
+.archivedButton {
+  padding-right: 15px;
+  border-right: 0px !important;
+}
+
+.unarchivedButton span{
+  color: #aaad00 !important;
+}
+
+.unarchivedButton svg {
+  fill: #aaad00 !important;
+}
+
+.darkmode .unarchivedButton span{
+  color: #d8d694 !important;
+}
+
+.darkmode .unarchivedButton svg {
+  fill: #d8d694 !important;
+}
+
+.removeButton {
+  max-width: 0px;
+  overflow: hidden;
+  visibility: hidden;
+  transition: 200ms all;
+  padding: 0px 0px;
+  padding-right: 0px !important;
+}
+
+
+.removeButton svg {
+  fill: #d23745 !important;
+}
+
+.removeButton span {
+  color: #d23745 !important;
+}
+
+.darkmode .removeButton svg {
+  fill: #fd6b78 !important;
+}
+
+.darkmode .removeButton span {
+  color: #fd6b78 !important;
+}
+
+.removeButtonActive {
+  max-width: 100px;
+  visibility: visible;
+  padding: 0px 10px;
+  padding-right: 15px !important;
+}
+
+@media (max-width: 670px) {
+  .inSheetAction {
+    position: relative;
+    margin-bottom: 0px;
+  }
+
+  .inSheetButton {
+    width: 100%;
+    max-width: none;
+  }
+
+  .removeButton {
+    display: none;
+  }
+
+  .removeButtonActive {
+    display: flex;
+  }
+
+  .Title input {
+    width: calc(100% - 42px);
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .inSheetButton span {
+    display: none;
+  }
 }

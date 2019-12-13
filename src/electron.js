@@ -16,6 +16,14 @@ function createWindow () {
       nodeIntegration: true
     }
   })
+  /*
+    const remote = window.require('electron').remote;
+    let win = remote.getCurrentWindow();
+
+    win.webContents.session.clearCache(function(){
+    //some callback.
+    });
+  */
 
   mainWindow.setMenu(null)
 
@@ -23,6 +31,7 @@ function createWindow () {
 
   if(dev){
     mainWindow.loadURL('http://localhost:3000/')
+    mainWindow.webContents.openDevTools();
   }else{
     // and load the index.html of the app.
     mainWindow.loadURL('https://app.usememo.com/')
