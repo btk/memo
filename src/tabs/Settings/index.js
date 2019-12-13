@@ -6,7 +6,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="SettingsTab">
+      <div className="TabCarrier SettingsTab">
         <h4>Settings</h4>
         <p className="sub">Manage your preferences and access your account information.</p>
         <h5>Preferences</h5>

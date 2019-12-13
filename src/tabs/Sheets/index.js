@@ -57,7 +57,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="SheetsTab">
+      <div className="TabCarrier SheetsTab">
         <h4>Sheets</h4>
         <p className="sub">See and manage your most recently accessed sheets.</p>
         <div className="tabScroller">

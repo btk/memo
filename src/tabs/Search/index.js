@@ -9,7 +9,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="SearchTab">
+      <div className="TabCarrier SearchTab">
         <input ref="_searchInput" placeholder="Search in your notes..."/>
         <div className="SearchResults">
           This is your results

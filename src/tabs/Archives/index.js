@@ -57,7 +57,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="ArchivesTab">
+      <div className="TabCarrier ArchivesTab">
         <h4>Archives</h4>
         <p className="sub">See and manage your old and not-so-popular sheets.</p>
         <div className="tabScroller">

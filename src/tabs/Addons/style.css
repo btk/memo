@@ -1,27 +1,3 @@
 .AddonsTab {
-  padding: 0px 20px;
-  width: 305px;
-}
 
-.AddonsTab h4 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #333;
-  position: relative;
-  top: -3px;
-  text-transform: uppercase;
-  margin-bottom: 0px;
-}
-
-.AddonsTab .sub {
-  font-size: 0.9rem;
-  line-height: 1.4em;
-  color: #111;
-}
-
-.AddonsTab h5 {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #333;
-  text-transform: uppercase;
 }
