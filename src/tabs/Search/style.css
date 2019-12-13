@@ -1,3 +1,39 @@
 .SearchTab {
-  
+  padding: 0px 10px;
+}
+
+.SearchResults {
+  margin-top: 20px;
+}
+
+.searchInput {
+  background: #fff;
+  border: 1px solid #76c3e8;
+  box-shadow: rgba(30, 30, 30, 0.1) 0px 4px 5px -4px;
+  position: sticky;
+  top: 10px;
+  z-index: 100;
+  width: calc(100% - 20px);
+  border-radius: 3px;
+  padding: 9px;
+  outline: 0;
+}
+
+.SearchHead {
+  height: 85px;
+  opacity: 1;
+  transition: 200ms all;
+}
+
+.SearchHead h4 {
+  transition: 200ms all;
+}
+
+.SearchHeadHidden {
+  height: 0px;
+  opacity: 0;
+}
+.SearchHeadHidden h4 {
+  padding: 0px;
+  margin: 0px;
 }

@@ -7,7 +7,7 @@ import Markdown from './markdown';
 import Files from './files';
 
 const URL = "https://api.usememo.com/";
-const DEVELOPMENT = true;
+const DEVELOPMENT = false;
 
 class API {
   constructor(){
@@ -217,6 +217,22 @@ class API {
 
   async getSheets(active){
     let sheets = await LocalDB.select("sheet", {active: active}, {
+      by: "accessed_at",
+      type: "desc"
+    });
+
+    for (var i = 0; i < sheets.length; i++) {
+      let sheet = sheets[i];
+      let lines = await LocalDB.select("line", {sheet_id: sheet.id}, {by: "pos", type: "asc"});
+      sheets[i].first_line = lines[0].text.replace(/<[^>]*>|#/g, '');
+      sheets[i].line_count = lines.length;
+    }
+
+    return sheets;
+  }
+
+  async searchSheets(term){
+    let sheets = await LocalDB.select("sheet", {title: {like: '%'+term+'%'}}, {
       by: "accessed_at",
       type: "desc"
     });

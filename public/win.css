@@ -3,20 +3,25 @@
 ::-webkit-scrollbar-thumb {
     background: rgba(0,0,0,0.0);
     border-radius: 10px;
-    box-shadow: rgba(255,255,255,0.3) 0 0 0 1px;
     cursor: pointer;
 }
 
 :hover::-webkit-scrollbar-thumb {background: rgba(0,0,0,0.35)}
 ::-webkit-scrollbar-thumb:hover {background: rgba(0,0,0,0.45)}
 
-@media screen and (max-width: 480px) {
-    ::-webkit-scrollbar {width: 5px;}
+.darkmode ::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0);
+    border-radius: 10px;
+    box-shadow: none;
+    cursor: pointer;
 }
 
-.darkmode ::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-    box-shadow: rgba(0,0,0,0.3) 0 0 0 1px;
-    cursor: pointer;
+.darkmode :hover::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  box-shadow: rgba(0,0,0,0.3) 0 0 0 1px;
+}
+
+
+@media screen and (max-width: 480px) {
+    ::-webkit-scrollbar {width: 5px;}
 }
