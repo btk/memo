@@ -6,12 +6,17 @@ import Loading from '../../components/Loading';
 
 class App extends Component {
   state = {
-    sheets: []
+    sheets: [],
+    noSheets: false
   }
 
   componentDidMount(){
     API.getSheets(1).then(sheets => {
-      this.setState({sheets});
+      if(sheets.length){
+        this.setState({sheets});
+      }else{
+        this.setState({noSheets: true});
+      }
     });
   }
 
@@ -29,7 +34,7 @@ class App extends Component {
               <div className="sub">{sheet.first_line ? sheet.first_line.substr(0, 50).replace(/-/g, "") + "..." : "This sheet is as empty as it can be..."}</div>
 
               <div className="subHolder">
-                <sub>{date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()}</sub>
+                <sub>{date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()}</sub>
                 {sheet.first_line &&
                   <sub>{sheet.line_count} Line{sheet.line_count != 1 ? "s": ""}</sub>
                 }
@@ -42,7 +47,11 @@ class App extends Component {
         );
       });
     }else{
-      return (<Loading height={200}/>);
+      if(this.state.noSheets){
+        return (<div className="tabNotice">You don't have any active sheets, add a new one or check your archives!</div>);
+      }else{
+        return (<Loading height={200}/>);
+      }
     }
   }
 

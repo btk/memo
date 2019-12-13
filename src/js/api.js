@@ -35,7 +35,7 @@ class API {
       }
       if(res){
         if(res.session_id){
-          console.log("Logged In User: ", res);
+          console.log("Logged In");
           this.logged = true;
           this.user = res;
           Github.init(this.user.token);
@@ -179,7 +179,6 @@ class API {
                   }).then(res => {
                     return LocalDB.select("sheet", {id: newAddedId}).then((sheet) => {
                       let newSheet = sheet[0];
-                      console.log("newS", newSheet)
                       return LocalDB.select("line", {sheet_id: newAddedId}, {by: "pos", type: "asc"}).then(lines => {
                         newSheet.lines = lines;
                         return newSheet;
@@ -199,7 +198,6 @@ class API {
           let idSheet = sheet[0];
           if(idSheet){
             return LocalDB.select("line", {sheet_id: idSheet.id}, {by: "pos", type: "asc"}).then(lines => {
-              console.log(lines);
               idSheet.lines = lines;
               LocalDB.update("sheet", {id}, {accessed_at: time});
               return idSheet;
@@ -217,13 +215,20 @@ class API {
     .then(res => res.json());
   }
 
-  getSheets(active){
-    return LocalDB.select("sheet", {active: 1}, {
+  async getSheets(active){
+    let sheets = await LocalDB.select("sheet", {active: active}, {
       by: "accessed_at",
       type: "desc"
-    }).then(res => {
-      return res;
-    })
+    });
+
+    for (var i = 0; i < sheets.length; i++) {
+      let sheet = sheets[i];
+      let lines = await LocalDB.select("line", {sheet_id: sheet.id}, {by: "pos", type: "asc"});
+      sheets[i].first_line = lines[0].text.replace(/<[^>]*>|#/g, '');
+      sheets[i].line_count = lines.length;
+    }
+
+    return sheets;
   }
 
   updateLine(id, pos, text, action, hint){
@@ -340,7 +345,7 @@ class API {
         }
         this.setData("staging", currentStaging);
         this.event.emit("sync", currentStaging.split(",").length);
-        console.log("needs to sync", currentStaging);
+        console.log("Needs to sync: ", currentStaging);
       }
     }
   }

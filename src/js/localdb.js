@@ -29,7 +29,6 @@ class LocalDB {
     });
 
     if(noOfDataInserted > 0) {
-      console.log(value);
       return true;
     }
   }

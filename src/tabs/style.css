@@ -1,0 +1,14 @@
+
+.tabNotice {
+  border: 2px dashed #eee;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  line-height: 1.5em;
+}
+
+.darkmode .tabNotice {
+  border: 2px dashed #333;
+  color: #ccc;
+}

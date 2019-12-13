@@ -64,6 +64,7 @@ class App extends Component {
     })
 
     API.event.on("sheet", (id) => {
+      this.setState({sheetLoading: true});
       API.getSheet(id).then((sheet) => {
         if(sheet == "NO_AUTH"){
           console.log("NO_AUTH, retrying initiation");
@@ -71,6 +72,7 @@ class App extends Component {
         }else{
           document.title = sheet.title + " | Memo";
           this.setState({
+            focusIndex: 0,
             lines: sheet.lines,
             sheet: {
               id: sheet.id,
@@ -79,6 +81,11 @@ class App extends Component {
             }
           });
           this.refs._textScroller.scrollTop = 0;
+          setTimeout(() => {
+            this.setState({
+              sheetLoading: false
+            });
+          }, 50)
         }
       });
       API.event.emit("toggle", false);
@@ -205,7 +212,6 @@ class App extends Component {
         API.updateLine(lineId, i, text);
       }
       lines[i].text = text;
-      //console.log(writeGood(text));
       this.setState({lines, focusIndex: null});
     }
   }
@@ -264,7 +270,7 @@ class App extends Component {
           <div className="Note" key={this.state.logged}>
             <AppBar spacer={true}/>
             {/*<Handy/>*/}
-            <div className="Content" ref="_textScroller">
+            <div className={this.state.sheetLoading ? "Content" : "Content ContentLoaded"} ref="_textScroller">
               {this.state.sheet &&
                 <Title
                   shouldFocused={this.state.focusIndex == "title"}

@@ -17,8 +17,6 @@ class App extends Component {
       pHeight: this.refs._lineText.scrollHeight
     });
 
-    console.log("componentDidMount");
-
     window.addEventListener('resize', (event) => {
       this.handleChange();
     });
@@ -66,7 +64,7 @@ class App extends Component {
     }
     if(this.refs._lineText){
       let renderedHeight = this.getHeight(this.refs._lineText.value);
-      //console.log(renderedHeight);
+
       if(renderedHeight != this.state.pHeight){
         this.setState({pHeight: renderedHeight});
       }

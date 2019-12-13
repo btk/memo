@@ -11,8 +11,92 @@
   margin-bottom: 0px;
 }
 
+.darkmode .ArchivesTab h4 {
+  color: #fff;
+}
+
 .ArchivesTab .sub {
   font-size: 0.9rem;
   line-height: 1.4em;
   color: #444;
+}
+
+.darkmode .ArchivesTab .sub {
+  color: #ddd;
+}
+
+.sheetItem {
+  cursor: pointer;
+  position: relative;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px -4px;
+  background: #f2f3f5;
+  border-radius: 5px;
+  transition: 150ms all;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+}
+
+.darkmode .sheetItem {
+  background: #272727;
+}
+
+
+.sheetItem:hover {
+  box-shadow: rgba(30, 30, 30, 0.15) 0px 4px 10px -4px;
+  background: #fff;
+}
+
+.darkmode .sheetItem:hover {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 10px -4px;
+  background: #232323;
+}
+
+.sheetItem .sheetRight {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: 1em;
+}
+
+.sheetItem .sheetRight span {
+  line-height: 1.5em;
+  font-weight: 500;
+}
+
+
+.darkmode .sheetItem .sheetRight span {
+  color: #fff;
+}
+
+
+.sheetItem .sheetRight .subHolder {
+  height: 25px;
+}
+
+.sheetItem .sheetRight sub {
+  font-weight: normal;
+  font-size: 0.7em;
+  opacity: 0.6;
+  margin-right: 5px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  position: relative;
+  left: -5px;
+  background: #fff;
+}
+
+.darkmode .sheetItem .sheetRight sub {
+  background: #222;
+  color: #fff;
+}
+
+.sheetItem img {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
 }

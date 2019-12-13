@@ -23,10 +23,19 @@
 .Content {
   width: calc(100% - 50px);
   height: 100%;
+  top: 20px;
+  transition: 100ms top, 100ms opacity;
+  transition-timing-function: linear;
   position: relative;
   overflow-y: scroll;
   overflow-x: hidden;
   background: #fff;
+  opacity: 0;
+}
+
+.ContentLoaded {
+  top: 0px;
+  opacity: 1;
 }
 
 .darkmode .Content {

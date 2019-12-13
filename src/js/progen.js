@@ -32,7 +32,7 @@ function GNT(data){
 // using the current planet identity
 export default function Progen(word, variation){
   let baseKey = GNT(word + variation);
-  console.log(baseKey);
+  //console.log(baseKey);
   return getColors(baseKey);
   //return  (Math.abs(abs.x) * (baseKey * 13 % 11) + Math.abs(abs.y) * (baseKey * 11 % 13)) % (end - start + 1) + start;
 }

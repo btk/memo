@@ -17,7 +17,7 @@ class Github {
 
   list(){
     return this.client.gists.list().then(gists => {
-      console.log(gists);
+      return gists;
     });
   }
 
