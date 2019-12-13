@@ -53,10 +53,14 @@ Please don't edit this file, as this is vital for cache validation and version c
   }
 
   fetch(){
+    API.event.emit("fetching");
     return this.client.gists.get({gist_id: API.user.gist_id}).then(gist => {
       let files = gist.data.files;
       return API.truncateDb().then(res => {
-        return Markdown.saveMarkdownSheet(files);
+        return Markdown.saveMarkdownSheet(files).then(res => {
+          API.event.emit("fetched");
+          return res;
+        });
       })
     })
   }
@@ -126,8 +130,6 @@ Please don't edit this file, as this is vital for cache validation and version c
             };
           }
         }
-
-        console.log(files);
 
         return this.client.gists.update({
           gist_id: memoGistId,

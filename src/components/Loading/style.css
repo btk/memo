@@ -6,10 +6,32 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: #222222;
 }
 
 .darkmode .Loading {
   background: #222222;
+  color: #fff;
+}
+
+
+.loginStatusText {
+  position: absolute;
+  width: 100%;
+  height: 35px;
+  text-align: center;
+  bottom: 0px;
+  left: 0px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+  line-height: 35px;
+  color: #666;
+}
+
+.darkmode .loginStatusText {
+  border-top: 1px solid #111;
+  background: #151515;
+  color: #ddd;
 }
 
 .spinner {

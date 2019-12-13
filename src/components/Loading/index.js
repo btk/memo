@@ -16,6 +16,16 @@ class App extends Component {
     API.event.on("loginButton", () => {
       this.setState({spinning: false});
     });
+
+    API.event.on("fetching", () => {
+      this.setState({statusText: "Processing data from GitHub..."});
+    });
+
+    API.event.on("fetched", () => {
+      this.setState({statusText: ""});
+    });
+
+
   }
 
   renderQuote(){
@@ -54,12 +64,15 @@ class App extends Component {
       <div className="Loading" style={{height: this.props.height}}>
         {this.props.quote && <img src={API.getTheme() == "dark" ? require("../../assets/memo_logo_left_white.svg"):require("../../assets/memo_logo_left.svg")} style={{marginBottom: 10, width: 159, height: 42}}/>}
         {this.state.spinning &&
-          <div className="spinner">
-            <div className="spinnerHole"></div>
-          </div>
+          <>
+            <div className="spinner">
+              <div className="spinnerHole"></div>
+            </div>
+          </>
         }
         <div style={{height: this.state.spinning ? 0 : "auto", overflow: "hidden", margin: this.state.spinning ? 0 : 16}}>{this.props.children}</div>
         {this.props.quote && this.renderQuote()}
+        {this.state.statusText && <div className="loginStatusText">{this.state.statusText}</div>}
       </div>
     );
   }
