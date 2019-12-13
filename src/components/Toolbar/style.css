@@ -144,7 +144,7 @@
 
 .tabContent {
   width: 345px;
-  height: 100vh;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   position: relative;
