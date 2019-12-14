@@ -19,6 +19,14 @@
   outline: 0;
 }
 
+.darkmode .searchInput {
+  background: #222;
+  color: #fff;
+}
+.darkmode .searchInput:focus {
+  background: #333;
+}
+
 .SearchHead {
   height: 85px;
   opacity: 1;
