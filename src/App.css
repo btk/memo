@@ -29,6 +29,7 @@
   position: relative;
   overflow-y: scroll;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   background: #fff;
   opacity: 0;
 }

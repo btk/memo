@@ -48,6 +48,7 @@ Please don't edit this file, as this is vital for cache validation and version c
     return this.client.gists.create({
       files
     }).then(res => {
+      console.log(res);
       return API.setGistId(res.data.id);
     })
   }
@@ -66,6 +67,8 @@ Please don't edit this file, as this is vital for cache validation and version c
   }
 
   checkUpdate(){
+    API.event.emit("checkingUpdates");
+
     return this.client.gists.get({gist_id: API.user.gist_id}).then(gist => {
       let files = gist.data.files;
       let accessed_at = Number(files["02_metadata.md"].content.split("accessed_at: ")[1].split(/\n/)[0]);

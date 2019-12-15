@@ -15,6 +15,10 @@ class App extends Component {
       this.setState({spinning: false});
     });
 
+    API.event.on("checkingUpdates", () => {
+      this.setState({statusText: "Checking for updates..."});
+    });
+
     API.event.on("fetching", () => {
       this.setState({statusText: "Processing data from GitHub..."});
     });

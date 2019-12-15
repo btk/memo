@@ -282,7 +282,8 @@ class App extends Component {
 
   handleFocus(){
     this.setState({focused: true});
-    API.event.emit("lineFocused", {text: this.state.text, lineId: this.props.id, index: this.props.index});
+    let pos = document.getElementById("content").scrollTop + this.refs._lineText.getBoundingClientRect().top;
+    API.event.emit("lineFocused", {text: this.state.text, lineId: this.props.id, index: this.props.index, position: pos});
   }
 
   handleBlur(){

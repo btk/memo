@@ -264,8 +264,7 @@ class App extends Component {
         <div className="AppHolder">
           <div className="Note" key={this.state.logged}>
             <AppBar spacer={true}/>
-            {/*<Handy/>*/}
-            <div className={this.state.sheetLoading ? "Content" : "Content ContentLoaded"} ref="_textScroller">
+            <div className={this.state.sheetLoading ? "Content" : "Content ContentLoaded"} ref="_textScroller" id="content">
               {this.state.sheet &&
                 <Title
                   shouldFocused={this.state.focusIndex == "title"}
@@ -276,6 +275,7 @@ class App extends Component {
                 </Title>
               }
               {this.state.sheet && this.renderLines(this.state.lines)}
+              <Handy/>
               <div className="spacer" onClick={() => this.focusLast()}></div>
               <div id="dummy">
                 <textarea id="dummyTextarea"></textarea>

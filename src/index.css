@@ -31,15 +31,16 @@ code {
 }
 
 textarea {
-    width: calc(100% - 42px);
-    border: 0px;
-    outline: 0px !important;
-    resize: none !important;
-    padding: 0px 20px;
-    padding-top: 9px;
-    margin: 0px !important;
-    line-height: 1.5em;
-    color: #242938;
+  width: calc(100% - 252px);
+  border: 0px;
+  outline: 0px !important;
+  resize: none !important;
+  padding: 0px 20px;
+  padding-top: 9px;
+  padding-right: 230px;
+  margin: 0px !important;
+  line-height: 1.5em;
+  color: #242938;
 }
 
 a {

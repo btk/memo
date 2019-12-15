@@ -1,14 +1,9 @@
 .Handy {
-  background: #fff;
-  width: 200px;
-  height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  box-shadow: inset -1px 0 2px rgba(0,0,0,.05);
-}
-
-.darkmode .Handy {
-  background: #222222;
+  width: 225px;
+  position: -webkit-sticky;
+  position: absolute;
+  right: 0px;
+  padding: 10px 0px;
 }
 
 .HandyInner {
@@ -17,18 +12,9 @@
   font-size: 1em;
 }
 
-.HandyFixed {
-  position: sticky;
-  top: 0px;
-  left: 0px;
-  width: calc(100% - 10px);
-  height: 35px;
-  /* background: linear-gradient(rgba(250,250,250, 1), rgba(250,250,250, 1), rgba(250,250,250, 0)); */
-  z-index: 96;
-}
-
-.darkmode .HandyFixed {
-  background: transparent;
+.HandyInnerWin {
+  position: relative;
+  top: -36px;
 }
 
 div.HandyInner > div:nth-child(1) > h5 {

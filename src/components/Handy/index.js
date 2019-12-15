@@ -10,7 +10,7 @@ import Links from '../../addons/links/';
 
 class App extends Component {
   state = {
-    text: "",
+    position: 0,
     syncText: API.getData("staging") ? "Sync to Github" : "Synced",
     stagedAmount: API.getData("staging") ? API.getData("staging").split(",").length : 0
   }
@@ -23,6 +23,12 @@ class App extends Component {
         this.setState({syncText: "Sync to Github", stagedAmount: status});
       }
     })
+
+    API.event.on("lineFocused", (line) => {
+      this.setState({
+        position: line.position
+      });
+    });
   }
 
   startSync(){
@@ -45,19 +51,17 @@ class App extends Component {
   render() {
     return (
       <>
-        <div className="Handy">
-          <div className="HandyFixed"></div>
-          <div className="HandyInner">
-            <Notes />
+        <div className="Handy" style={{top: this.state.position}}>
+          <div className={(window && window.process && window.process.type && window.process.platform === 'win32') ? "HandyInner HandyInnerWin" : "HandyInner"}>
             <WriteGood />
             <Conversion />
             <Calculator />
             <Links />
 
-            <div className="sync" style={{position: "absolute", bottom: 50, left: 10}} onClick={() => API.fetch()}>
+            <div className="sync" onClick={() => API.fetch()}>
               Force Fetch
             </div>
-            <div className="sync" style={{position: "absolute", bottom: 10, left: 10}} onClick={() => this.startSync()}>
+            <div className="sync" onClick={() => this.startSync()}>
               {this.state.syncText} {this.renderStagedAmount(this.state.stagedAmount)}
             </div>
           </div>
