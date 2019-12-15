@@ -12,6 +12,7 @@ const DEVELOPMENT = true;
 class API {
   constructor(){
     Analytics.initialize('UA-138987685-1');
+    this.development = DEVELOPMENT;
 		this.event = Event;
     this.analytics = Analytics;
     this.logged = false;
@@ -31,7 +32,7 @@ class API {
     .then(res => res.json())
     .then((res) => {
       if(res == null){
-        this.event.emit("loginButton");
+        console.log("NO_AUTH");
       }
       if(res){
         if(res.session_id){
@@ -41,7 +42,6 @@ class API {
           Github.init(this.user.token);
           Github.checkUpdate().then(res => {
             this.event.emit("sheet", "LAST_ACCESSED");
-            this.event.emit("loginButton");
             this.event.emit("login", true);
           });
           Files.listenFileDrop();

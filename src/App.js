@@ -8,6 +8,7 @@ import Handy from './components/Handy';
 import Loading from './components/Loading';
 import Cover from './components/Cover';
 import AppBar from './components/AppBar';
+import Login from './components/Login';
 
 import makeid from './js/makeid';
 
@@ -20,13 +21,10 @@ class App extends Component {
     focusIndex: 0,
     cursorPosition: 0,
     logged: false,
-    theme: API.getData("theme") || "light",
-    loginButtonText: "Login with GitHub"
+    theme: API.getData("theme") || "light"
   };
 
   componentDidMount(){
-
-    API.githubLogin();
 
     window.addEventListener("keydown", (e) => {
       if (e.keyCode === 114 || ((e.ctrlKey || e.metaKey) && e.keyCode === 70)) {
@@ -52,9 +50,6 @@ class App extends Component {
 
     API.event.on("login", (status) => {
       this.setState({logged: status});
-      if(status == false){
-        API.event.emit("loginButton");
-      }
     })
 
     API.event.on("theme", (type) => {
@@ -294,12 +289,7 @@ class App extends Component {
       return (
         <div>
           <Loading quote={true}>
-            <a href="https://github.com/login/oauth/authorize?client_id=d63ed284bfb2c8e7a5d4&scope=gist&redirect_uri=https://api.usememo.com/github/">
-              <div className="loginWithGithub" onClick={() => this.setState({loginButtonText: "Just a second..."})}>
-                <img src={require("./icon/github.svg")} />
-                <span>{this.state.loginButtonText}</span>
-              </div>
-            </a>
+            <Login/>
           </Loading>
         </div>
       );

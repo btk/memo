@@ -71,32 +71,3 @@
 #dummy textarea {
   height: 0px !important;
 }
-
-
-.loginWithGithub {
-  background: #2a2a2a;
-  border-radius: 6px;
-  padding: 10px 15px;
-  color: #fff;
-  font-weight: 500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loginWithGithub:hover {
-  background: #333;
-}
-
-.loginWithGithub span {
-  text-decoration: none;
-}
-
-.loginWithGithub img {
-  width: 25px;
-  height: 25px;
-  padding: 0px;
-  margin: 0px;
-  line-height: 0px;
-  margin-right: 13px;
-}

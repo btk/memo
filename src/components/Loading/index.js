@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './style.css';
-import Event from '../../js/event';
-
 import API from '../../js/api';
 
 const quoteRand = Math.floor(Math.random() * (3 - 0 + 1) ) + 0;
