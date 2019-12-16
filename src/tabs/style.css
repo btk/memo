@@ -1,6 +1,6 @@
 .TabCarrier {
   padding: 0px 20px;
-  width: 305px;
+  width: calc(100% - 32px);
 }
 
 .TabCarrier h4 {

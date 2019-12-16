@@ -18,7 +18,7 @@ class App extends Component {
 
   state = {
     lines: "",
-    focusIndex: 0,
+    focusIndex: null,
     cursorPosition: 0,
     logged: false,
     theme: API.getData("theme") || "light"
@@ -59,7 +59,7 @@ class App extends Component {
     })
 
     API.event.on("sheet", (id) => {
-      this.setState({sheetLoading: true});
+      this.setState({sheetLoading: true, focusIndex: null});
       API.getSheet(id).then((sheet) => {
         if(sheet == "NO_AUTH"){
           console.log("NO_AUTH, retrying initiation");
@@ -67,7 +67,6 @@ class App extends Component {
         }else{
           document.title = sheet.title + " | Memo";
           this.setState({
-            focusIndex: 0,
             lines: sheet.lines,
             sheet: {
               id: sheet.id,
@@ -75,6 +74,7 @@ class App extends Component {
               active: sheet.active
             }
           });
+
           this.refs._textScroller.scrollTop = 0;
           setTimeout(() => {
             this.setState({

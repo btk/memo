@@ -1,7 +1,7 @@
 .Toolbar {
   width: 50px;
   border: 0px;
-  height: 100vh;
+  height: 100%;
   background: #fff;
   display: flex;
   flex-direction: row;
@@ -15,11 +15,11 @@
   user-select: none;
   -webkit-user-select: none;
   -webkit-app-region: no-drag !important;
-
+  max-width: 100%;
 }
 
 .ToolbarWin {
-  height: calc(100vh - 36px);
+  height: calc(100% - 36px);
   top: 36px;
   z-index: 99;
 }
@@ -146,6 +146,7 @@
   width: 345px;
   height: 100%;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
   position: relative;
   transition: 200ms all;

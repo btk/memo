@@ -29,6 +29,10 @@ class App extends Component {
         position: line.position
       });
     });
+
+    API.event.on("sheet", () => {
+      this.setState({ position: 0 });
+    });
   }
 
   startSync(){
@@ -51,8 +55,8 @@ class App extends Component {
   render() {
     return (
       <>
-        <div className="Handy" style={{top: this.state.position}}>
-          <div className={(window && window.process && window.process.type && window.process.platform === 'win32') ? "HandyInner HandyInnerWin" : "HandyInner"}>
+        <div className="Handy" style={{top: this.state.position, display: (this.state.position === 0) ? "none" : "block"}}>
+          <div className={(window && window.process && window.process.type && window.process.platform !== 'browser') ? "HandyInner HandyInnerApp" : "HandyInner"}>
             <WriteGood />
             <Conversion />
             <Calculator />

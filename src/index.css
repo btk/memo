@@ -46,3 +46,10 @@ textarea {
 a {
   text-decoration: none;
 }
+
+@media (max-width: 820px) {
+  textarea {
+    width: calc(100% - 42px);
+    padding-right: 20px;
+  }
+}
