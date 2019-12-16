@@ -27,7 +27,7 @@ class API {
 
   githubLogin(){
     var url = URL + "login/" + (DEVELOPMENT ? "development": "");
-
+    
     fetch(url, { method: 'GET', credentials: 'include'})
     .then(res => res.json())
     .then((res) => {

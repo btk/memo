@@ -1,6 +1,6 @@
 .TabCarrier {
   padding: 0px 20px;
-  width: calc(100% - 32px);
+  width: 305px;
 }
 
 .TabCarrier h4 {
@@ -113,4 +113,11 @@
 .darkmode .tabNotice {
   border: 2px dashed #333;
   color: #ccc;
+}
+
+
+@media (max-width: 420px) {
+  .TabCarrier {
+    width: calc(100% - 32px);
+  }
 }

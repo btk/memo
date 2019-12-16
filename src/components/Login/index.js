@@ -3,7 +3,14 @@ import './style.css';
 
 import API from '../../js/api';
 
-const AUTH_URL = "https://github.com/login/oauth/authorize?client_id=d63ed284bfb2c8e7a5d4&scope=gist&redirect_uri=https://api.usememo.com/github/";
+let AUTH_URL = "https://github.com/login/oauth/authorize?client_id=d63ed284bfb2c8e7a5d4&scope=gist&redirect_uri=https://api.usememo.com/github/";
+
+if(API.development){
+  AUTH_URL += "?development=true";
+}
+
+let isRefresh = AUTH_URL.includes("?") ? "&refresh=true" : "?refresh=true";
+let AUTH_URL_REFRESH = AUTH_URL + isRefresh;
 
 class App extends Component {
 
@@ -12,7 +19,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    API.githubLogin();
+    //API.githubLogin();
   }
 
   handleIframeLoad(e){
@@ -22,6 +29,7 @@ class App extends Component {
         let iframeURL = (iframe.contentWindow||iframe.contentDocument).location.href;
         API.githubLogin();
       } catch(err){
+        console.log(err);
         console.warn("User haven't given authorization to Memo app on GitHub yet!");
         API.event.emit("loginButton");
       }
@@ -38,7 +46,7 @@ class App extends Component {
             <span>{this.state.loginButtonText}</span>
           </div>
         </a>
-        <iframe src={AUTH_URL} ref="_authIframe" onLoad={(event) => this.handleIframeLoad(event)} className="githubIframe" frameBorder="0"></iframe>
+        <iframe src={AUTH_URL_REFRESH} ref="_authIframe" onLoad={(event) => this.handleIframeLoad(event)} className="githubIframe" frameBorder="0"></iframe>
       </div>
     );
   }
