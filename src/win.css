@@ -1,0 +1,27 @@
+.win ::-webkit-scrollbar {width: 8px; height: 0; position: absolute; right: 0px; }
+.win ::-webkit-scrollbar-track {margin: 5px}
+.win ::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.0);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.win :hover::-webkit-scrollbar-thumb {background: rgba(0,0,0,0.35)}
+.win ::-webkit-scrollbar-thumb:hover {background: rgba(0,0,0,0.45)}
+
+.darkmode.win ::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0);
+    border-radius: 10px;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.darkmode.win :hover::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  box-shadow: rgba(0,0,0,0.3) 0 0 0 1px;
+}
+
+
+@media screen and (max-width: 480px) {
+    .win ::-webkit-scrollbar {width: 5px;}
+}

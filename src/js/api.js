@@ -7,7 +7,7 @@ import Markdown from './markdown';
 import Files from './files';
 
 const URL = "https://api.usememo.com/";
-const DEVELOPMENT = true;
+const DEVELOPMENT = false;
 
 class API {
   constructor(){

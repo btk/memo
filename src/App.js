@@ -298,7 +298,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className={`App${this.state.theme == "dark" ? " darkmode": ""}`}>
+      <div className={`App${this.state.theme == "dark" ? " darkmode": ""}${window.navigator.platform.includes('Win') ? " win" : ""}`}>
         {this.renderApp()}
         <Cover/>
         <AppBar theme={this.state.theme}/>
