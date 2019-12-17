@@ -18,13 +18,10 @@ class App extends Component {
     loginButtonText: "Login with GitHub"
   }
 
-  componentDidMount(){
-    //API.githubLogin();
-  }
-
   handleIframeLoad(e){
     let iframe = this.refs._authIframe;
-    if(iframe){
+    let isOnline = API.isOnline();
+    if(iframe && isOnline){
       try{
         let iframeURL = (iframe.contentWindow||iframe.contentDocument).location.href;
         API.githubLogin();
@@ -34,6 +31,9 @@ class App extends Component {
         API.event.emit("loginButton");
       }
 
+    }
+    if(!isOnline){
+      API.offlineLogin();
     }
   }
 

@@ -14,6 +14,7 @@ class API {
     Analytics.initialize('UA-138987685-1');
     this.development = DEVELOPMENT;
 		this.event = Event;
+    this.online = window.navigator.onLine;
     this.analytics = Analytics;
     this.logged = false;
     this.loginInterval = false;
@@ -25,9 +26,13 @@ class API {
 
   }
 
+  isOnline(){
+    return this.online;
+  }
+
   githubLogin(){
     var url = URL + "login/" + (DEVELOPMENT ? "development": "");
-    
+
     fetch(url, { method: 'GET', credentials: 'include'})
     .then(res => res.json())
     .then((res) => {
@@ -48,6 +53,16 @@ class API {
         }
       }
     });
+  }
+
+  offlineLogin(){
+    console.log("Logging in: Offline");
+    this.logged = true;
+    console.log(this.logged);
+    this.event.emit("sheet", "LAST_ACCESSED");
+    this.event.emit("login", true);
+
+    Files.listenFileDrop();
   }
 
   githubLogout(){
