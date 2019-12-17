@@ -7,7 +7,7 @@ import Markdown from './markdown';
 import Files from './files';
 
 const URL = "https://api.usememo.com/";
-const DEVELOPMENT = false;
+const DEVELOPMENT = true;
 
 class API {
   constructor(){
@@ -52,6 +52,10 @@ class API {
           Files.listenFileDrop();
         }
       }
+    }).catch(err => {
+      console.log(err);
+      this.online = false;
+      this.offlineLogin();
     });
   }
 

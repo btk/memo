@@ -27,12 +27,12 @@ function createWindow () {
 
   mainWindow.setMenu(null)
 
-  const dev = false;
+  const dev = true;
 
   if(dev){
     mainWindow.loadURL('http://localhost:3000/')
-  }else{
     mainWindow.webContents.openDevTools();
+  }else{
     // and load the index.html of the app.
     mainWindow.loadURL('https://app.usememo.com/')
   }
