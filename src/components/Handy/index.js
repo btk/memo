@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import './style.css';
 import API from '../../js/api';
 
-import Notes from '../../addons/notes/';
-import Calculator from '../../addons/calculator/';
-import Conversion from '../../addons/conversion/';
 import WriteGood from '../../addons/write-good/';
+import Conversion from '../../addons/conversion/';
+import Calculator from '../../addons/calculator/';
 import Links from '../../addons/links/';
 
 class App extends Component {
   state = {
+    addons: API.getData("addons") != null ? API.getData("addons") : API.defaultAddons,
     position: 0,
     syncText: API.getData("staging") ? "Sync to Github" : "Synced",
     stagedAmount: API.getData("staging") ? API.getData("staging").split(",").length : 0
@@ -33,6 +33,11 @@ class App extends Component {
     API.event.on("sheet", () => {
       this.setState({ position: 0 });
     });
+
+    API.event.on("addonsUpdated", (addons) => {
+      this.setState({ addons });
+    });
+
   }
 
   startSync(){
@@ -53,14 +58,16 @@ class App extends Component {
   }
 
   render() {
+    let addons = this.state.addons;
+
     return (
       <>
         <div className="Handy" style={{top: this.state.position, display: (this.state.position === 0) ? "none" : "block"}}>
           <div className={(window && window.process && window.process.type && window.process.platform !== 'browser') ? "HandyInner HandyInnerApp" : "HandyInner"}>
-            <WriteGood />
-            <Conversion />
-            <Calculator />
-            <Links />
+            {this.state.addons.includes("|write-good|") && <WriteGood />}
+            {this.state.addons.includes("|conversion|") && <Conversion />}
+            {this.state.addons.includes("|calculator|") && <Calculator />}
+            {this.state.addons.includes("|links|") && <Links />}
 
             <div className="sync" onClick={() => API.fetch()}>
               Force Fetch

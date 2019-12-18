@@ -17,6 +17,7 @@ class API {
     this.online = window.navigator.onLine;
     this.analytics = Analytics;
     this.logged = false;
+    this.defaultAddons = "|write-good||conversion||links||calculator|";
     this.loginInterval = false;
     console.log("API: init");
 
@@ -363,6 +364,16 @@ class API {
 
   truncateDb(){
     return LocalDB.truncate();
+  }
+
+  updatePreference(pref, to){
+    this.setData(pref, to);
+    console.log(pref +": ", to);
+    if(this.isOnline()){
+      Github.pushPreference(pref, to).then(res => {
+        console.log("Cloud Preference Update: ", pref, to);
+      });
+    }
   }
 
   addToStaging(sheetId){

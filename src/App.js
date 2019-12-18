@@ -21,6 +21,7 @@ class App extends Component {
     focusIndex: null,
     cursorPosition: 0,
     logged: false,
+    forceLogout: false,
     theme: API.getData("theme") || "light"
   };
 
@@ -49,13 +50,14 @@ class App extends Component {
     })
 
     API.event.on("login", (status) => {
-      this.setState({logged: status});
+      this.setState({logged: status, forceLogout: (status === false)});
     })
 
-    API.event.on("theme", (type) => {
-      API.setData("theme", type);
-      this.setState({theme: type});
-      console.log("type", type)
+    API.event.on("theme", (newTheme) => {
+      if(this.state.theme != newTheme){
+        this.setState({theme: newTheme});
+        API.updatePreference("theme", newTheme);
+      }
     })
 
     API.event.on("sheet", (id) => {
@@ -289,7 +291,7 @@ class App extends Component {
       return (
         <div>
           <Loading quote={true}>
-            <Login/>
+            <Login forceLogout={this.state.forceLogout}/>
           </Loading>
         </div>
       );

@@ -39,6 +39,9 @@ To read your notes and make changes, please go to [usememo.com](https://www.usem
       content: `---
 created_at: ${Math.round((new Date()).getTime() / 1000)}
 accessed_at: ${Math.round((new Date()).getTime() / 1000)}
+theme: ${API.getTheme()}
+currency: USD
+addons: write-good,conversion,links,calculator
 ---
 
 Please don't edit this file, as this is vital for cache validation and version control.
@@ -48,7 +51,7 @@ Please don't edit this file, as this is vital for cache validation and version c
     return this.client.gists.create({
       files
     }).then(res => {
-      console.log(res);
+      //console.log(res);
       return API.setGistId(res.data.id);
     })
   }
@@ -143,6 +146,31 @@ Please don't edit this file, as this is vital for cache validation and version c
     }else {
       return "no files on staging";
     }
+  }
+
+  pushPreference(preference, updateTo){
+    let memoGistId = API.user.gist_id;
+
+    return this.client.gists.get({gist_id: memoGistId}).then(async gist => {
+      let files = gist.data.files;
+
+      let metadata = files[`02_metadata.md`].content;
+
+      let metadataHead = metadata.split(preference+": ")[0];
+      let metadataFoot = metadata.split(preference+": ")[1].split(/\n/).slice(1).join("\n");
+
+      let metadataContent = metadataHead + preference +": " + updateTo + "\n" + metadataFoot;
+
+      files[`02_metadata.md`] = {
+        filename: `02_metadata.md`,
+        content: metadataContent
+      };
+
+      return this.client.gists.update({
+        gist_id: memoGistId,
+        files: files
+      });
+    })
   }
 }
 

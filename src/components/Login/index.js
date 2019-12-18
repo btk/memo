@@ -18,6 +18,15 @@ class App extends Component {
     loginButtonText: "Login with GitHub"
   }
 
+  componentDidMount(){
+    if(this.props.forceLogout){
+      console.log("forcing logout");
+      setTimeout(() => {
+        API.event.emit("loginButton");
+      }, 1000);
+    }
+  }
+
   handleIframeLoad(e){
     let iframe = this.refs._authIframe;
     let isOnline = API.isOnline();
@@ -39,15 +48,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="Login">
-        <a href={AUTH_URL}>
-          <div className="loginWithGithub" onClick={() => this.setState({loginButtonText: "Just a second..."})}>
-            <img src={require("../../icon/github.svg")} />
-            <span>{this.state.loginButtonText}</span>
-          </div>
-        </a>
-        <iframe src={AUTH_URL_REFRESH} ref="_authIframe" onLoad={(event) => this.handleIframeLoad(event)} className="githubIframe" frameBorder="0"></iframe>
-      </div>
+      <>
+        <div className="Login">
+          <a href={AUTH_URL}>
+            <div className="loginWithGithub" onClick={() => this.setState({loginButtonText: "Just a second..."})}>
+              <img src={require("../../icon/github.svg")} />
+              <span>{this.state.loginButtonText}</span>
+            </div>
+          </a>
+          {!this.props.forceLogout &&
+            <iframe src={AUTH_URL_REFRESH} ref="_authIframe" onLoad={(event) => this.handleIframeLoad(event)} className="githubIframe" frameBorder="0"></iframe>
+          }
+        </div>
+        {this.props.forceLogout &&
+          <p style={{width: 300, textAlign: "center", lineHeight: "1.5em"}}>You might also need to sign off from GitHub to login with another Account.</p>
+        }
+      </>
     );
   }
 }
