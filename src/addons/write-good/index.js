@@ -13,22 +13,31 @@ class App extends Component {
 
   componentDidMount(){
     this.throttleCounter = 0;
-    API.event.on("lineFocused", (line) => {
-      this.setState({
-        text: line.text,
-        lineId: line.lineId,
-        index: line.index
-      });
-    });
+    API.event.on("lineFocused", this.lineFocusedAction);
+    API.event.on("lineChanged", this.lineChangedAction);
+  }
 
-    API.event.on("lineChanged", (text) => {
-      if(this.throttleCounter == THROTTLE_LIMIT){
-        this.setState({text});
-        this.throttleCounter = 0;
-      }
-      this.throttleCounter++;
+  componentWillUnmount(){
+    API.event.removeListener("lineFocused", this.lineFocusedAction);
+    API.event.removeListener("lineChanged", this.lineFocusedAction);
+  }
+
+  lineFocusedAction = (line) => {
+    this.setState({
+      text: line.text,
+      lineId: line.lineId,
+      index: line.index
     });
   }
+
+  lineChangedAction = (text) => {
+    if(this.throttleCounter == THROTTLE_LIMIT){
+      this.setState({text});
+      this.throttleCounter = 0;
+    }
+    this.throttleCounter++;
+  }
+
 
   render() {
     if(this.state.text){

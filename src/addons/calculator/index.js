@@ -10,18 +10,27 @@ class App extends Component {
   }
 
   componentDidMount(){
-    API.event.on("lineFocused", (line) => {
-      this.setState({
-        text: line.text,
-        lineId: line.lineId,
-        index: line.index
-      });
-    });
+    API.event.on("lineFocused", this.lineFocusedAction);
+    API.event.on("lineChanged", this.lineChangedAction);
+  }
 
-    API.event.on("lineChanged", (text) => {
-      this.setState({text});
+  componentWillUnmount(){
+    API.event.removeListener("lineFocused", this.lineFocusedAction);
+    API.event.removeListener("lineChanged", this.lineFocusedAction);
+  }
+
+  lineFocusedAction = (line) => {
+    this.setState({
+      text: line.text,
+      lineId: line.lineId,
+      index: line.index
     });
   }
+
+  lineChangedAction = (text) => {
+    this.setState({text});
+  }
+
 
   render() {
     if(this.state.text){
