@@ -201,7 +201,8 @@ class App extends Component {
 
   handleBlur(text, lineId, i){
     let lines = this.state.lines;
-    if(lines[i].text != text || text == "" || lines[i].old_key){
+    
+    if(lines[i].text != text || lines[i].old_key){
       if(lines[i].old_key){
         API.updateLine(lineId, i, text, "key", lines[i].old_key);
         lines[i].old_key = "";

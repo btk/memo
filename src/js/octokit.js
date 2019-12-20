@@ -41,11 +41,42 @@ created_at: ${Math.round((new Date()).getTime() / 1000)}
 accessed_at: ${Math.round((new Date()).getTime() / 1000)}
 theme: ${API.getTheme()}
 currency: USD
-addons: write-good,conversion,links,calculator
+addons: |write-good||conversion||links||calculator|
 ---
 
 Please don't edit this file, as this is vital for cache validation and version control.
 `
+    };
+
+    files["sheet-1.md"] = {
+      filename: "sheet-1.md",
+      content: `---
+id: 1
+title: Welcome to Memo 👋
+active: 1
+created_at: 1576786353
+accessed_at: 1576789529
+---
+{{date: 19/12/2019}}
+
+This so exiting.
+Thank you for checking out memo!
+
+Memo has no bold, italic or subtitles, minimal and plain. Great for really focusing and creating your own formatting. It's totally free, and uses private Github Gists as cloud storage.
+
+Let me tell you about how memo works;
+	- There are separated paragraphs
+	- A double new line creates a paragraph
+	- Every paragraph has its own insights ✨
+	- Enable which insights you want in addons 🧩
+	- Use offline, push your changes to cloud later
+
+Now, archive or remove this sheet or create a new sheet from sidebar sheets tab and start taking notes.
+
+Also share your experience with memo over twitter about your experience.
+Don't forget to tag me @buraktokak
+
+Again, welcome to memo! 😊🥳`
     };
 
     return this.client.gists.create({
@@ -60,8 +91,23 @@ Please don't edit this file, as this is vital for cache validation and version c
     API.event.emit("fetching");
     return this.client.gists.get({gist_id: API.user.gist_id}).then(gist => {
       let files = gist.data.files;
+
+      //cloud stored preference data in effect on
+      let theme = files["02_metadata.md"].content.split("theme: ")[1].split(/\n/)[0];
+      API.setData("theme", theme);
+      API.event.emit("theme", theme);
+
+      let currency = files["02_metadata.md"].content.split("currency: ")[1].split(/\n/)[0];
+      API.setData("currency", currency);
+
+      let addons = files["02_metadata.md"].content.split("addons: ")[1].split(/\n/)[0];
+      API.setData("addons", addons);
+      API.event.emit("addons", addons);
+
+
       return API.truncateDb().then(res => {
         return Markdown.saveMarkdownSheet(files).then(res => {
+          API.addToStaging("flush");
           API.event.emit("fetched");
           return res;
         });

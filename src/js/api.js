@@ -244,7 +244,11 @@ class API {
     for (var i = 0; i < sheets.length; i++) {
       let sheet = sheets[i];
       let lines = await LocalDB.select("line", {sheet_id: sheet.id}, {by: "pos", type: "asc"});
-      sheets[i].first_line = lines[0].text.replace(/<[^>]*>|#/g, '');
+      if(lines[0]){
+        sheets[i].first_line = lines[0].text.replace(/<[^>]*>|#/g, '');
+      }else{
+        sheets[i].first_line = "";
+      }
       sheets[i].line_count = lines.length;
     }
 

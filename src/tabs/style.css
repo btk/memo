@@ -118,6 +118,6 @@
 
 @media (max-width: 420px) {
   .TabCarrier {
-    width: calc(100% - 32px);
+    width: calc(100vw - 88px);
   }
 }

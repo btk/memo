@@ -111,6 +111,17 @@ accessed_at: ${sheet.accessed_at}
             }
           }
         }
+
+        if(linePos == 0){
+          let newLineKey = makeid(5);
+          await LocalDB.insert("line", {
+            sheet_id: sheetId,
+            line_key: newLineKey,
+            date: lineDate,
+            text: "",
+            pos: 0
+          });
+        }
       }
 
       if(file.filename == "02_metadata.md"){
