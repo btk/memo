@@ -5,7 +5,7 @@ ini_set('session.cookie_domain', '.usememo.com' );
 session_start();
 include("config.php");
 
-$type = $_GET["type"];
+$development = $_GET["development"];
 
 $userId = $_SESSION['user_id'];
 $user = mysqli_query($conn, "SELECT * FROM `user` WHERE `id` = '$userId' LIMIT 1");
@@ -17,10 +17,10 @@ if(mysqli_num_rows($user)){
   $data->session_id = session_id();
 }
 
-if($type == "development"){
+if($development){
   header("Access-Control-Allow-Origin: http://localhost:3000", true);
 }else{
-  header("Access-Control-Allow-Origin: https://app.usememo.com", true);  
+  header("Access-Control-Allow-Origin: https://app.usememo.com", true);
 }
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");

@@ -4,6 +4,10 @@ session_set_cookie_params(2592000);
 ini_set('session.cookie_domain', '.usememo.com' );
 session_start();
 include("config.php");
+
+$refresh = $_GET["refresh"];
+$development = $_GET["development"];
+
 $code = $_GET['code'];
 $url = 'https://github.com/login/oauth/access_token';
 $client_id = 'd63ed284bfb2c8e7a5d4';
@@ -55,14 +59,41 @@ $user = mysqli_query($conn, "SELECT * FROM `user` WHERE `email` = '$email' LIMIT
 if(mysqli_num_rows($user)){
   $data = mysqli_fetch_object($user);
   $time = mysqli_query($conn, "UPDATE `user` SET `last_active` = '$time', `token` = '$access_token' WHERE `user`.`email` = '$email';");
-  header("Location: http://localhost:3000/");
+
+  if(!$refresh){
+    if($development){
+      header("Location: http://localhost:3000/");
+    }else{
+      header("Location: https://app.usememo.com/");
+    }
+  }else{
+    if($development){
+      header("Location: http://localhost:3000/refresh/");
+    }else{
+      header("Location: https://app.usememo.com/refresh/");
+    }
+  }
+
   $_SESSION['user_id'] = intval($data->id);
 }else{
   $add = mysqli_query($conn, "INSERT INTO `user` (`id`, `email`, `name`, `avatar`, `config`, `token`, `registered_at`, `last_active`) VALUES (NULL, '$email', '$name', '$avatar', '$config', '$access_token', '$time', '$time');");
   $user = mysqli_query($conn, "SELECT * FROM `user` WHERE `email` = '$email' LIMIT 1");
   $data = mysqli_fetch_object($user);
   $_SESSION['user_id'] = intval($data->id);
-  header("Location: http://localhost:3000/");
+
+  if(!$refresh){
+    if($development){
+      header("Location: http://localhost:3000/");
+    }else{
+      header("Location: https://app.usememo.com/");
+    }
+  }else{
+    if($development){
+      header("Location: http://localhost:3000/refresh/");
+    }else{
+      header("Location: https://app.usememo.com/refresh/");
+    }
+  }
 }
 
 

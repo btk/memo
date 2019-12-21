@@ -402,7 +402,7 @@ class API {
 
   setGistId(gistId){
     this.user.gist_id = gistId;
-    var url = URL + "user.php";
+    var url = URL + "user/" + (DEVELOPMENT ? "development": "");
     var formData = new FormData();
     formData.append('gist_id', gistId);
 
