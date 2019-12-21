@@ -18,9 +18,10 @@ class App extends Component {
 
   state = {
     lines: "",
-    focusIndex: 0,
+    focusIndex: null,
     cursorPosition: 0,
     logged: false,
+    forceLogout: false,
     theme: API.getData("theme") || "light"
   };
 
@@ -49,17 +50,18 @@ class App extends Component {
     })
 
     API.event.on("login", (status) => {
-      this.setState({logged: status});
+      this.setState({logged: status, forceLogout: (status === false)});
     })
 
-    API.event.on("theme", (type) => {
-      API.setData("theme", type);
-      this.setState({theme: type});
-      console.log("type", type)
+    API.event.on("theme", (newTheme) => {
+      if(this.state.theme != newTheme){
+        this.setState({theme: newTheme});
+        API.updatePreference("theme", newTheme);
+      }
     })
 
     API.event.on("sheet", (id) => {
-      this.setState({sheetLoading: true});
+      this.setState({sheetLoading: true, focusIndex: null});
       API.getSheet(id).then((sheet) => {
         if(sheet == "NO_AUTH"){
           console.log("NO_AUTH, retrying initiation");
@@ -67,7 +69,6 @@ class App extends Component {
         }else{
           document.title = sheet.title + " | Memo";
           this.setState({
-            focusIndex: 0,
             lines: sheet.lines,
             sheet: {
               id: sheet.id,
@@ -75,6 +76,7 @@ class App extends Component {
               active: sheet.active
             }
           });
+
           this.refs._textScroller.scrollTop = 0;
           setTimeout(() => {
             this.setState({
@@ -199,7 +201,8 @@ class App extends Component {
 
   handleBlur(text, lineId, i){
     let lines = this.state.lines;
-    if(lines[i].text != text || text == "" || lines[i].old_key){
+    
+    if(lines[i].text != text || lines[i].old_key){
       if(lines[i].old_key){
         API.updateLine(lineId, i, text, "key", lines[i].old_key);
         lines[i].old_key = "";
@@ -289,7 +292,7 @@ class App extends Component {
       return (
         <div>
           <Loading quote={true}>
-            <Login/>
+            <Login forceLogout={this.state.forceLogout}/>
           </Loading>
         </div>
       );
@@ -298,7 +301,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className={`App${this.state.theme == "dark" ? " darkmode": ""}`}>
+      <div className={`App${this.state.theme == "dark" ? " darkmode": ""}${window.navigator.platform.includes('Win') ? " win" : ""}`}>
         {this.renderApp()}
         <Cover/>
         <AppBar theme={this.state.theme}/>

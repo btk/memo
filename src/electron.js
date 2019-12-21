@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, shell} = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -36,6 +36,11 @@ function createWindow () {
     // and load the index.html of the app.
     mainWindow.loadURL('https://app.usememo.com/')
   }
+
+  mainWindow.webContents.on('new-window', function(event, url){
+    event.preventDefault();
+    shell.openItem(url);
+  });
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 

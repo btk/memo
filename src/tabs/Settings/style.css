@@ -2,6 +2,11 @@
 
 }
 
+.SettingsTab h5 {
+  font-size: 0.9em;
+  margin-bottom: 8px;
+}
+
 .darkmode .SettingsTab h5 {
   color: #fff;
 }
@@ -58,4 +63,24 @@
 .themeActive {
   border: 2px solid #76c3e8;
   border-radius: 15px;
+}
+
+.label {
+  background: rgba(255,255,255, 0);
+  color: #444;
+  text-align: center;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 2px solid #76c3e8;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.darkmode .label {
+  background: rgba(255,255,255, 0.05);
+  color: #fff;
+}
+
+.darkmode .label option {
+  color: #444;
 }

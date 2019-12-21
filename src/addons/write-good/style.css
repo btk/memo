@@ -19,8 +19,9 @@
   margin-bottom: 3px;
 }
 
-.AddonItem p {
+.AddonItem > div {
   font-size: 0.85em;
+  margin-top: 10px;
 }
 
 .AddonItem .AddonConfigure {

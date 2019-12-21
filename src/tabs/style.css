@@ -114,3 +114,10 @@
   border: 2px dashed #333;
   color: #ccc;
 }
+
+
+@media (max-width: 420px) {
+  .TabCarrier {
+    width: calc(100vw - 88px);
+  }
+}

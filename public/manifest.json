@@ -1,6 +1,7 @@
 {
   "name": "Memo - Take Smarter Notes",
   "short_name": "Memo",
+  "version": 102,
   "theme_color": "#565e65",
   "background_color": "#ffffff",
   "display": "standalone",

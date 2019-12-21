@@ -1,7 +1,7 @@
 .Toolbar {
   width: 50px;
   border: 0px;
-  height: 100vh;
+  height: 100%;
   background: #fff;
   display: flex;
   flex-direction: row;
@@ -15,11 +15,11 @@
   user-select: none;
   -webkit-user-select: none;
   -webkit-app-region: no-drag !important;
-
+  max-width: 100%;
 }
 
 .ToolbarWin {
-  height: calc(100vh - 36px);
+  height: calc(100% - 36px);
   top: 36px;
   z-index: 99;
 }
@@ -39,6 +39,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
 }
 
 .Menu .Top, .Menu .Bottom {
@@ -47,7 +48,8 @@
   justify-content: flex-start;
 }
 
-.Menu .Item {
+.Item {
+  position: relative;
   cursor: pointer;
   background: #fff;
   width: 24px;
@@ -59,19 +61,29 @@
   border-radius: 25px;
 }
 
-.Menu .ItemActive {
+.Item .dot {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #76c3e8;
+}
+
+.ItemActive {
   background: #f1f1f1;
 }
 
-.darkmode .Menu .Item {
+.darkmode .Item {
   background: #222;
 }
 
-.darkmode .Menu .ItemActive {
-  background: #444;
+.darkmode .ItemActive {
+  background: #1b1b1b;
 }
 
-.Menu .Item.Search {
+.Item.Search {
   width: 374px;
   background: transparent;
 }
@@ -146,6 +158,7 @@
   width: 345px;
   height: 100%;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
   position: relative;
   transition: 200ms all;
@@ -165,4 +178,27 @@
 
 .shadowWin {
   z-index: 97;
+}
+
+.ToolBack {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 44px;
+  width: 50px;
+  display: none;
+}
+
+
+@media (max-width: 420px) {
+  .ToolBack {
+    display: block;
+  }
+
+  .MenuOpen {
+    position: relative;
+    top: 44px;
+    height: calc(100% - 44px);
+  }
 }

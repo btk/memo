@@ -4,9 +4,8 @@ import API from '../../js/api';
 
 const addon = require("./addon.json");
 
-const DEFAULT_CURRENCY = "try";
-const DEFAULT_CURRENCY_SYMBOL = "₺";
-
+let DEFAULT_CURRENCY = API.getData("currency") ? API.getData("currency").toLowerCase() : "usd";
+let DEFAULT_CURRENCY_SYMBOL = "";
 let currencies = [
   {
     ticker: "usd",
@@ -23,12 +22,23 @@ let currencies = [
     usdFactor: 5.85
   },
   {
+    ticker: "gbp",
+    symbol: "£",
+    usdFactor: 0.75
+  },
+  {
     ticker: "cad",
     symbol: "c$",
     usdFactor: 1.33
   }
 ];
 
+let defaultCurrency = currencies.filter(curr => curr.ticker == DEFAULT_CURRENCY);
+if(defaultCurrency.length == 1){
+  DEFAULT_CURRENCY_SYMBOL = currencies.filter(curr => curr.ticker == DEFAULT_CURRENCY)[0].symbol;
+}
+
+// get live rates
 API.getConversions().then(conv => {
   currencies = [
     {
@@ -46,11 +56,26 @@ API.getConversions().then(conv => {
       usdFactor: Number(conv.rates["TRY"]).toFixed(2)
     },
     {
+      ticker: "gbp",
+      symbol: "£",
+      usdFactor: Number(conv.rates["GBP"]).toFixed(2)
+    },
+    {
       ticker: "cad",
       symbol: "c$",
       usdFactor: Number(conv.rates["CAD"]).toFixed(2)
     }
   ];
+
+
+  let defaultCurrency = currencies.filter(curr => curr.ticker == DEFAULT_CURRENCY);
+  if(defaultCurrency.length == 0){
+    currencies.push({
+      ticker: DEFAULT_CURRENCY,
+      symbol: "",
+      usdFactor: Number(conv.rates[DEFAULT_CURRENCY.toUpperCase()]).toFixed(2)
+    });
+  }
 });
 
 
@@ -78,19 +103,27 @@ class App extends Component {
   }
 
   componentDidMount(){
-    API.event.on("lineFocused", (line) => {
-      this.setState({
-        text: line.text,
-        lineId: line.lineId,
-        index: line.index
-      });
-    });
+    API.event.on("lineFocused", this.lineFocusedAction);
+    API.event.on("lineChanged", this.lineChangedAction);
+  }
 
-    API.event.on("lineChanged", (text) => {
-      if(currencies.some((curr) => text.includes(curr.ticker) || text.includes(curr.symbol))){
-        this.setState({text});
-      }
+  componentWillUnmount(){
+    API.event.removeListener("lineFocused", this.lineFocusedAction);
+    API.event.removeListener("lineChanged", this.lineFocusedAction);
+  }
+
+  lineFocusedAction = (line) => {
+    this.setState({
+      text: line.text,
+      lineId: line.lineId,
+      index: line.index
     });
+  }
+
+  lineChangedAction = (text) => {
+    if(currencies.some((curr) => text.includes(curr.ticker) || text.includes(curr.symbol))){
+      this.setState({text});
+    }
   }
 
   parseConversion(text){
@@ -232,11 +265,11 @@ class App extends Component {
           return (
             <>
               <div className="AddonItem">
-                <svg className="AddonConfigure" viewBox="0 0 24 24" width="15" height="15">
+                <svg className="AddonConfigure" viewBox="0 0 24 24" width="15" height="15" onClick={() => API.event.emit("toggle", "addons")}>
                   <path d="M9 4.58V4c0-1.1.9-2 2-2h2a2 2 0 0 1 2 2v.58a8 8 0 0 1 1.92 1.11l.5-.29a2 2 0 0 1 2.74.73l1 1.74a2 2 0 0 1-.73 2.73l-.5.29a8.06 8.06 0 0 1 0 2.22l.5.3a2 2 0 0 1 .73 2.72l-1 1.74a2 2 0 0 1-2.73.73l-.5-.3A8 8 0 0 1 15 19.43V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.58a8 8 0 0 1-1.92-1.11l-.5.29a2 2 0 0 1-2.74-.73l-1-1.74a2 2 0 0 1 .73-2.73l.5-.29a8.06 8.06 0 0 1 0-2.22l-.5-.3a2 2 0 0 1-.73-2.72l1-1.74a2 2 0 0 1 2.73-.73l.5.3A8 8 0 0 1 9 4.57zM7.88 7.64l-.54.51-1.77-1.02-1 1.74 1.76 1.01-.17.73a6.02 6.02 0 0 0 0 2.78l.17.73-1.76 1.01 1 1.74 1.77-1.02.54.51a6 6 0 0 0 2.4 1.4l.72.2V20h2v-2.04l.71-.2a6 6 0 0 0 2.41-1.4l.54-.51 1.77 1.02 1-1.74-1.76-1.01.17-.73a6.02 6.02 0 0 0 0-2.78l-.17-.73 1.76-1.01-1-1.74-1.77 1.02-.54-.51a6 6 0 0 0-2.4-1.4l-.72-.2V4h-2v2.04l-.71.2a6 6 0 0 0-2.41 1.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
                 </svg>
                 <h5>{addon.display}</h5>
-                <p>{parsed}</p>
+                <div>{parsed}</div>
               </div>
             </>
           );

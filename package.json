@@ -19,13 +19,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "push": "react-scripts build && aws s3 rm s3://app.usememo.com --recursive && aws s3 cp build s3://app.usememo.com --recursive",
+    "push": "react-scripts build && aws s3 rm s3://app.usememo.com --recursive && aws s3 cp build s3://app.usememo.com --recursive && aws s3 cp build s3://app.usememo.com/ --recursive --exclude * --include precache*.js --include service-worker.js --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --content-type application/javascript --acl public-read",
     "icon": "./node_modules/.bin/electron-icon-maker --input=./src/assets/memo_desktop_png.png --output=./src/assets",
     "app": "electron .",
     "app-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/assets/icons/mac/icon.icns --prune=true --out=release-builds",
     "app-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=src/assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Shopping List\"",
     "app-lin": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=src/assets/icons/png/1024x1024.png --prune=true --out=release-builds"
   },
+  "homepage" : "https://app.usememo.com",
   "eslintConfig": {
     "extends": "react-app"
   },
