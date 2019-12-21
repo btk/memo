@@ -1,3 +1,65 @@
 .PushTab {
 
 }
+
+div.pushButton {
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #76c3e8;
+  color: #444;
+  box-shadow: rgba(30, 30, 30, 0.1) 0px 4px 5px -4px;
+  position: sticky;
+  top: 10px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  height: 20px;
+}
+
+.darkmode div.pushButton {
+  color: #fff;
+}
+
+div.pushButton span {
+  line-height: 1.5em;
+  font-weight: 500;
+}
+div.pushButton svg {
+  margin-right: 5px;
+  fill: #444;
+  position: relative;
+  bottom: 0.5px;
+}
+.darkmode div.pushButton svg {
+  fill: #eee;
+}
+
+div.pushButton:hover {
+  box-shadow: rgba(30, 30, 30, 0.15) 0px 4px 10px -4px;
+}
+
+.pushButton.passive {
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.05);
+}
+
+.pushButton.passive:hover {
+  background: rgba(0,0,0,0.05);
+  box-shadow: none;
+}
+
+.darkmode .pushButton.passive {
+  border: 1px solid rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.05);
+}
+
+.darkmode .pushButton.passive:hover {
+  background: rgba(0,0,0,0.05);
+  box-shadow: none;
+}
+
+.pushButton.passive svg {
+  display: none;
+}
