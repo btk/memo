@@ -52,7 +52,7 @@ class App extends Component {
     return (
       <>
         <div className="Handy" style={{top: this.state.position}}>
-          <div className={(window && window.process && window.process.type && window.process.platform === 'win32') ? "HandyInner HandyInnerWin" : "HandyInner"}>
+          <div className={(window && window.process && window.process.type && window.process.platform !== 'browser') ? "HandyInner HandyInnerApp" : "HandyInner"}>
             <WriteGood />
             <Conversion />
             <Calculator />
