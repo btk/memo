@@ -1,11 +1,14 @@
 {
-  "name": "memo-app",
+  "name": "memo",
+  "productName": "Memo",
+  "description": "Take smarter notes with GitHub gists.",
   "version": "0.1.0",
+  "author": "btk",
+  "copyright": "MIT",
   "private": true,
   "main": "src/electron.js",
   "dependencies": {
     "@octokit/rest": "^16.35.0",
-    "electron": "^5.0.2",
     "file-saver": "^2.0.2",
     "jsstore": "^3.4.4",
     "react": "^16.8.6",
@@ -23,10 +26,15 @@
     "icon": "./node_modules/.bin/electron-icon-maker --input=./src/assets/memo_desktop_png.png --output=./src/assets",
     "app": "electron .",
     "app-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "app-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=src/assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Shopping List\"",
-    "app-lin": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=src/assets/icons/png/1024x1024.png --prune=true --out=release-builds"
+    "app-win": "electron-packager . --overwrite --asar --platform=win32 --arch=x64 --icon=src/assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Memo App\"",
+    "app-lin": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=src/assets/icons/png/1024x1024.png --prune=true --out=release-builds",
+    "package": "yarn build && electron-builder build --publish never",
+    "package-all": "electron-builder build -mwl",
+    "package-ci": "yarn build && electron-builder --publish always",
+    "package-linux": "electron-builder build --linux",
+    "package-win": "electron-builder build --win --x64"
   },
-  "homepage" : "https://app.usememo.com",
+  "homepage": "https://app.usememo.com",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -35,5 +43,52 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "electron": "^7.1.7"
+  },
+  "build": {
+    "appId": "com.usememo.app",
+    "files": [
+      "src/electron.js",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "resources"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "AppImage"
+      ],
+      "category": "Productivity"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "btk",
+      "repo": "memo",
+      "private": true
+    }
+  }
 }

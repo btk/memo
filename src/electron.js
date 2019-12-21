@@ -27,7 +27,7 @@ function createWindow () {
 
   mainWindow.setMenu(null)
 
-  const dev = true;
+  const dev = false;
 
   if(dev){
     mainWindow.loadURL('http://localhost:3000/')
