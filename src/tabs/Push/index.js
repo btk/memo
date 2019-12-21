@@ -27,7 +27,19 @@ class App extends Component {
   }
 
   renderChanges(staging){
-    if(staging.length){
+    if(staging){
+      let staged = staging.split(",");
+      return staged.map((sheet, i) => {
+        let sheetId = Number(sheet.replace(/\|/g, ""));
+        return (
+          <div
+            className="sheetItem"
+            key={sheetId}
+            onClick={() => API.event.emit("sheet", sheetId)}>
+            <div className="sub">Changed sheet with id {sheetId}</div>
+          </div>
+        )
+      })
       return (null);
     }else{
       return (<div className="tabNotice">Your local sheets are in sync with the origin.</div>);
@@ -35,8 +47,8 @@ class App extends Component {
   }
 
   startSync(){
-    if(this.state.stagedAmount != 0){
-      this.setState({syncText: "Syncing...", stagedAmount: 0});
+    if(this.state.staged){
+      this.setState({syncText: "Syncing...", staged: ""});
       API.sync();
     }else{
       console.log("Already Synced");
@@ -60,7 +72,7 @@ class App extends Component {
               <span>{this.state.syncText}</span>
           </div>
 
-          {this.renderChanges([])}
+          {this.renderChanges(this.state.staged)}
         </div>
       </div>
     );
