@@ -23,6 +23,13 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Memo - Take Smarter Notes</title>
+    <script>
+        if (window.location.protocol == "http:") {
+          console.log("You are not connected with a secure connection.")
+          console.log("Reloading the page to a Secure Connection...")
+          window.location = document.URL.replace("http://", "https://");
+        }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
