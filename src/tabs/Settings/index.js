@@ -48,18 +48,25 @@ class App extends Component {
             return (<option key={i} value={curr}>{curr}</option>)
           })}
         </select>
-        <h5>Revision History</h5>
-        <p className="sub">In case of data loss, you can use your Gist revisions and see your change history.</p>
-        {API.user.gist_id &&
-          <a href={"https://gist.github.com/"+ API.user.gist_id + "/revisions"} target="_blank">
-            <div className="label" style={{fontSize: 15, fontWeight: 500}}>See Your Gist Revisions</div>
-          </a>
-        }
-        {!API.user.gist_id &&
+        <>
+          <h5>Revision History</h5>
+          <p className="sub">In case of data loss, you can use your Gist revisions and see your change history.</p>
+          {API.user &&
+            <a href={"https://gist.github.com/"+ API.user.gist_id + "/revisions"} target="_blank">
+              <div className="label" style={{fontSize: 15, fontWeight: 500}}>See Your Gist Revisions</div>
+            </a>
+          }
+        </>
+        {!API.user &&
           <div className="label">Only Available Online</div>
         }
         <h5>My Account</h5>
-        <p className="sub">You are logged in as {API.user.username ? API.user.username : API.user.email.split("@")[0]} <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => API.githubLogout()}>(Logout?)</span></p>
+        {API.isOnline() &&
+          <p className="sub">You are logged in as {API.user.username ? API.user.username : API.user.email.split("@")[0]} <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => API.githubLogout()}>(Logout?)</span></p>
+        }
+        {!API.isOnline() &&
+          <p className="sub">You are in offline mode. You can login the app when you have internet. <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => window.location.reload()}>(Restart the app?)</span></p>
+        }
       </div>
     );
   }

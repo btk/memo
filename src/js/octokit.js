@@ -187,6 +187,9 @@ Again, welcome to memo! 😊🥳`
           gist_id: memoGistId,
           files: files
         });
+      }, err => {
+        API.event.emit("syncError", err);
+        return err;
       })
 
     }else {

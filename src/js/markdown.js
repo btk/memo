@@ -62,7 +62,6 @@ accessed_at: ${sheet.accessed_at}
       return (a > b) ? 1 : ((b > a) ? -1 : 0);
     });
 
-    console.log(filesArray);
     for (var i = 0; i < filesArray.length; i++) {
       let file = filesArray[i];
 
@@ -87,14 +86,12 @@ accessed_at: ${sheet.accessed_at}
           created_at: fileMetadata.created_at,
           accessed_at: fileMetadata.accessed_at
         });
-        //console.log("#### SHEET ", fileMetadata.title);
         let newSheet = await LocalDB.select("sheet", null, {
           by: "id",
           type: "desc"
         }, 1);
 
         let sheetId = newSheet[0].id;
-        console.log(newSheet);
         let lineDate = "";
         let linePos = 0;
         for (var j = 0; j < fileParagraphs.length; j++) {
@@ -112,7 +109,6 @@ accessed_at: ${sheet.accessed_at}
                 text: p,
                 pos: linePos
               });
-              //console.log("#### LINE ", p, sheetId);
 
               linePos++;
             }
