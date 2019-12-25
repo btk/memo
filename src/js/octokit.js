@@ -3,13 +3,13 @@ import API from './api';
 import Markdown from './markdown';
 
 class Github {
-  init(token){
+  async init(token){
     this.client = new Octokit({
       auth: "token "+token
     })
 
     if(!API.user.gist_id){
-      return this.setup();
+      return await this.setup();
     }else{
       return true;
     }
@@ -82,8 +82,8 @@ Again, welcome to memo! 😊🥳`
     return this.client.gists.create({
       files
     }).then(res => {
-      //console.log(res);
-      return API.setGistId(res.data.id);
+      API.setGistId(res.data.id);
+      return this.sync();
     })
   }
 

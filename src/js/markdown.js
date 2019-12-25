@@ -168,7 +168,7 @@ Don't forget to tag me @buraktokak
 
 Again, welcome to memo! 😊🥳`
     };
-
+    API.addToStaging(1);
     return await this.saveMarkdownSheet(files);
   }
 }

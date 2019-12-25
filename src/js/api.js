@@ -45,11 +45,15 @@ class API {
           console.log("Logged In");
           this.logged = true;
           this.user = res;
-          Github.init(this.user.token);
-          Github.checkUpdate().then(res => {
-            this.event.emit("sheet", "LAST_ACCESSED");
-            this.event.emit("login", true);
+          Github.init(this.user.token).then(status => {
+            console.log("initing...");
+            Github.checkUpdate().then(res => {
+              console.log("checked for updates...");
+              this.event.emit("sheet", "LAST_ACCESSED");
+              this.event.emit("login", true);
+            });
           });
+
           Files.listenFileDrop();
         }
       }
