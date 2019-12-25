@@ -1,5 +1,5 @@
 .Login {
-  height: 45px;
+  height: 48px;
   overflow: hidden;
 }
 .githubIframe {
@@ -19,9 +19,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  bottom: 0px;
+  transition: 200ms all;
+  margin-top: 3px;
 }
 
 .loginWithGithub:hover {
+  bottom: 2px;
   background: #333;
 }
 
@@ -36,4 +41,29 @@
   margin: 0px;
   line-height: 0px;
   margin-right: 13px;
+}
+
+.localModeButton {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  cursor: pointer;
+  color: #777;
+  box-shadow: rgba(30, 30, 30, 0.1) 0px 4px 5px -4px;
+  margin-bottom: 5px;
+  position: relative;
+  bottom: 0px;
+  transition: 200ms all;
+}
+
+.localModeButton:hover {
+  color: #444;
+  border-color: #76c3e8;
+  box-shadow: rgba(30, 30, 30, 0.15) 0px 4px 10px -4px;
+  bottom: 2px;
 }

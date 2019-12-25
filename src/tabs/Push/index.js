@@ -82,7 +82,7 @@ class App extends Component {
           {(this.state.error != "") &&
              <div className="tabNotice">{this.state.error} <br/>Please try to login again by <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => window.location.reload()}>restarting the app.</span></div>
           }
-          {!API.isOnline() && <div className="tabNotice">No internet connection. <br/>Please connect to internet and <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => window.location.reload()}>restart the app.</span></div>}
+          {!API.isOnline() && <div className="tabNotice">You are in offline mode. <br/>Please connect to internet and <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => window.location.reload()}>restart the app.</span></div>}
           {(API.isOnline() && (this.state.error == "")) && this.renderChanges(this.state.staged)}
         </div>
       </div>

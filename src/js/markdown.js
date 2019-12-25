@@ -135,6 +135,42 @@ accessed_at: ${sheet.accessed_at}
     }
     return true;
   }
+
+  async offlineSetup(){
+    let files = [];
+    files["sheet-1.md"] = {
+      filename: "sheet-1.md",
+      content: `---
+id: 1
+title: Welcome to Memo 👋
+active: 1
+created_at: 1576786353
+accessed_at: 1576789529
+---
+{{date: 19/12/2019}}
+
+This so exiting.
+Thank you for checking out memo!
+
+Memo has no bold, italic or subtitles, minimal and plain. Great for really focusing and creating your own formatting. It's totally free, and uses private Github Gists as cloud storage.
+
+Let me tell you about how memo works;
+  - There are separated paragraphs
+  - A double new line creates a paragraph
+  - Every paragraph has its own insights ✨
+  - Enable which insights you want in addons 🧩
+  - Use offline, push your changes to cloud later
+
+Now, archive or remove this sheet or create a new sheet from sidebar sheets tab and start taking notes.
+
+Also share your experience with memo over twitter about your experience.
+Don't forget to tag me @buraktokak
+
+Again, welcome to memo! 😊🥳`
+    };
+
+    return await this.saveMarkdownSheet(files);
+  }
 }
 
 const _md = new Markdown();

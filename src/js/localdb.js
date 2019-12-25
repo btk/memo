@@ -76,6 +76,15 @@ class LocalDB {
     return rowsUpdated;
   }
 
+  async count(table, where){
+    let rowsCounted = await connection.count({
+        from: table,
+        where
+    });
+
+    return rowsCounted;
+  }
+
   async truncate(){
     let sheetsDeleted = await connection.remove({
       from: "sheet"

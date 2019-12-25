@@ -65,7 +65,7 @@ class App extends Component {
           <p className="sub">You are logged in as {API.user.username ? API.user.username : API.user.email.split("@")[0]} <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => API.githubLogout()}>(Logout?)</span></p>
         }
         {!API.isOnline() &&
-          <p className="sub">You are in offline mode. You can login the app when you have internet. <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => window.location.reload()}>(Restart the app?)</span></p>
+          <p className="sub">You are in offline mode. You can login the app when you have internet. <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => window.location.reload()}>Try to login?</span></p>
         }
       </div>
     );

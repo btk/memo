@@ -60,6 +60,10 @@ class App extends Component {
             <iframe src={AUTH_URL_REFRESH} ref="_authIframe" onLoad={(event) => this.handleIframeLoad(event)} className="githubIframe" frameBorder="0"></iframe>
           }
         </div>
+        <div className="localModeButton" onClick={() => API.offlineLogin()}>
+          <span>Use Offline</span>
+        </div>
+
         {this.props.forceLogout &&
           <p style={{width: 300, textAlign: "center", lineHeight: "1.5em"}}>You might also need to sign off from GitHub to login with another Account.</p>
         }

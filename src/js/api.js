@@ -7,7 +7,7 @@ import Markdown from './markdown';
 import Files from './files';
 
 const URL = "https://api.usememo.com/";
-const DEVELOPMENT = false;
+const DEVELOPMENT = true;
 
 class API {
   constructor(){
@@ -55,19 +55,34 @@ class API {
       }
     }).catch(err => {
       console.log(err);
-      this.online = false;
       this.offlineLogin();
     });
   }
 
   offlineLogin(){
+    this.online = false;
     console.log("Logging in: Offline");
     this.logged = true;
-    console.log(this.logged);
-    this.event.emit("sheet", "LAST_ACCESSED");
-    this.event.emit("login", true);
+    return LocalDB.count("sheet").then(sheetCount => {
+      if(sheetCount == 0){
+        this.offlineFirstTime();
+      }else{
+        this.event.emit("sheet", "LAST_ACCESSED");
+        this.event.emit("login", true);
+      }
+    })
 
     Files.listenFileDrop();
+  }
+
+  offlineFirstTime(){
+    Markdown.offlineSetup().then((status) => {
+      console.log("Setting up first time offline", status);
+      if(status){
+        this.event.emit("sheet", "LAST_ACCESSED");
+        this.event.emit("login", true);
+      }
+    });
   }
 
   githubLogout(){
