@@ -67,3 +67,14 @@
   box-shadow: rgba(30, 30, 30, 0.15) 0px 4px 10px -4px;
   bottom: 2px;
 }
+
+.darkmode .localModeButton {
+  border: 1px solid #222;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 10px -4px;
+  color: #aaa;
+}
+
+.darkmode .localModeButton:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 10px -4px;
+  color: #eee;
+}

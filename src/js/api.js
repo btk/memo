@@ -7,7 +7,7 @@ import Markdown from './markdown';
 import Files from './files';
 
 const URL = "https://api.usememo.com/";
-const DEVELOPMENT = false;
+const DEVELOPMENT = true;
 const VERSION = "0.5.1";
 
 class API {

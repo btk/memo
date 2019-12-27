@@ -11,8 +11,9 @@
   margin-bottom: 3px;
 }
 
-.AddonItem p {
-  font-size: 0.85em;
+.AddonItem a {
+  font-size: 0.95em;
+  margin-top: 5px;
 }
 
 .AddonItem .AddonConfigure {
@@ -66,11 +67,22 @@
 }
 
 .linkCarrier {
-  padding: 10px;
+  padding: 5px 7px;
   border-radius: 5px;
-  color: rgba(0,0,0,0.6);
-  border: 1px solid #68aff1;
+  color: #40858c;
+  border: 1px solid #325d34;
   display: block;
-  background: #bbdeff;
-  margin-bottom: 10px;
+  background: #d0e8ff;
+  margin-bottom: 5px;
+}
+
+.linkCarrier b {
+  font-weight: 500;
+}
+
+.darkmode .linkCarrier {
+  color: #b1c5b2;
+  border: 1px solid #3b753d;
+  display: block;
+  background: #243e24;
 }
