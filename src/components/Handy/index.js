@@ -39,10 +39,10 @@ class App extends Component {
       <>
         <div className="Handy" style={{top: this.state.position, display: (this.state.position === 0) ? "none" : "block"}}>
           <div className={(window && window.process && window.process.type && window.process.platform !== 'browser') ? "HandyInner HandyInnerApp" : "HandyInner"}>
-            {this.state.addons.includes("|write-good|") && <WriteGood />}
-            {this.state.addons.includes("|conversion|") && <Conversion />}
-            {this.state.addons.includes("|calculator|") && <Calculator />}
-            {this.state.addons.includes("|links|") && <Links />}
+            {addons.includes("|write-good|") && <WriteGood />}
+            {addons.includes("|conversion|") && <Conversion />}
+            {addons.includes("|calculator|") && <Calculator />}
+            {addons.includes("|links|") && <Links />}
           </div>
         </div>
       </>

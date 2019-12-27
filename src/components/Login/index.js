@@ -33,6 +33,9 @@ class App extends Component {
     if(iframe && isOnline){
       try{
         let iframeURL = (iframe.contentWindow||iframe.contentDocument).location.href;
+        if(iframeURL){
+          console.warn("Already authorized by GitHub!");
+        }
         API.githubLogin();
       } catch(err){
         console.log(err);
@@ -52,12 +55,12 @@ class App extends Component {
         <div className="Login">
           <a href={AUTH_URL}>
             <div className="loginWithGithub" onClick={() => this.setState({loginButtonText: "Just a second..."})}>
-              <img src={require("../../icon/github.svg")} />
+              <img src={require("../../icon/github.svg")} alt="GitHub Logo"/>
               <span>{this.state.loginButtonText}</span>
             </div>
           </a>
           {!this.props.forceLogout &&
-            <iframe src={AUTH_URL_REFRESH} ref="_authIframe" onLoad={(event) => this.handleIframeLoad(event)} className="githubIframe" frameBorder="0"></iframe>
+            <iframe src={AUTH_URL_REFRESH} title="GitHub Iframe" ref="_authIframe" onLoad={(event) => this.handleIframeLoad(event)} className="githubIframe" frameBorder="0"></iframe>
           }
         </div>
         <div className="localModeButton" onClick={() => API.offlineLogin()}>

@@ -33,9 +33,9 @@ let currencies = [
   }
 ];
 
-let defaultCurrency = currencies.filter(curr => curr.ticker == DEFAULT_CURRENCY);
-if(defaultCurrency.length == 1){
-  DEFAULT_CURRENCY_SYMBOL = currencies.filter(curr => curr.ticker == DEFAULT_CURRENCY)[0].symbol;
+let defaultCurrency = currencies.filter(curr => curr.ticker === DEFAULT_CURRENCY);
+if(defaultCurrency.length === 1){
+  DEFAULT_CURRENCY_SYMBOL = currencies.filter(curr => curr.ticker === DEFAULT_CURRENCY)[0].symbol;
 }
 
 // get live rates
@@ -68,8 +68,8 @@ API.getConversions().then(conv => {
   ];
 
 
-  let defaultCurrency = currencies.filter(curr => curr.ticker == DEFAULT_CURRENCY);
-  if(defaultCurrency.length == 0){
+  let defaultCurrency = currencies.filter(curr => curr.ticker === DEFAULT_CURRENCY);
+  if(defaultCurrency.length === 0){
     currencies.push({
       ticker: DEFAULT_CURRENCY,
       symbol: "",
@@ -82,7 +82,7 @@ API.getConversions().then(conv => {
 let toArray = [];
 currencies.forEach(currency1 => {
   currencies.forEach(currency2 => {
-    if(currency1 != currency2){
+    if(currency1 !== currency2){
       toArray.push(`${currency1.ticker} to ${currency2.ticker}`);
     }
   });
@@ -91,7 +91,7 @@ currencies.forEach(currency1 => {
 let inArray = [];
 currencies.forEach(currency1 => {
   currencies.forEach(currency2 => {
-    if(currency1 != currency2){
+    if(currency1 !== currency2){
       inArray.push(`${currency1.ticker} in ${currency2.ticker}`);
     }
   });
@@ -149,7 +149,7 @@ class App extends Component {
             let numberString = splittedSpace[splittedSpace.length - 1].replace(",", ".");
 
             if(numberString.split(".")[1]){
-              if(numberString.split(".")[1].length == 3){
+              if(numberString.split(".")[1].length === 3){
                 numberString = numberString.replace(".", "");
               }
             }
@@ -158,13 +158,13 @@ class App extends Component {
             let numberString = splittedSpace[splittedSpace.length - 2].replace(",", ".");
 
             if(numberString.split(".")[1]){
-              if(numberString.split(".")[1].length == 3){
+              if(numberString.split(".")[1].length === 3){
                 numberString = numberString.replace(".", "");
               }
             }
             amount = Number(numberString);
           }
-          if(amount && !isNaN(amount) && amount != 0){
+          if(amount && !isNaN(amount) && amount !== 0){
             parseableArray.push({amount: amount, from: toArray[i].split(" to ")[0].toLowerCase(), to: toArray[i].split(" to ")[1].toLowerCase()});
           }
 
@@ -180,7 +180,7 @@ class App extends Component {
     i = 0;
 
     while(i < currencies.length){
-      if(text.includes(currencies[i].ticker) && currencies[i].ticker != DEFAULT_CURRENCY){
+      if(text.includes(currencies[i].ticker) && currencies[i].ticker !== DEFAULT_CURRENCY){
         let splittedParser = text.split(currencies[i].ticker);
         let j = 0;
         while (j < splittedParser.length - 1) {
@@ -190,7 +190,7 @@ class App extends Component {
             let numberString = splittedSpace[splittedSpace.length - 1].replace(",", ".");
 
             if(numberString.split(".")[1]){
-              if(numberString.split(".")[1].length == 3){
+              if(numberString.split(".")[1].length === 3){
                 numberString = numberString.replace(".", "");
               }
             }
@@ -199,13 +199,13 @@ class App extends Component {
             let numberString = splittedSpace[splittedSpace.length - 2].replace(",", ".");
 
             if(numberString.split(".")[1]){
-              if(numberString.split(".")[1].length == 3){
+              if(numberString.split(".")[1].length === 3){
                 numberString = numberString.replace(".", "");
               }
             }
             amount = Number(numberString);
           }
-          if(amount && !isNaN(amount) && amount != 0){
+          if(amount && !isNaN(amount) && amount !== 0){
             parseableArray.push({amount: amount, from: currencies[i].ticker, to: DEFAULT_CURRENCY});
           }
           j++;
@@ -216,7 +216,7 @@ class App extends Component {
 
     i = 0;
     while(i < currencies.length){
-      if(text.includes(currencies[i].symbol) && currencies[i].symbol != DEFAULT_CURRENCY_SYMBOL){
+      if(text.includes(currencies[i].symbol) && currencies[i].symbol !== DEFAULT_CURRENCY_SYMBOL){
         let splittedParser = text.split(currencies[i].symbol);
         let j = 1;
         while (j < splittedParser.length) {
@@ -226,7 +226,7 @@ class App extends Component {
             let numberString = splittedSpace[0].replace(",", ".");
 
             if(numberString.split(".")[1]){
-              if(numberString.split(".")[1].length == 3){
+              if(numberString.split(".")[1].length === 3){
                 numberString = numberString.replace(".", "");
               }
             }
@@ -235,13 +235,13 @@ class App extends Component {
             let numberString = splittedSpace[1].replace(",", ".");
 
             if(numberString.split(".")[1]){
-              if(numberString.split(".")[1].length == 3){
+              if(numberString.split(".")[1].length === 3){
                 numberString = numberString.replace(".", "");
               }
             }
             amount = Number(numberString);
           }
-          if(amount && !isNaN(amount) && amount != 0){
+          if(amount && !isNaN(amount) && amount !== 0){
             parseableArray.push({amount: amount, from: currencies[i].ticker, to: DEFAULT_CURRENCY});
           }
           j++;
@@ -252,16 +252,16 @@ class App extends Component {
 
     return parseableArray.map((conversion, i) => {
       return (
-        <div className="conversionNode" key={i}>{String(conversion.amount).replace(".", ",")} {conversion.from.toUpperCase()} = {(conversion.amount / currencies.filter(c => c.ticker == conversion.from)[0].usdFactor * currencies.filter(c => c.ticker == conversion.to)[0].usdFactor).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} {conversion.to.toUpperCase()}</div>
+        <div className="conversionNode" key={i}>{String(conversion.amount).replace(".", ",")} {conversion.from.toUpperCase()} = {(conversion.amount / currencies.filter(c => c.ticker === conversion.from)[0].usdFactor * currencies.filter(c => c.ticker === conversion.to)[0].usdFactor).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} {conversion.to.toUpperCase()}</div>
       );
     });
   }
 
   render() {
-    if(this.state.text != ""){
+    if(this.state.text !== ""){
       let parsed = this.parseConversion(this.state.text);
-      if(typeof parsed == "object"){
-        if(parsed.length != 0){
+      if(typeof parsed === "object"){
+        if(parsed.length !== 0){
           return (
             <>
               <div className="AddonItem">

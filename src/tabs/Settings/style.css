@@ -84,3 +84,10 @@
 .darkmode .label option {
   color: #444;
 }
+
+.version {
+  opacity: 0.5;
+  margin-top: 40px;
+  font-size: 0.8em;
+  text-align: center;
+}

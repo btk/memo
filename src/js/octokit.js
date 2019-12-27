@@ -105,13 +105,11 @@ Again, welcome to memo! 😊🥳`
       API.event.emit("addons", addons);
 
 
-      return API.truncateDb().then(res => {
-        return Markdown.saveMarkdownSheet(files).then(res => {
-          API.addToStaging("flush");
-          API.event.emit("fetched");
-          return res;
-        });
-      })
+      return Markdown.updateMarkdownSheets(files).then(res => {
+        API.addToStaging("flush");
+        API.event.emit("fetched");
+        return res;
+      });
     })
   }
 
@@ -121,7 +119,7 @@ Again, welcome to memo! 😊🥳`
     return this.client.gists.get({gist_id: API.user.gist_id}).then(gist => {
       let files = gist.data.files;
       let accessed_at = Number(files["02_metadata.md"].content.split("accessed_at: ")[1].split(/\n/)[0]);
-      if(accessed_at != Number(API.getData("updated_at"))){
+      if(accessed_at !== Number(API.getData("updated_at"))){
         console.log("Local data is not valid, starting a forced fetch");
         return this.fetch();
       }else{
@@ -168,7 +166,7 @@ Again, welcome to memo! 😊🥳`
         for (var i = 0; i < stagedArray.length; i++) {
           let stagedSheetId = stagedArray[i];
           let markdownContent = await Markdown.getSheetMarkdown(stagedSheetId);
-          if(markdownContent == ""){
+          if(markdownContent === ""){
             if(files[`sheet-${stagedSheetId}.md`]){
               files[`sheet-${stagedSheetId}.md`] = {
                 filename: `sheet-${stagedSheetId}.md`,

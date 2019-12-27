@@ -7,13 +7,15 @@ import Markdown from './markdown';
 import Files from './files';
 
 const URL = "https://api.usememo.com/";
-const DEVELOPMENT = true;
+const DEVELOPMENT = false;
+const VERSION = "0.5.1";
 
 class API {
   constructor(){
     Analytics.initialize('UA-138987685-1');
     this.development = DEVELOPMENT;
 		this.event = Event;
+    this.version = VERSION;
     this.online = window.navigator.onLine;
     this.analytics = Analytics;
     this.logged = false;
@@ -189,6 +191,7 @@ class API {
             let lastSheet = res[0];
             return LocalDB.select("line", {sheet_id: lastSheet.id}, {by: "pos", type: "asc"}).then(lines => {
               lastSheet.lines = lines;
+              LocalDB.update("sheet", {id: lastSheet.id}, {accessed_at: time});
               return lastSheet;
             });
           }else{

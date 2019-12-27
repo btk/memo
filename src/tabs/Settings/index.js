@@ -67,6 +67,8 @@ class App extends Component {
         {!API.isOnline() &&
           <p className="sub">You are in offline mode. You can login the app when you have internet. <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => window.location.reload()}>Try to login?</span></p>
         }
+
+        <p className="version">Memo App v{API.version} {API.version[0] == "0" && "Beta"}</p>
       </div>
     );
   }

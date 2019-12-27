@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   lineChangedAction = (text) => {
-    if(this.throttleCounter == THROTTLE_LIMIT){
+    if(this.throttleCounter === THROTTLE_LIMIT){
       this.setState({text});
       this.throttleCounter = 0;
     }

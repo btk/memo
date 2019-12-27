@@ -55,7 +55,104 @@ accessed_at: ${sheet.accessed_at}
     }
   }
 
-  async saveMarkdownSheet(files){
+  // removes and adds a sheet if not valid
+  async saveMarkdownSheet(file){
+    let fileMetadataYaml = file.content.split("---")[1];
+    let fileContent = file.content.split("---").slice(2).join("---");
+
+    let fileMetadata = {
+      id: Number(fileMetadataYaml.split("id: ")[1].split(/\n/)[0]),
+      title: fileMetadataYaml.split("title: ")[1].split(/\n/)[0],
+      active: Number(fileMetadataYaml.split("active: ")[1].split(/\n/)[0]),
+      created_at: Number(fileMetadataYaml.split("created_at: ")[1].split(/\n/)[0]),
+      accessed_at: Number(fileMetadataYaml.split("accessed_at: ")[1].split(/\n/)[0])
+    };
+
+    let localSheet = await LocalDB.select("sheet", {id: fileMetadata.id }, 1);
+    let removeAddAction = false;
+    if(localSheet.length == 0) {
+      removeAddAction = true;
+    }else{
+      if(localSheet[0].accessed_at != fileMetadata.accessed_at){
+        removeAddAction = true;
+      }
+    }
+
+    if(removeAddAction){
+      //delete
+      let ey = await LocalDB.delete("sheet", {id: fileMetadata.id});
+      await LocalDB.delete("line", {sheet_id: fileMetadata.id});
+
+      //insert
+      let fileParagraphs = fileContent.split(/\n\n/);
+      await LocalDB.insert("sheet", {
+        id: fileMetadata.id,
+        title: fileMetadata.title,
+        active: fileMetadata.active,
+        created_at: fileMetadata.created_at,
+        accessed_at: fileMetadata.accessed_at
+      });
+
+      let sheetId = fileMetadata.id;
+      let lineDate = "";
+      let linePos = 0;
+      for (var j = 0; j < fileParagraphs.length; j++) {
+        let p = fileParagraphs[j];
+
+        if(p != ""){
+          if(p.includes("{{date: ")){
+            lineDate = p.split("{{date: ")[1].split("}}")[0];
+          }else{
+            let lineKey = makeid(5);
+            await LocalDB.insert("line", {
+              sheet_id: sheetId,
+              line_key: lineKey,
+              date: lineDate,
+              text: p,
+              pos: linePos
+            });
+
+            linePos++;
+          }
+        }
+      }
+
+      if(linePos == 0){
+        let newLineKey = makeid(5);
+        await LocalDB.insert("line", {
+          sheet_id: sheetId,
+          line_key: newLineKey,
+          date: lineDate,
+          text: "",
+          pos: 0
+        });
+      }
+    }
+    return true;
+  }
+
+  async removeCloudDeletedFiles(filesArray){
+    console.log("Removing cloud deleted files...");
+    let fileIdArray = []
+    filesArray.forEach(file => {
+      if(file.filename.includes("-")){
+        fileIdArray.push(Number(file.filename.split("-")[1].split(".")[0]));
+      }
+    })
+
+    let localSheets = await LocalDB.select("sheet");
+
+    let sheetsToRemove = localSheets.filter(sheet => {
+      return !fileIdArray.includes(sheet.id);
+    })
+
+    for (var i = 0; i < sheetsToRemove.length; i++) {
+      await LocalDB.delete("sheet", {id: sheetsToRemove[i].id});
+      await LocalDB.delete("line", {sheet_id: sheetsToRemove[i].id});
+    }
+  }
+
+  async updateMarkdownSheets(files){
     let filesArray = Object.values(files).sort((a,b) => {
       a = Number(a.filename.split(".")[0].split("-")[1]);
       b = Number(b.filename.split(".")[0].split("-")[1]);
@@ -66,65 +163,7 @@ accessed_at: ${sheet.accessed_at}
       let file = filesArray[i];
 
       if(file.filename != "01_usememo.md" && file.filename != "02_metadata.md"){
-
-        let fileMetadataYaml = file.content.split("---")[1];
-        let fileContent = file.content.split("---").slice(2).join("---");
-
-        let fileMetadata = {
-          id: Number(fileMetadataYaml.split("id: ")[1].split(/\n/)[0]),
-          title: fileMetadataYaml.split("title: ")[1].split(/\n/)[0],
-          active: Number(fileMetadataYaml.split("active: ")[1].split(/\n/)[0]),
-          created_at: Number(fileMetadataYaml.split("created_at: ")[1].split(/\n/)[0]),
-          accessed_at: Number(fileMetadataYaml.split("accessed_at: ")[1].split(/\n/)[0])
-        };
-
-        let fileParagraphs = fileContent.split(/\n\n/);
-        await LocalDB.insert("sheet", {
-          id: fileMetadata.id,
-          title: fileMetadata.title,
-          active: fileMetadata.active,
-          created_at: fileMetadata.created_at,
-          accessed_at: fileMetadata.accessed_at
-        });
-        let newSheet = await LocalDB.select("sheet", null, {
-          by: "id",
-          type: "desc"
-        }, 1);
-
-        let sheetId = newSheet[0].id;
-        let lineDate = "";
-        let linePos = 0;
-        for (var j = 0; j < fileParagraphs.length; j++) {
-          let p = fileParagraphs[j];
-
-          if(p != ""){
-            if(p.includes("{{date: ")){
-              lineDate = p.split("{{date: ")[1].split("}}")[0];
-            }else{
-              let lineKey = makeid(5);
-              await LocalDB.insert("line", {
-                sheet_id: sheetId,
-                line_key: lineKey,
-                date: lineDate,
-                text: p,
-                pos: linePos
-              });
-
-              linePos++;
-            }
-          }
-        }
-
-        if(linePos == 0){
-          let newLineKey = makeid(5);
-          await LocalDB.insert("line", {
-            sheet_id: sheetId,
-            line_key: newLineKey,
-            date: lineDate,
-            text: "",
-            pos: 0
-          });
-        }
+        await this.saveMarkdownSheet(file);
       }
 
       if(file.filename == "02_metadata.md"){
@@ -133,12 +172,19 @@ accessed_at: ${sheet.accessed_at}
         API.setData("updated_at", accessed_at);
       }
     }
+
+
+    let localSheetCount = await LocalDB.count("sheet");
+    // -2 for desc and metadata sheets
+    if(localSheetCount != (filesArray.length - 2)){
+      await this.removeCloudDeletedFiles(filesArray);
+    }
+
     return true;
   }
 
   async offlineSetup(){
-    let files = [];
-    files["sheet-1.md"] = {
+    let file = {
       filename: "sheet-1.md",
       content: `---
 id: 1
@@ -169,7 +215,7 @@ Don't forget to tag me @buraktokak
 Again, welcome to memo! 😊🥳`
     };
     API.addToStaging(1);
-    return await this.saveMarkdownSheet(files);
+    return await this.saveMarkdownSheet(file);
   }
 }
 
