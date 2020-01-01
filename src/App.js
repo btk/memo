@@ -201,7 +201,7 @@ class App extends Component {
 
   handleBlur(text, lineId, i){
     let lines = this.state.lines;
-    
+
     if(lines[i].text != text || lines[i].old_key){
       if(lines[i].old_key){
         API.updateLine(lineId, i, text, "key", lines[i].old_key);
@@ -301,7 +301,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className={`App${this.state.theme == "dark" ? " darkmode": ""}${window.navigator.platform.includes('Win') ? " win" : ""}`}>
+      <div className={`App${this.state.theme == "dark" ? " darkmode": ""}${(window.navigator.platform.includes('Win') || window.navigator.platform.includes('Linux')) ? " win" : ""}`}>
         {this.renderApp()}
         <Cover/>
         <AppBar theme={this.state.theme}/>

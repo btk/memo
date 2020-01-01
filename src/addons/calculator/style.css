@@ -45,3 +45,22 @@
   text-transform: uppercase;
   margin-bottom: 3px;
 }
+
+.calculatedNode {
+  background: #e3d3f9;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #dac9ea;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  color: #8d5f92;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  letter-spacing: -0.5px;
+}
+
+.darkmode .calculatedNode{
+  background: #26162d;
+  border: 1px solid #562671;
+  color: #87498e;
+}
