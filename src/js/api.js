@@ -8,7 +8,7 @@ import Files from './files';
 
 const URL = "https://api.usememo.com/";
 const DEVELOPMENT = true;
-const VERSION = "0.5.1";
+const VERSION = "0.5.3";
 
 class API {
   constructor(){
@@ -53,6 +53,9 @@ class API {
               console.log("checked for updates...");
               this.event.emit("sheet", "LAST_ACCESSED");
               this.event.emit("login", true);
+              Github.list().then(list => {
+                console.log(list)
+              })
             });
           });
 
@@ -257,13 +260,20 @@ class API {
     .then(res => res.json());
   }
 
-  async getSheets(active){
+  async getSheets(active, count){
+
+    if(count){
+      let sheetCount = await LocalDB.count("sheet", {active: active});
+      return sheetCount;
+    }
+
     let sheets = await LocalDB.select("sheet", {active: active}, {
       by: "accessed_at",
       type: "desc"
     });
 
     for (var i = 0; i < sheets.length; i++) {
+
       let sheet = sheets[i];
       let lines = await LocalDB.select("line", {sheet_id: sheet.id}, {by: "pos", type: "asc"});
       if(lines[0]){

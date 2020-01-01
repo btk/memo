@@ -7,7 +7,8 @@ import Loading from '../../components/Loading';
 class App extends Component {
   state = {
     sheets: [],
-    noSheets: false
+    noSheets: false,
+    archivedSheetCount: 0
   }
 
   componentDidMount(){
@@ -17,6 +18,10 @@ class App extends Component {
       }else{
         this.setState({noSheets: true});
       }
+    });
+
+    API.getSheets(0, true).then(sheetCount => {
+      this.setState({archivedSheetCount: sheetCount});
     });
   }
 
@@ -48,7 +53,7 @@ class App extends Component {
       });
     }else{
       if(this.state.noSheets){
-        return (<div className="tabNotice">You don't have any active sheets, add a new one or check your archives!</div>);
+        return (<div className="tabNotice" style={{marginBottom: 10}}>You don't have any active sheets, add a new one or check your archives!</div>);
       }else{
         return (<Loading height={200}/>);
       }
@@ -69,6 +74,15 @@ class App extends Component {
               <span>Create New Sheet</span>
           </div>
           {this.renderSheets(this.state.sheets)}
+          {this.state.archivedSheetCount != 0 &&
+            <div
+              className="sheetItem"
+              key={"archived_sheets"}
+              style={{justifyContent: "center"}}
+              onClick={() => API.event.emit("toggle", "archives")}>
+              <div className="sub" style={{opacity: 0.9}}>You also have <span style={{fontWeight: 500}}>{this.state.archivedSheetCount} archived</span> sheet{this.state.archivedSheetCount !== 1 ? "s" : ""}.</div>
+            </div>
+          }
         </div>
       </div>
     );

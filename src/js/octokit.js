@@ -16,7 +16,7 @@ class Github {
   }
 
   list(){
-    return this.client.gists.list().then(gists => {
+    return this.client.gists.getRevision({gist_id: API.user.gist_id, sha: "eaf951983a50e774d9bfaa92673ac6d5c9bb6227"}).then(gists => {
       return gists;
     });
   }

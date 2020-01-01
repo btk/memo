@@ -3,8 +3,9 @@
   "productName": "Memo",
   "description": "Take smarter notes with GitHub gists.",
   "version": "0.1.0",
-  "author": "btk",
-  "copyright": "MIT",
+  "author": "Burak Tokak <info@buraktokak.com> (https://buraktokak.com/)",
+  "copyright": "GPLv3",
+  "license": "GPLv3",
   "private": true,
   "main": "src/electron.js",
   "dependencies": {
