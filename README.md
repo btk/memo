@@ -59,3 +59,6 @@ Memo is currently in beta, it needs your help but not fully documented, or might
 Additionally, you might want to make an addon. We will publish a dedicated page or tutorial for how to do this. But you can go to `src/addons` and duplicate one of the addons to use as a template for yours.
 
 Overall, please be respectful and inclusive, keep in mind that this app does not come with any warranty or liability.
+
+
+<a href="https://www.producthunt.com/posts/memo-plain-smart-notes?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-memo-plain-smart-notes" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=179543&theme=light" alt="Memo - Plain & Smart Notes - Take smarter notes with GitHub Gists, anywhere. | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
