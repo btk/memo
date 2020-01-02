@@ -2,6 +2,8 @@
 
 Memo is an opensource browser and desktop app that allows you to take smarter notes with GitHub Gists. Own your own private data, store it with Github's gists and access it from anywhere, anytime.
 
+Check out Memo App: [https://usememo.com](https://usememo.com).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
