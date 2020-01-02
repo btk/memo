@@ -53,3 +53,9 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Contributing
+
+Memo is currently in beta, it needs your help but not fully documented, or might have big systematic changes. But pull requests and bug fixes are still welcome.
+
+Additionally, you might want to make an addon. We will publish a dedicated page or tutorial for how to do this. But you can go to `src/addons` and duplicate one of the addons to use as a template for yours.
+
+Overall, please be respectful and inclusive, keep in mind that this app does not come with any warranty or liability.
