@@ -1,5 +1,7 @@
 <img src="src/assets/memo_logo_left.svg"/>
 
+Memo is an opensource browser and desktop app that allows you to take smarter notes with GitHub Gists.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
