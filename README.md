@@ -31,15 +31,20 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### `npm run app`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Creates and starts the electron app for your local OS.<br>
+This is intended for development tests. Also you can toggle `dev` constant in `src/electron.js` file to change between production and development.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `npm run package`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Try to package electron app for all OS.<br>
+Make sure you `dev` constant in `src/electron.js` file is set to false.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `npm run push`
+
+Take a new build and upload this new build to amazon s3 server.<br>
+This will work only if you have proper access and credentials.
 
 ## Learn More
 
@@ -47,39 +52,4 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-### Todo
-
-- native font is really good for the new 2 color design
-- logic for offline usage of the app, with also pwa's.
-- using without login
-- dektop app with the "mac circles" on the left, bend the design relative to the circles
-  - Try adding memo logo on the browser and other platforms
-  - Kill some time in sketch to try to find out how the usability of the app would be on different devices
-    - desktop browser
-    - mobile browser
-    - desktop App
-    - mobile App
+## Contributing
