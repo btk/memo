@@ -65,18 +65,18 @@ Thank you for checking out memo!
 Memo has no bold, italic or subtitles, minimal and plain. Great for really focusing and creating your own formatting. It's totally free, and uses private Github Gists as cloud storage.
 
 Let me tell you about how memo works;
-	- There are separated paragraphs
-	- A double new line creates a paragraph
-	- Every paragraph has its own insights ✨
-	- Enable which insights you want in addons 🧩
-	- Use offline, push your changes to cloud later
+\t- There are separated paragraphs
+\t- A double new line creates a paragraph
+\t- Every paragraph has its own insights ✨
+\t- Enable which insights you want in addons 🧩
+\t- Use offline, push your changes to cloud later
 
 Now, archive or remove this sheet or create a new sheet from sidebar sheets tab and start taking notes.
 
-Also share your experience with memo over twitter about your experience.
-Don't forget to tag me @buraktokak
+Also share your experience with memo over ProductHunt.
+Using this link: https://producthunt.com/posts/memo-plain-smart-notes
 
-Again, welcome to memo! 😊🥳`
+Again, welcome to memo! 😊`
     };
 
     return this.client.gists.create({
