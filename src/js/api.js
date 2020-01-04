@@ -7,8 +7,8 @@ import Markdown from './markdown';
 import Files from './files';
 
 const URL = "https://api.usememo.com/";
-const DEVELOPMENT = true;
-const VERSION = "1.0.1";
+const DEVELOPMENT = false;
+const VERSION = "0.5.9";
 
 class API {
   constructor(){
@@ -53,9 +53,6 @@ class API {
               console.log("checked for updates...");
               this.event.emit("sheet", "LAST_ACCESSED");
               this.event.emit("login", true);
-              Github.list().then(list => {
-                console.log(list)
-              })
             });
           });
 
