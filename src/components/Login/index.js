@@ -25,6 +25,12 @@ class App extends Component {
         API.event.emit("loginButton");
       }, 1000);
     }
+
+    if(window.navigator.userAgent.includes("Firefox")){
+      setTimeout(() => {
+        API.event.emit("loginButton");
+      }, 1000);
+    }
   }
 
   handleIframeLoad(e){
