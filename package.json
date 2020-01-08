@@ -2,7 +2,7 @@
   "name": "memo",
   "productName": "Memo",
   "description": "Take smarter notes with GitHub gists.",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "author": "Burak Tokak <info@buraktokak.com> (https://buraktokak.com/)",
   "copyright": "GPLv3",
   "license": "GPLv3",
@@ -31,6 +31,7 @@
     "app-lin": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=src/assets/icons/png/1024x1024.png --prune=true --out=release-builds",
     "package": "yarn build && electron-builder build --publish never",
     "package-all": "electron-builder build -mwl",
+    "package-mac": "electron-builder build --mac osx-sign=true",
     "package-ci": "yarn build && electron-builder --publish always",
     "package-linux": "electron-builder build --linux",
     "package-win": "electron-builder build --win --x64"
@@ -46,9 +47,11 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "electron": "^7.1.7"
+    "electron": "^7.1.7",
+    "electron-notarize": "^0.2.1"
   },
   "build": {
+    "afterSign": "scripts/notarize.js",
     "appId": "com.usememo.app",
     "files": [
       "src/electron.js",
@@ -58,6 +61,7 @@
       "buildResources": "resources"
     },
     "dmg": {
+      "sign": false,
       "contents": [
         {
           "x": 130,
@@ -69,6 +73,16 @@
           "type": "link",
           "path": "/Applications"
         }
+      ]
+    },
+    "mac": {
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "./src/entitlements.mac.inherit.plist",
+      "entitlementsInherit": "./src/entitlements.mac.inherit.plist",
+      "target": [
+        "dmg",
+        "zip"
       ]
     },
     "win": {
