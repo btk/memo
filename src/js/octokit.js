@@ -59,7 +59,7 @@ accessed_at: 1576789529
 ---
 {{date: 19/12/2019}}
 
-This so exiting.
+This is so exiting.
 Thank you for checking out memo!
 
 Memo has no bold, italic or subtitles, minimal and plain. Great for really focusing and creating your own formatting. It's totally free, and uses private Github Gists as cloud storage.
@@ -73,8 +73,8 @@ Let me tell you about how memo works;
 
 Now, archive or remove this sheet or create a new sheet from sidebar sheets tab and start taking notes.
 
-Also share your experience with memo over ProductHunt.
-Using this link: https://producthunt.com/posts/memo-plain-smart-notes
+Also if you any bug, let's crush it together on GitHub!
+Using this link: https://github.com/btk/memo
 
 Again, welcome to memo! 😊`
     };
