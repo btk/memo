@@ -195,7 +195,7 @@ accessed_at: 1576789529
 ---
 {{date: 19/12/2019}}
 
-This is so exiting.
+This is so exciting.
 Thank you for checking out memo!
 
 Memo has no bold, italic or subtitles, minimal and plain. Great for really focusing and creating your own formatting. It's totally free, and uses private Github Gists as cloud storage.
