@@ -209,7 +209,7 @@ Let me tell you about how memo works;
 
 Now, archive or remove this sheet or create a new sheet from sidebar sheets tab and start taking notes.
 
-Also if you any bug, let's crush it together on GitHub!
+Also if you see any bug, let's crush it together on GitHub!
 Using this link: https://github.com/btk/memo
 
 Again, welcome to memo! 😊`

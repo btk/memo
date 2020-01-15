@@ -8,7 +8,7 @@ import Files from './files';
 
 const URL = "https://api.usememo.com/";
 const DEVELOPMENT = false;
-const VERSION = "0.5.12";
+const VERSION = "0.5.13";
 
 class API {
   constructor(){
