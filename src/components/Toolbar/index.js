@@ -90,6 +90,11 @@ class App extends Component {
   render() {
     return (
       <>
+        <div
+          className={(window && window.process && window.process.platform === 'win32') ? "shadow shadowWin": "shadow"}
+          style={{opacity: this.state.transition, visibility: this.state.transition == 0 ? "hidden" : "visible"}}
+          onClick={() => API.event.emit("toggle", false)}>
+        </div>
         <div className={(window && window.process && (window.process.platform === 'win32' || window.process.platform === 'linux')) ? "Toolbar ToolbarWin" : "Toolbar ToolbarOther"} style={{width: this.state.transition == 1 ? 400 : 50}}>
 
           {this.state.currentTab &&
@@ -137,11 +142,6 @@ class App extends Component {
           <div className="tabContent" style={{opacity: this.state.tabTransition, left: this.state.tabTransition == 1 ? 0 : 10}}>
             {this.renderTabContent(this.state.currentTab)}
           </div>
-        </div>
-        <div
-          className={(window && window.process && window.process.platform === 'win32') ? "shadow shadowWin": "shadow"}
-          style={{opacity: this.state.transition, visibility: this.state.transition == 0 ? "hidden" : "visible"}}
-          onClick={() => API.event.emit("toggle", false)}>
         </div>
       </>
     );
