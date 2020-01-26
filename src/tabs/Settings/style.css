@@ -1,5 +1,5 @@
 .SettingsTab {
-
+  margin-bottom: 180px;
 }
 
 .SettingsTab h5 {
@@ -90,4 +90,120 @@
   margin-top: 40px;
   font-size: 0.8em;
   text-align: center;
+}
+
+.darkmode .version {
+  color: #ddd;
+}
+
+.myaccount {
+  position: fixed;
+  background: #fff;
+  width: 100%;
+  bottom: 0px;
+  width: 310px;
+  border-top: 1px solid #f1f1f1;
+}
+
+.darkmode .myaccount {
+  background: #222222;
+  border-top-color: #1a1a1a;
+}
+
+.toggleIcon {
+  position: absolute;
+  right: 15px;
+  display: flex;
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 150ms transform;
+  transform: rotate(0deg);
+}
+
+.toggleIconActive {
+  background: #f1f1f1;
+  transform: rotate(180deg);
+}
+
+.darkmode .toggleIconActive {
+  background: #1b1b1b;
+}
+
+.toggleIcon svg {
+  fill: #242938;
+}
+
+.darkmode .toggleIcon svg {
+  fill: #ccc;
+}
+
+.subUser {
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.userName {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.darkmode .userName {
+  color: #fff;
+}
+
+.userHandle {
+ font-size: 0.85em;
+ opacity: 0.7;
+ margin-top: 2px;
+}
+
+.darkmode .userHandle {
+  color: #ddd;
+}
+
+.subUser img {
+  border-radius: 20px;
+  margin-right: 10px;
+  opacity: 0.9;
+}
+
+.userOptions {
+  overflow: hidden;
+  transition: 150ms all;
+}
+
+.userOptions ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 10px;
+  margin-left: 46px;
+}
+
+.userOptions a, .userOptions span {
+  font-size: 0.9em;
+  color: #555;
+  padding: 5px;
+  line-height: 1.6em;
+}
+
+.darkmode .userOptions a, .darkmode .userOptions span {
+  color: #ddd;
+}
+
+.userOptions a:hover, .userOptions span:hover {
+  color: #222;
+}
+
+.darkmode .userOptions a:hover, .darkmode .userOptions span:hover {
+  color: #aaa;
 }

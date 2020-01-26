@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 import API from '../../js/api';
 
-const quoteRand = Math.floor(Math.random() * (3 - 0 + 1) ) + 0;
+const quoteRand = Math.floor(Math.random() * (4 - 0 + 1) ) + 0;
 
 class App extends Component {
 
@@ -47,6 +47,10 @@ class App extends Component {
       {
         person: "Nelson Mandela",
         quote: "It always seems impossible until it's done."
+      },
+      {
+        person: "Kobe Bryant",
+        quote: "If you’re afraid to fail, then you’re probably going to fail."
       }
     ];
 

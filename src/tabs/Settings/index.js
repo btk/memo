@@ -5,7 +5,8 @@ import API from "../../js/api"
 class App extends Component {
 
   state = {
-    theme: API.getTheme()
+    theme: API.getTheme(),
+    toggleUserOptions: false
   }
 
   changeTheme(changeTo){
@@ -60,15 +61,44 @@ class App extends Component {
         {!API.user &&
           <div className="label">Only Available Online</div>
         }
-        <h5>My Account</h5>
-        {API.isOnline() &&
-          <p className="sub">You are logged in as {API.user.username ? API.user.username : API.user.email.split("@")[0]} <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => API.githubLogout()}>(Logout?)</span></p>
-        }
-        {!API.isOnline() &&
-          <p className="sub">You are in offline mode. You can login the app when you have internet. <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => window.location.reload()}>Try to login?</span></p>
-        }
-
         <p className="version">Memo App v{API.version} {API.version[0] == "0" && "Beta"}</p>
+        <div className="myaccount">
+          {API.isOnline() &&
+            <div>
+              <div className="subUser">
+                <img src={API.user.avatar} style={{width: 40, height: 40}}/>
+                <div>
+                  <div className="userName">{API.user.name ? API.user.name : "Anonymous"}</div>
+                  <div className="userHandle">@{API.user.username ? API.user.username : API.user.email.split("@")[0]}</div>
+                </div>
+                <div className={this.state.toggleUserOptions ? "toggleIcon toggleIconActive" : "toggleIcon"} onClick={() => {
+                    let toggleUserOptions = this.state.toggleUserOptions;
+                    this.setState({toggleUserOptions: !toggleUserOptions});
+                  }}>
+                  <svg viewBox="0 0 24 24" width="24" height="24"><path d="M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
+                </div>
+              </div>
+              <div className="userOptions" style={{maxHeight: this.state.toggleUserOptions ? 110 : 0}}>
+                <ul>
+                  <li><a href="https://github.com/settings/applications" target="_blank">Manage Permissions</a></li>
+                  <li><a href={"https://gist.github.com/"+ API.user.gist_id + "/"} target="_blank">Your Data on GitHub</a></li>
+                  <li><a href="https://usememo.com/privacy-policy/" target="_blank">Privacy Policy</a></li>
+                  <li><span style={{cursor: "pointer"}} onClick={() => API.githubLogout()}>Logout</span></li>
+                </ul>
+              </div>
+            </div>
+          }
+          {!API.isOnline() &&
+            <p className="sub" style={{paddingLeft: 5}}>
+              <span>You are in offline mode.</span>
+              <br/>
+              <span className="userHandle">
+                You can login the app when you have internet. <br/>
+                <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => window.location.reload()}>Try to login?</span>
+              </span>
+            </p>
+          }
+        </div>
       </div>
     );
   }
