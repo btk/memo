@@ -32,7 +32,7 @@ class App extends Component {
     return (
       <div className="TabCarrier AddonsTab">
         <h4>Addons</h4>
-        <p className="sub">Discover and add tools to costimize your note taking experience.</p>
+        <p className="sub">Discover and add tools to customise your note taking experience.</p>
         {
           addons.map((addon, i) => {
             return (

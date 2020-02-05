@@ -5,7 +5,7 @@
 
 .AddonItem h5 {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #444;
   text-transform: uppercase;
   margin-bottom: 3px;
@@ -41,7 +41,7 @@
 
 .darkmode .AddonItem h5 {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #aaa;
   text-transform: uppercase;
   margin-bottom: 3px;
