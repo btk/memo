@@ -20,6 +20,7 @@ class App extends Component {
 
   render() {
     let currencies = ["CAD", "HKD", "ISK", "PHP", "DKK", "HUF", "CZK", "GBP", "RON", "SEK", "IDR", "INR", "BRL", "RUB", "HRK", "JPY", "THB", "CHF", "EUR", "MYR", "BGN", "TRY", "CNY", "NOK", "NZD", "ZAR", "USD", "MXN", "SGD", "AUD", "ILS", "KRW", "PLN" ];
+    let handle = API.user.username ? API.user.username : API.user.email.split("@")[0];
 
     return (
       <div className="TabCarrier SettingsTab">
@@ -68,8 +69,8 @@ class App extends Component {
               <div className="subUser">
                 <img src={API.user.avatar} style={{width: 40, height: 40}}/>
                 <div>
-                  <div className="userName">{API.user.name ? API.user.name : "Anonymous"}</div>
-                  <div className="userHandle">@{API.user.username ? API.user.username : API.user.email.split("@")[0]}</div>
+                  <div className="userName">{API.user.name ? API.user.name : handle[0].toUpperCase() + handle.substr(1)}</div>
+                  <div className="userHandle">@{handle}</div>
                 </div>
                 <div className={this.state.toggleUserOptions ? "toggleIcon toggleIconActive" : "toggleIcon"} onClick={() => {
                     let toggleUserOptions = this.state.toggleUserOptions;
