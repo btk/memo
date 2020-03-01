@@ -1,3 +1,8 @@
+---
+path: "/changelog/"
+title: "Changelog"
+---
+
 ## Beta Versions
 
 ### v0.6.3
