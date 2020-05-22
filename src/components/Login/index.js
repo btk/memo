@@ -46,7 +46,10 @@ class App extends Component {
       } catch(err){
         console.log(err);
         console.warn("User haven't given authorization to Memo app on GitHub yet!");
-        API.event.emit("loginButton");
+        API.githubLogin();
+        setTimeout(() => {
+          API.event.emit("loginButton");
+        }, 2000);
       }
 
     }
