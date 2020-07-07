@@ -976,16 +976,7 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@types/node@*":
-  version "11.13.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.2.tgz#dc85dde46aa8740bb4aed54b8104250f8f849503"
-
-"@types/node@>= 8":
-  version "12.12.14"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.14.tgz#1c1d6e3c75dba466e0326948d56e8bd72a1903d2"
-  integrity sha512-u/SJDyXwuihpwjXy7hOOghagLEV1KdAST6syfnOk6QZAMzZuWZqXy5aYYZbh8Jdpd4escVFP0MvftHNDb9pruA==
-
-"@types/node@^12.0.12":
+"@types/node@*", "@types/node@>= 8", "@types/node@^12.0.12":
   version "12.12.21"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.21.tgz#aa44a6363291c7037111c47e4661ad210aded23f"
   integrity sha512-8sRGhbpU+ck1n0PGAUgVrWrWdjSW2aqNeyC15W88GRsMpSwzv6RJGlLhE7s2RhVSOdyDmxbqlWSeThq4/7xqlA==
@@ -3018,10 +3009,10 @@ electron-to-chromium@^1.3.103, electron-to-chromium@^1.3.122:
   version "1.3.124"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.124.tgz#861fc0148748a11b3e5ccebdf8b795ff513fa11f"
 
-electron@^7.1.7:
-  version "7.1.7"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-7.1.7.tgz#520e2bc422e3dfd4bae166dd3be62101f2cbdc52"
-  integrity sha512-aCLJ4BJwnvOckJgovNul22AYlMFDzm4S4KqKCG2iBlFJyMHBxXAKFKMsgYd40LBZWS3hcY6RHpaYjHSAPLS1pw==
+electron@^7.2.4:
+  version "7.2.4"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-7.2.4.tgz#9fc0446dae23ead897af8742470cb18da55c6ce9"
+  integrity sha512-Z+R692uTzXgP8AHrabE+kkrMlQJ6pnAYoINenwj9QSqaD2YbO8IuXU9DMCcUY0+VpA91ee09wFZJNUKYPMnCKg==
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^12.0.12"
