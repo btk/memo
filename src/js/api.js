@@ -9,6 +9,9 @@ import Files from './files';
 const URL = "https://api.usememo.com/";
 const DEVELOPMENT = false;
 const VERSION = "0.6.4";
+const ANONYMOUS_USER = {
+  username: 'Guest'
+}
 
 class API {
   constructor(){
@@ -21,6 +24,8 @@ class API {
     this.logged = false;
     this.defaultAddons = "|write-good||conversion||links||calculator|";
     this.loginInterval = false;
+    this.anonymousUser = ANONYMOUS_USER;
+
     console.log("API: init");
 
     LocalDB.initDB().then(res => {

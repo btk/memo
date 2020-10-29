@@ -20,7 +20,7 @@ class App extends Component {
 
   render() {
     let currencies = ["CAD", "HKD", "ISK", "PHP", "DKK", "HUF", "CZK", "GBP", "RON", "SEK", "IDR", "INR", "BRL", "RUB", "HRK", "JPY", "THB", "CHF", "EUR", "MYR", "BGN", "TRY", "CNY", "NOK", "NZD", "ZAR", "USD", "MXN", "SGD", "AUD", "ILS", "KRW", "PLN" ];
-    let handle = API.user.username ? API.user.username : API.user.email.split("@")[0];
+    let handle = API.user ? API.user.username ? API.user.username : API.user.email.split("@")[0] : API.anonymousUser.username;
 
     return (
       <div className="TabCarrier SettingsTab">
