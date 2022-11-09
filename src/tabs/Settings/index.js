@@ -52,7 +52,7 @@ class App extends Component {
         </select>
         <>
           <h5>Revision History</h5>
-          <p className="sub">In case of data loss, you can use your Gist revisions and see your change history.</p>
+          <p className="sub">In case of data loss, you can use your Gist revisions to see your change history.</p>
           {API.user &&
             <a href={"https://gist.github.com/"+ API.user.gist_id + "/revisions"} target="_blank">
               <div className="label" style={{fontSize: 15, fontWeight: 500}}>See Your Gist Revisions</div>
@@ -94,7 +94,7 @@ class App extends Component {
               <span>You are in offline mode.</span>
               <br/>
               <span className="userHandle">
-                You can login the app when you have internet. <br/>
+                You can log in to the app when you have internet.<br/>
                 <span style={{cursor: "pointer", fontWeight: 500}} onClick={() => window.location.reload()}>Try to login?</span>
               </span>
             </p>
